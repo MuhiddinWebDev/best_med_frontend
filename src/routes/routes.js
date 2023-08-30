@@ -171,6 +171,21 @@ const routes = [
         component: () => import("@/pages/Hisobot/From.vue")
       },
       {
+        path: "/settings/update/:id",
+        name: "/settings/update",
+        component: () => import("@/pages/Settings/Form.vue")
+      },
+      {
+        path: "/settings/create",
+        name: "/settigns/create",
+        component: () => import("@/pages/Settings/Form.vue")
+      },
+      {
+        path: "/settings",
+        name: "settings",
+        component: () => import("@/pages/Settings/Index.vue")
+      },
+      {
         path: "sori",
         name: "sori",
         component: () => import("@/pages/Sori/Index.vue")
@@ -502,7 +517,7 @@ const routes = [
   },
   {
     path: "/provayder/sverka",
-    name: "DIrectSverka",
+    name: "ProvayderSverka",
     component: () => import("@/pages/Sverka/PostavshikSverks.vue")
   },
   {

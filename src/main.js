@@ -52,9 +52,9 @@ import axios from "axios";
 import VueAxios from "vue-axios";
 Vue.use(VueAxios, axios);
 window.axios = require("axios");
-// const BASE_URL = "http://localhost:4000/api/v1/admin-app/";
+const BASE_URL = "http://localhost:4000/api/v1/admin-app/";
 
-const BASE_URL = "http://185.196.213.159:3005/api/v1/admin-app/";
+// const BASE_URL = "http://185.196.213.159:3005/api/v1/admin-app/";
 
 window.axios.defaults.baseURL = BASE_URL;
 // window.axios.defaults.baseURL = "";

@@ -1,0 +1,239 @@
+<template>
+  <div>
+    <div class="katta">
+      <span>Бемор</span>
+      <button
+        style="padding: 4px 10px; margin-right: 10px"
+        class="btn"
+        @click="Prev()"
+      >
+        <b-icon style="color: white" icon="house-door-fill"> </b-icon>
+      </button>
+    </div>
+    <div class="card shadow mx-3 rounded settings-card">
+      <div class="card-body pt-5">
+          <div class="row">
+            <div class="col-6">
+              <div>
+                <label>Nomi</label>
+                <input
+                  required
+                  type="text"
+                  v-model="datas.name"
+                  class="form-control border-bottom-0"
+                />
+              </div>
+              <div class="my-2">
+                <label>Boshlanish vaqti</label>
+                <date-picker
+                  v-model="datas.date1"
+                  format="DD.MM.YYYY"
+                  value-type="X"
+                  type="date"
+                  placeholder="Вақтдан..."
+                  style="width: 100%"                  
+                ></date-picker>
+              </div>
+              <label>
+                Logotip
+              </label>
+              <b-input-group>
+                <b-input-group-prepend is-text>
+                  <b-icon icon="image-fill"></b-icon>
+                </b-input-group-prepend>
+
+                <b-form-file
+                  id="form-image"
+                  v-model="files"
+                  @change="onFileChange"
+                ></b-form-file>
+              </b-input-group>
+            </div>
+            <div class="col-6">
+              <div>
+                <label>Sarlavha</label>
+                <input
+                  required
+                  type="text"
+                  v-model="datas.quote"
+                  class="form-control border-bottom-0"
+                />
+              </div>
+              <div class="my-2">
+                <label>Tugash vaqti</label>
+                <date-picker
+                  v-model="datas.date2"
+                  format="DD.MM.YYYY"
+                  value-type="X"
+                  type="date"
+                  placeholder="Вақтгача..."
+                  style="width: 100%"
+                ></date-picker>
+              </div>
+              <b-img
+                  :src="datas.logo"
+                  rounded
+                  center
+                  v-if="$route.params.id"
+                  class="logo-img1"
+                >
+              </b-img>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <md-card-content>
+      <div class="tugmalarb">
+        <b-button @click="isUpload = true, create()" class="mr-2 calendar" variant="success">
+          <b-icon icon="calendar2-plus"></b-icon> Сақлаш
+        </b-button>
+        <b-button @click="cancel()" variant="danger" class="calendar1">
+          <b-icon icon="calendar2-x"></b-icon> Бекор қилиш
+        </b-button>
+      </div>
+    </md-card-content>
+  </div>
+</template>
+
+<script>
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
+import axios from "axios";
+export default {
+  name: "bemor-form",
+  components: { DatePicker },
+  inject: ["BASE_URL"],
+  data() {
+    return {
+      datas: {
+        name: null,
+        logo: null,
+        date1: null,
+        date2: null,
+        quote: null,
+      },
+      isUpload: false,
+      files: [],
+    };
+  },
+  methods: {
+    create() {
+      let self = this;
+      if (this.$route.params.id) {
+        axios
+          .patch("/settings/id/" + this.$route.params.id, this.datas)
+          .then((data) => {
+            console.log(data)
+            if (data) {
+              self.$router.push("/settings");
+            }
+          });
+      } else {
+        axios.post("/settings", this.datas).then((data) => {
+          if (data) {
+            self.$router.push("/settings");
+          }
+        });
+      }
+    },
+    cancel() {
+      this.datas = {
+        name: null,
+        logo: null,
+        date1: null,
+        date2: null,
+        quote: null,
+      };
+    },
+    getData() {
+      let self = this;
+      if (self.$route.path != "/settings/create") {
+        axios.get("/settings/id/" + this.$route.params.id).then((res) => {
+          if (res) {
+            self.datas = res.data.data;
+            this.datas.date1 = String(res.data.data.date1)
+            this.datas.date2 = String(res.data.data.date2)
+          }
+        });
+      }
+    },
+    Prev() {
+      this.$router.push("/settings");
+    },
+    onFileChange(e) {
+      const file = e.target.files[0]
+      const formData = new FormData();
+      formData.append("href", file);
+      axios.post("uploads/imgs", formData).then(res => {
+        this.datas.logo = this.BASE_URL + res.data.img;
+      });
+    }
+  },
+  mounted() {
+    this.getData();
+  },
+};
+</script>
+
+<style scoped>
+.katta {
+  background: #007bff;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 40px;
+  border-radius: 8px;
+  color: #fff;
+  text-indent: 15px;
+  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  z-index: 2;
+  position: relative;
+}
+.oyna1 {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.shirift {
+  font-size: 16px;
+}
+.bbbbbb .vs__dropdown-menu {
+  height: 200px;
+}
+.ustun {
+  width: 49%;
+}
+.tugmalarb {
+  display: flex;
+  justify-content: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.calendar {
+  box-shadow: 5px 8px 10px rgba(25, 176, 48, 0.5);
+}
+.calendar1 {
+  box-shadow: 5px 8px 10px rgba(176, 25, 25, 0.5);
+}
+
+.settings-card {
+  position: relative;
+  margin-top: -30px;
+  z-index: 1;
+  border-radius: 0.5rem !important;
+}
+
+.logo-img1 {
+  max-width: 200px;
+  max-height: 200px;
+  display: inline-block;
+  vertical-align: middle;
+}
+</style>
