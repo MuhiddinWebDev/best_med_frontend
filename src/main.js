@@ -12,6 +12,9 @@ const options = {
     // You can set your default options here
 };
 
+import LottieAnimation from 'lottie-web-vue'
+ 
+Vue.use(LottieAnimation); 
 
 Vue.use(Toast, options);
 // Plugins

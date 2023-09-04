@@ -12,80 +12,84 @@
     </div>
     <div class="card shadow mx-3 rounded settings-card">
       <div class="card-body pt-5">
-          <div class="row">
-            <div class="col-6">
-              <div>
-                <label>Nomi</label>
-                <input
-                  required
-                  type="text"
-                  v-model="datas.name"
-                  class="form-control border-bottom-0"
-                />
-              </div>
-              <div class="my-2">
-                <label>Boshlanish vaqti</label>
-                <date-picker
-                  v-model="datas.date1"
-                  format="DD.MM.YYYY"
-                  value-type="X"
-                  type="date"
-                  placeholder="Вақтдан..."
-                  style="width: 100%"                  
-                ></date-picker>
-              </div>
-              <label>
-                Logotip
-              </label>
-              <b-input-group>
-                <b-input-group-prepend is-text>
-                  <b-icon icon="image-fill"></b-icon>
-                </b-input-group-prepend>
+        <div class="row">
+          <div class="col-6">
+            <div>
+              <label>Nomi</label>
+              <input
+                required
+                type="text"
+                v-model="datas.name"
+                class="form-control border-bottom-0"
+              />
+            </div>
+            <div class="my-2">
+              <label>Boshlanish vaqti</label>
+              <date-picker
+                v-model="datas.date1"
+                format="DD.MM.YYYY"
+                value-type="X"
+                type="date"
+                placeholder="Вақтдан..."
+                style="width: 100%"
+              ></date-picker>
+            </div>
+            <label>
+              Logotip
+            </label>
+            <b-input-group>
+              <b-input-group-prepend is-text>
+                <b-icon icon="image-fill"></b-icon>
+              </b-input-group-prepend>
 
-                <b-form-file
-                  id="form-image"
-                  v-model="files"
-                  @change="onFileChange"
-                ></b-form-file>
-              </b-input-group>
-            </div>
-            <div class="col-6">
-              <div>
-                <label>Sarlavha</label>
-                <input
-                  required
-                  type="text"
-                  v-model="datas.quote"
-                  class="form-control border-bottom-0"
-                />
-              </div>
-              <div class="my-2">
-                <label>Tugash vaqti</label>
-                <date-picker
-                  v-model="datas.date2"
-                  format="DD.MM.YYYY"
-                  value-type="X"
-                  type="date"
-                  placeholder="Вақтгача..."
-                  style="width: 100%"
-                ></date-picker>
-              </div>
-              <b-img
-                  :src="datas.logo"
-                  rounded
-                  center
-                  v-if="$route.params.id"
-                  class="logo-img1"
-                >
-              </b-img>
-            </div>
+              <b-form-file
+                id="form-image"
+                v-model="files"
+                @change="onFileChange"
+              ></b-form-file>
+            </b-input-group>
           </div>
+          <div class="col-6">
+            <div>
+              <label>Sarlavha</label>
+              <input
+                required
+                type="text"
+                v-model="datas.quote"
+                class="form-control border-bottom-0"
+              />
+            </div>
+            <div class="my-2">
+              <label>Tugash vaqti</label>
+              <date-picker
+                v-model="datas.date2"
+                format="DD.MM.YYYY"
+                value-type="X"
+                type="date"
+                placeholder="Вақтгача..."
+                style="width: 100%"
+              ></date-picker>
+            </div>
+            <b-img
+              :src="datas.logo"
+              rounded
+              center
+              v-if="$route.params.id"
+              class="logo-img1"
+            >
+            </b-img>
+          </div>
+        </div>
       </div>
     </div>
 
     <md-card-content>
       <div class="tugmalarb">
-        <b-button @click="isUpload = true, create()" class="mr-2 calendar" variant="success">
+        <b-button
+          @click="(isUpload = true), create()"
+          class="mr-2 calendar"
+          variant="success"
+        >
           <b-icon icon="calendar2-plus"></b-icon> Сақлаш
         </b-button>
         <b-button @click="cancel()" variant="danger" class="calendar1">
@@ -124,7 +128,6 @@ export default {
         axios
           .patch("/settings/id/" + this.$route.params.id, this.datas)
           .then((data) => {
-            console.log(data)
             if (data) {
               self.$router.push("/settings");
             }
@@ -152,8 +155,8 @@ export default {
         axios.get("/settings/id/" + this.$route.params.id).then((res) => {
           if (res) {
             self.datas = res.data.data;
-            this.datas.date1 = String(res.data.data.date1)
-            this.datas.date2 = String(res.data.data.date2)
+            this.datas.date1 = String(res.data.data.date1);
+            this.datas.date2 = String(res.data.data.date2);
           }
         });
       }
@@ -162,13 +165,13 @@ export default {
       this.$router.push("/settings");
     },
     onFileChange(e) {
-      const file = e.target.files[0]
+      const file = e.target.files[0];
       const formData = new FormData();
       formData.append("href", file);
-      axios.post("uploads/imgs", formData).then(res => {
+      axios.post("uploads/imgs", formData).then((res) => {
         this.datas.logo = this.BASE_URL + res.data.img;
       });
-    }
+    },
   },
   mounted() {
     this.getData();

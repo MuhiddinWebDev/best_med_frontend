@@ -645,6 +645,11 @@ const routes = [
     component: () => import("@/pages/User/Tekshiruv.vue")
   },
   {
+    path: "/expired-app",
+    name: "expired app",
+    component: () => import("@/pages/ExpiredApp/Index.vue")
+  },
+  {
     path: "*",
     name: "404",
     component: () => import("@/pages/404.vue")

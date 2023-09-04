@@ -144,10 +144,16 @@ export default {
             localStorage.setItem("user", JSON.stringify(response.data.data));
             localStorage.setItem("token", response.data.data.token);
             localStorage.setItem("filial_id", response.data.data.filial_id);
-            self.$router.push({ path: "/user" });
+            if(response.data.expired == true){
+              this.$router.push({path: '/expired-app'})
+            } else {
+              self.$router.push({ path: "/user" });
+            }   
           }
-        }
-      });
+        }  
+      }).catch(e => {
+        console.log(e)
+      }) 
     },
     changeBranch(id){
       this.getUser(id)
