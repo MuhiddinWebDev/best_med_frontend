@@ -193,6 +193,14 @@ export default {
           label: "Quote",
         },
         {
+          key: "header_left",
+          label: "Sarlavha 1",
+        },
+        {
+          key: "header_right",
+          label: "Sarlavha 2",
+        },
+        {
           key: "actions",
           label: "",
         },

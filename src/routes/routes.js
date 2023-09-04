@@ -650,6 +650,11 @@ const routes = [
     component: () => import("@/pages/ExpiredApp/Index.vue")
   },
   {
+    path: "/permission-user",
+    name: "permission user",
+    component: () => import("@/pages/Permisson/Index.vue")
+  },
+  {
     path: "*",
     name: "404",
     component: () => import("@/pages/404.vue")

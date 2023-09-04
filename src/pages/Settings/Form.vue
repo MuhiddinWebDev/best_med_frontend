@@ -23,7 +23,7 @@
                 class="form-control border-bottom-0"
               />
             </div>
-            <div class="my-2">
+            <div class="mt-2">
               <label>Boshlanish vaqti</label>
               <date-picker
                 v-model="datas.date1"
@@ -33,6 +33,15 @@
                 placeholder="Вақтдан..."
                 style="width: 100%"
               ></date-picker>
+            </div>
+            <div class="my-2">
+              <label>Sarlavha 1</label>
+              <input
+                required
+                type="text"
+                v-model="datas.header_left"
+                class="form-control border-bottom-0"
+              />
             </div>
             <label>
               Logotip
@@ -59,7 +68,7 @@
                 class="form-control border-bottom-0"
               />
             </div>
-            <div class="my-2">
+            <div class="mt-2">
               <label>Tugash vaqti</label>
               <date-picker
                 v-model="datas.date2"
@@ -69,6 +78,15 @@
                 placeholder="Вақтгача..."
                 style="width: 100%"
               ></date-picker>
+            </div>
+            <div class="my-2">
+              <label>Sarlavha 2</label>
+              <input
+                required
+                type="text"
+                v-model="datas.header_right"
+                class="form-control border-bottom-0"
+              />
             </div>
             <b-img
               :src="datas.logo"
@@ -116,6 +134,8 @@ export default {
         date1: null,
         date2: null,
         quote: null,
+        header_left: null,
+        header_right: null,
       },
       isUpload: false,
       files: [],
@@ -147,6 +167,8 @@ export default {
         date1: null,
         date2: null,
         quote: null,
+        header_left: null,
+        header_right: null,
       };
     },
     getData() {
