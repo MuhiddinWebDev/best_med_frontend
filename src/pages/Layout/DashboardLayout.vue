@@ -14,116 +14,248 @@
         <b-icon font-scale="2" icon="person-plus" class="mr-3"></b-icon>
         <p>Регистрация</p>
       </sidebar-link>
-      <sidebar-link to="/settings">
-        <b-icon icon="gear-fill" font-scale="2" class="mr-3"></b-icon>
-        <p>Созламалар</p>
-      </sidebar-link>
-     
-      <b-button
-        @click="showData = !showData"
-        class="d-flex w-100 align-items-center bg-transparent justify-content-between border-0 outline-0 shadow-0 shadow-none pr-1 pl-4"
-      >
-      Маълумотлар
-      <span class="material-icons icon-large" style="font-size: 2.3rem;" :class="{ 'text-primary': showData }">
-          {{ showData ? "expand_less" : "expand_more" }}
-      </span>
-      </b-button>
-      <b-collapse :visible="showData">
-        
-      </b-collapse>
-     
-      <b-button
-        @click="showDocs = !showDocs"
-        class="d-flex w-100 align-items-center bg-transparent justify-content-between border-0 outline-0 shadow-0 shadow-none pr-1 pl-4"
-      >
-      Ҳужжатлар
-      <span class="material-icons icon-large" style="font-size: 2.3rem;" :class="{ 'text-primary': showDocs }">
-          {{ showDocs ? "expand_less" : "expand_more" }}
-      </span>
-      </b-button>
-      <b-collapse :visible="showDocs">   
-      </b-collapse>
-     
-      <b-button
-        @click="showReport = !showReport"
-        class="d-flex w-100 align-items-center bg-transparent justify-content-between border-0 outline-0 shadow-0 shadow-none pr-1 pl-4"
-      >
-      Ҳужжатлар
-      <span class="material-icons icon-large" style="font-size: 2.3rem;" :class="{ 'text-primary': showReport }">
-          {{ showReport ? "expand_less" : "expand_more" }}
-      </span>
-      </b-button>
-      <b-collapse :visible="showReport">   
-      </b-collapse>
 
       <sidebar-link to="/user/statsionar">
         <!-- <md-icon>person_add_alt_1</md-icon> -->
         <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
         <p>Стационар</p>
       </sidebar-link>
-      <sidebar-link to="/arxiv">
-        <b-icon font-scale="2" icon="journal-text" class="mr-3"></b-icon>
-        <p>Архив</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/bemor"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Registrator'
-        "
+
+      <b-button
+        @click="showDocs = !showDocs"
+        class="d-flex w-100 align-items-center bg-transparent justify-content-between border-0 outline-0 shadow-0 shadow-none pr-1 pl-4"
       >
-        <b-icon
-          font-scale="2"
-          icon="file-earmark-person-fill"
-          class="mr-3"
-        ></b-icon>
-        <p>Беморлар</p>
-      </sidebar-link>
+        <span style="padding-left: 10px;">
+          <b-icon icon="file-earmark-check-fill"></b-icon>
+          <span style="margin-left: 18px;">
+            Ҳужжатлар
+          </span>
+        </span>
+
+        <span
+          class="material-icons icon-large"
+          style="font-size: 2.3rem;"
+          :class="{ 'text-primary': showDocs }"
+        >
+          {{ showDocs ? "expand_less" : "expand_more" }}
+        </span>
+      </b-button>
+      <b-collapse :visible="showDocs">
+        <sidebar-link to="/arxiv">
+          <b-icon font-scale="2" icon="journal-text" class="mr-3"></b-icon>
+          <p>Архив</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/kassaa"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="bank2" class="mr-3"></b-icon>
+          <p>Касса чиқим</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/oplata"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="cash-coin" class="mr-3"></b-icon>
+          <p>Тўловлар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/prixod"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="box-arrow-in-down" class="mr-3"></b-icon>
+          <p>Приход</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/provider/pay"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="person-check-fill" class="mr-3"></b-icon>
+          <p>Поставщик тўлов</p>
+        </sidebar-link>
+      </b-collapse>
+
+      <b-button
+        @click="showData = !showData"
+        class="d-flex w-100 align-items-center bg-transparent justify-content-between border-0 outline-0 shadow-0 shadow-none pr-1 pl-4"
+      >
+        <span style="padding-left: 10px;">
+          <b-icon icon="wallet-fill"></b-icon>
+          <span style="margin-left: 18px;">Маълумотлар</span>
+        </span>
+
+        <span
+          class="material-icons icon-large"
+          style="font-size: 2.3rem;"
+          :class="{ 'text-primary': showData }"
+        >
+          {{ showData ? "expand_less" : "expand_more" }}
+        </span>
+      </b-button>
+      <b-collapse :visible="showData">
+        <sidebar-link
+          to="/bemor"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Registrator'
+          "
+        >
+          <b-icon
+            font-scale="2"
+            icon="file-earmark-person-fill"
+            class="mr-3"
+          ></b-icon>
+          <p>Беморлар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/Shifokor-bolimi"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="journal-medical" class="mr-3"></b-icon>
+          <p>Шифокор бўлими</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/shifokor"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="people-fill" class="mr-3"></b-icon>
+          <p>Шифокорлар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/hodimlar"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="file-person-fill" class="mr-3"></b-icon>
+          <p>Ходимлар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/naprovitel"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Shifokor'
+          "
+        >
+          <b-icon font-scale="2" icon="arrow-left-right" class="mr-3"></b-icon>
+          <p>Напровител</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/provider"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="person-lines-fill" class="mr-3"></b-icon>
+          <p>Поставщик</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/dorilar"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="grid3x2-gap-fill" class="mr-3"></b-icon>
+          <p>Дорилар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/reagent/department"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="server" class="mr-3"></b-icon>
+          <p>Реагент бўлим</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/reagent"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="server" class="mr-3"></b-icon>
+          <p>Реагент</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/palata"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
+          <p>Палата</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/tekshiruv-bolimlari"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="ui-checks-grid" class="mr-3"></b-icon>
+          <p>Текширув бўлимлари</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/tekshiruvlar"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="ui-checks" class="mr-3"></b-icon>
+          <p>Текширувлар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/xonalar"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="door-open-fill" class="mr-3"></b-icon>
+          <p>Хоналар</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/filial"
+          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+        >
+          <b-icon font-scale="2" icon="building" class="mr-3"></b-icon>
+          <p>Филиал</p>
+        </sidebar-link>
+      </b-collapse>
+
       <sidebar-link to="/hisobotlar">
-        <!-- <md-icon>content_paste</md-icon> -->
         <b-icon font-scale="2" icon="calendar-range" class="mr-3"></b-icon>
         <p>Ҳисоботлар</p>
       </sidebar-link>
-      <sidebar-link
-        to="/kassaa"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <!-- <md-icon>account_balance</md-icon> -->
-        <b-icon font-scale="2" icon="bank2" class="mr-3"></b-icon>
-        <p>Касса чиқим</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/oplata"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <!-- <md-icon>attach_money</md-icon> -->
-        <b-icon font-scale="2" icon="cash-coin" class="mr-3"></b-icon>
-        <p>Тўловлар</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/prixod"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <b-icon font-scale="2" icon="box-arrow-in-down" class="mr-3"></b-icon>
-        <!-- <md-icon>currency_exchange</md-icon> -->
-        <p>Приход</p>
-      </sidebar-link>
-    
-      
-        <!-- <sidebar-link
+
+      <!-- <sidebar-link
         to="/eshikdan-kirish"
         v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi' || localUser.role == 'Registrator') && showColumn"
       >
@@ -167,7 +299,7 @@
         ></b-icon>
         <p>Бассейн нархи </p>
       </sidebar-link> -->
-    
+
       <!-- <sidebar-link
         to="/kirish"
         v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi' || localUser.role == 'Registrator') && showColumn"
@@ -193,7 +325,7 @@
         <md-icon>airline_seat_individual_suite</md-icon>
         <p>Bemor</p>
       </sidebar-link> -->
-        <!-- <sidebar-link
+      <!-- <sidebar-link
         to="/medpritavitel"
         v-if="
           localUser.role == 'Admin' ||
@@ -213,139 +345,9 @@
         <p>Сўрилар</p>
       </sidebar-link> -->
 
-
-      <sidebar-link
-        to="/Shifokor-bolimi"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>medical_information</md-icon> -->
-        <b-icon font-scale="2" icon="journal-medical" class="mr-3"></b-icon>
-        <p>Шифокор бўлими</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/shifokor"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>people</md-icon> -->
-        <b-icon font-scale="2" icon="people-fill" class="mr-3"></b-icon>
-        <p>Шифокорлар</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/hodimlar"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>diversity_3</md-icon> -->
-        <b-icon font-scale="2" icon="file-person-fill" class="mr-3"></b-icon>
-        <p>Ходимлар</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/naprovitel"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Shifokor'
-        "
-      >
-        <!-- <md-icon>diversity_1</md-icon> -->
-        <b-icon font-scale="2" icon="arrow-left-right" class="mr-3"></b-icon>
-        <p>Напровител</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/provider"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <!-- <md-icon>real_estate_agent</md-icon> -->
-        <b-icon font-scale="2" icon="person-lines-fill" class="mr-3"></b-icon>
-        <p>Поставщик</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/provider/pay"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <!-- <md-icon>price_check</md-icon> -->
-        <b-icon font-scale="2" icon="person-check-fill" class="mr-3"></b-icon>
-        <p>Поставщик тўлов</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/dorilar"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>drag_indicator</md-icon> -->
-        <b-icon font-scale="2" icon="grid3x2-gap-fill" class="mr-3"></b-icon>
-        <p>Дорилар</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/reagent/department"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <!-- <md-icon>vaccines</md-icon> -->
-        <b-icon font-scale="2" icon="server" class="mr-3"></b-icon>
-        <p>Реагент бўлим</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/reagent"
-        v-if="
-          localUser.role == 'Admin' ||
-            localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
-        "
-      >
-        <!-- <md-icon>vaccines</md-icon> -->
-        <b-icon font-scale="2" icon="server" class="mr-3"></b-icon>
-        <p>Реагент</p>
-      </sidebar-link>
-      
-      <sidebar-link
-        to="/palata"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>hotel</md-icon> -->
-        <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
-        <p>Палата</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/tekshiruv-bolimlari"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>checklist</md-icon> -->
-        <b-icon font-scale="2" icon="ui-checks-grid" class="mr-3"></b-icon>
-        <p>Текширув бўлимлари</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/tekshiruvlar"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>playlist_add_check</md-icon> -->
-        <b-icon font-scale="2" icon="ui-checks" class="mr-3"></b-icon>
-        <p>Текширувлар</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/filial"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>meeting_room</md-icon> -->
-        <b-icon font-scale="2" icon="building" class="mr-3"></b-icon>
-        <p>Филиал</p>
-      </sidebar-link>
-      <sidebar-link
-        to="/xonalar"
-        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
-      >
-        <!-- <md-icon>meeting_room</md-icon> -->
-        <b-icon font-scale="2" icon="door-open-fill" class="mr-3"></b-icon>
-        <p>Хоналар</p>
+      <sidebar-link to="/settings" class="fixed-bottom1">
+        <b-icon icon="gear-fill" font-scale="2" class="mr-3"></b-icon>
+        <p>Созламалар</p>
       </sidebar-link>
     </side-bar>
 
@@ -389,7 +391,7 @@ export default {
     DashboardContent,
     ContentFooter,
     // MobileMenu,
-    SidebarLink
+    SidebarLink,
     // FixedPlugin,
   },
   data() {
@@ -397,45 +399,45 @@ export default {
       sidebarBackground: "green",
       // sidebarBackgroundImage: require("@/assets/img/sidebar-2.jpg"),
       localUser: JSON.parse(localStorage.getItem("user")),
-      localBranch:JSON.parse(localStorage.getItem("filial_id")),
+      localBranch: JSON.parse(localStorage.getItem("filial_id")),
       showColumn: false,
       showData: false,
       showDocs: false,
-      showReport: false
+      showReport: false,
     };
   },
   methods: {
     routerPush() {
       // this.$router.push('/user')
     },
-    checkAllow(){
+    checkAllow() {
       let self = this;
       axios({
         method: "get",
-        url: "/filial/all"
-      }).then(res => {
+        url: "/filial/all",
+      }).then((res) => {
         if (res != undefined) {
-          if(res.data.data[0].id == this.localBranch){
+          if (res.data.data[0].id == this.localBranch) {
             this.showColumn = true;
-          }else{
+          } else {
             this.showColumn = false;
           }
         }
       });
-    }
-
+    },
   },
   mounted() {
-    this.checkAllow()
+    this.checkAllow();
     setInterval(() => {
       if (this.$store.state.errors != "") {
         this.$store.state.errors = "";
       }
     }, 3000);
-  }
+  },
 };
 </script>
-<style>
+
+<style scoped>
 @keyframes animateAlert {
   0% {
     width: 0px;
@@ -454,6 +456,7 @@ export default {
     opacity: 0;
   }
 }
+
 .xatoliklar {
   position: fixed;
   top: 0;
@@ -467,11 +470,19 @@ export default {
   animation: animateAlert 3s linear;
   pointer-events: all;
 }
+
 .md-list-item .md-ripple {
-  padding: 0.5px !important;
+  padding: 0.5px;
 }
 
 .icon-large {
   font-size: 134px; /* Adjust the font size as needed */
+}
+
+.fixed-bottom1 {
+  position: fixed;
+  bottom: 25px;
+  width: 255px;
+  display: block;
 }
 </style>
