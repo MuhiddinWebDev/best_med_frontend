@@ -165,16 +165,16 @@ export default {
         },
         {
           key: "name",
-          label: "Филиал",
+          label: "Номи",
           sortable: true,
         },
         {
           key: "logo",
-          label: "Logo",
+          label: "Лого",
         },
         {
           key: "date1",
-          label: "Date1",
+          label: "Бошланғич сана",
           sortable: true,
           formatter: (value, key, item) => {
             return moment.unix(value).format("DD.MM.YYYY");
@@ -182,7 +182,7 @@ export default {
         },
         {
           key: "date2",
-          label: "Date2",
+          label: "Тугаш санаси",
           sortable: true,
           formatter: (value, key, item) => {
             return moment.unix(value).format("DD.MM.YYYY");
@@ -190,15 +190,15 @@ export default {
         },
         {
           key: "quote",
-          label: "Quote",
+          label: "Чек ёзуви",
         },
         {
           key: "header_left",
-          label: "Sarlavha 1",
+          label: "Сарлавҳа 1",
         },
         {
           key: "header_right",
-          label: "Sarlavha 2",
+          label: "Сарлавҳа 2",
         },
         {
           key: "actions",

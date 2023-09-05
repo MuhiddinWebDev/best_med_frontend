@@ -15,11 +15,12 @@
         <div class="row">
           <div class="col-6">
             <div>
-              <label>Nomi</label>
+              <label>Номи</label>
               <input
                 required
                 type="text"
                 v-model="datas.name"
+                placeholder="Номи"
                 class="form-control border-bottom-0"
               />
             </div>
@@ -35,16 +36,17 @@
               ></date-picker>
             </div>
             <div class="my-2">
-              <label>Sarlavha 1</label>
+              <label>Сарлавҳа 1</label>
               <input
                 required
                 type="text"
                 v-model="datas.header_left"
+                placeholder="Сарлавҳа 1"
                 class="form-control border-bottom-0"
               />
             </div>
             <label>
-              Logotip
+              Логотип
             </label>
             <b-input-group>
               <b-input-group-prepend is-text>
@@ -60,12 +62,13 @@
           </div>
           <div class="col-6">
             <div>
-              <label>Sarlavha</label>
+              <label>Чек ёзуви</label>
               <input
                 required
                 type="text"
                 v-model="datas.quote"
                 class="form-control border-bottom-0"
+                placeholder="Чек ёзуви"
               />
             </div>
             <div class="mt-2">
@@ -80,11 +83,12 @@
               ></date-picker>
             </div>
             <div class="my-2">
-              <label>Sarlavha 2</label>
+              <label>Сарлавҳа 2</label>
               <input
                 required
                 type="text"
                 v-model="datas.header_right"
+                placeholder="Сарлавҳа 2"
                 class="form-control border-bottom-0"
               />
             </div>
