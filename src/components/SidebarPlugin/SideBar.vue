@@ -93,7 +93,8 @@ export default {
   font-weight: 600 !important;
 }
 .wrapper .sidebar .sidebar-wrapper {
-  background: #00009d;
+  /* background: #00009d; */
+  background: #379056
 }
 /* .md-list-item .active {
   background-color: #003eea !important;
@@ -102,7 +103,8 @@ export default {
   font-size: 16px !important;
 }
 .wrapper .sidebar .logo {
-  background: #00009d;
+  /* background: #00009d; */
+  background: #379056
 }
 ::-webkit-scrollbar {
   width: 5px;

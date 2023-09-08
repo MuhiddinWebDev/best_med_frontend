@@ -196,7 +196,7 @@
           </sidebar-link>
         </div>
       </div> -->
-      <div
+      <!-- <div
         class="HisobotChild"
         v-if="
             localUser.role == 'Admin' ||
@@ -214,8 +214,8 @@
             <p>Сўри Сверка</p>
           </sidebar-link>
         </div>
-      </div>
-      <div
+      </div> -->
+      <!-- <div
         class="HisobotChild"
         v-if="
             localUser.role == 'Admin' ||
@@ -230,8 +230,8 @@
             <p>Эшикдан кириш Сверка</p>
           </sidebar-link>
         </div>
-      </div>
-      <div
+      </div> -->
+      <!-- <div
         class="HisobotChild"
         v-if="
             localUser.role == 'Admin' ||
@@ -246,7 +246,7 @@
             <p>Бассейн сверка</p>
           </sidebar-link>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -98,7 +98,8 @@
       <b-button
         @click="showData = !showData"
         class="d-flex w-100 align-items-center bg-transparent justify-content-between border-0 outline-0 shadow-0 shadow-none pr-1 pl-4"
-      >
+        :class="{ active: showData }"
+        >
         <span style="padding-left: 10px;">
           <b-icon icon="wallet-fill"></b-icon>
           <span style="margin-left: 18px;">Маълумотлар</span>
@@ -112,7 +113,7 @@
           {{ showData ? "expand_less" : "expand_more" }}
         </span>
       </b-button>
-      <b-collapse :visible="showData">
+      <b-collapse :visible="showData"  >
         <sidebar-link
           to="/bemor"
           v-if="
@@ -345,7 +346,7 @@
         <p>Сўрилар</p>
       </sidebar-link> -->
 
-      <sidebar-link to="/settings" class="fixed-bottom1">
+      <sidebar-link to="/settings">
         <b-icon icon="gear-fill" font-scale="2" class="mr-3"></b-icon>
         <p>Созламалар</p>
       </sidebar-link>
@@ -437,7 +438,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 @keyframes animateAlert {
   0% {
     width: 0px;
@@ -478,11 +479,18 @@ export default {
 .icon-large {
   font-size: 134px; /* Adjust the font size as needed */
 }
+/*  */
 
-.fixed-bottom1 {
-  position: fixed;
-  bottom: 25px;
-  width: 255px;
-  display: block;
+.nav {
+  flex-wrap: nowrap !important;
+}
+
+.wrapper .sidebar .sidebar-wrapper {
+  width: 276px !important;
+  padding-right: 10px;
+}
+
+.md-list.md-theme-default .md-selected .md-list-item-content, .md-list.md-theme-default .router-link-active .md-list-item-content {
+  color: #fff !important;
 }
 </style>
