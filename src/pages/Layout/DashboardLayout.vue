@@ -117,7 +117,7 @@
         <sidebar-link
           to="/bemor"
           v-if="
-            localUser.role == 'Admin' ||
+              localUser.role == 'Admin' ||
               localUser.role == 'Dasturchi' ||
               localUser.role == 'Registrator'
           "
@@ -346,7 +346,8 @@
         <p>Сўрилар</p>
       </sidebar-link> -->
 
-      <sidebar-link to="/settings">
+      <sidebar-link to="/settings"  
+        v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'">
         <b-icon icon="gear-fill" font-scale="2" class="mr-3"></b-icon>
         <p>Созламалар</p>
       </sidebar-link>

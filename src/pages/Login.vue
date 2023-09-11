@@ -2,7 +2,7 @@
   <div class="containers">
     <div class="sarlovha">
       <h2>
-        Соғлом Турмуш Клиникаси
+        Best Med 
       </h2>
     </div>
     <div class="loginOyna">

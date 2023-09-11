@@ -2,9 +2,9 @@
   <div class="sidebar" :data-color="sidebarItemColor" :style="sidebarStyle">
     <div class="logo">
       <a href="#" class="simple-text logo-mini">
-        <div>
+        <!-- <div>
           <img :src="imgLogo" alt="" />
-        </div>
+        </div> -->
       </a>
 
       <a class="simple-text logo-normal logo-sarlovha">
@@ -38,7 +38,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Соғлом турмуш"
+      default: "Best Med"
       // default: "РИКМИАТМФФ"
     },
     sidebarBackgroundImage: {
@@ -46,10 +46,10 @@ export default {
       // default: 'red'
       // default: require("@/assets/img/sidebar-2.jpg")
     },
-    imgLogo: {
-      type: String,
-      default: require("../../../public/ssv.png")
-    },
+    // imgLogo: {
+    //   type: String,
+    //   default: require("../../../public/ssv.png")
+    // },
     sidebarItemColor: {
       type: String,
       default: "blue",
