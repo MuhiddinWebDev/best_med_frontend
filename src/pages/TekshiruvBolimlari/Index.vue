@@ -8,7 +8,7 @@
             <b-col class="mb-2">
               <b-button
                 class="qoshishBtn"
-                variant="primary"
+                variant="success"
                 @click="createRoomLink"
               >
                 <span>

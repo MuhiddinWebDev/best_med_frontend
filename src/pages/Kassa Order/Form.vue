@@ -29,7 +29,7 @@
                   :class="{ Disabled: $route.name == 'KassaDoc' }"
                   class="tabsBtnss"
                   v-b-modal.DorilarModal1
-                  variant="primary"
+                  variant="success"
                 >
                   ...
                 </button>

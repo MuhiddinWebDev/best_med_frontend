@@ -85,7 +85,7 @@
                 class="btn"
                 text="Button"
                 v-b-modal.modal-no-backdrop
-                variant="primary"
+                variant="success"
                 >...</b-button
               >
             </b-input-group-append>
@@ -786,7 +786,7 @@
                 <button
                   class="tabsBtns"
                   v-b-modal.modalPopover
-                  variant="primary"
+                  variant="success"
                   @click="getTekshiruvlar"
                   :class="{ Arxive: $route.name == 'ArxivOne' }"
                 >
@@ -1017,7 +1017,7 @@
                     :disabled="this.localUser.role == 'Registrator' || this.localUser.role == 'Kasser'"
                     v-b-modal.modal-2
                     class="navbarBtn mt-3"
-                    variant="primary"
+                    variant="success"
                     @click="getPalata()"
                   >
                     Палаталарни кўриш
@@ -1473,7 +1473,7 @@
                   <button
                     class="mt-1 ml-3 mr-2 tabsBtns"
                     v-b-modal.DorilarModal
-                    variant="primary"
+                    variant="success"
                   >
                     Дори қўшиш
                   </button>

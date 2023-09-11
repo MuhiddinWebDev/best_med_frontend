@@ -209,7 +209,7 @@
         </table>
         <b-button
           class="qoshish_Btn"
-          variant="primary"
+          variant="success"
           type="number"
           @click="add($event)"
           ><b-icon icon="plus" font-scale="2" color="#fff"></b-icon

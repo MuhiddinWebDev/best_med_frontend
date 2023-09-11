@@ -26,7 +26,7 @@
           <label>Поставщик</label>
           <button
             class="tabsBtnssPas"
-            variant="primary"
+            variant="success"
             v-b-modal.OpenModalPas1
           >
             ...

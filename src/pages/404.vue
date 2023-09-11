@@ -4,7 +4,7 @@
     <p class="text-center body-text">Page Not Found</p>
     <p class="text-center">
       <b-button
-        variant="primary"
+        variant="success"
         size="lg"
         :to="{ path: '/user' }"
         class="text-white m-4"

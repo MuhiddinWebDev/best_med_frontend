@@ -25,7 +25,7 @@
         <label>Поставщик</label>
         <button
           class="tabsBtnss"
-          variant="primary"
+          variant="success"
           v-b-modal.OpenModalPastavshik
         >
           ...
@@ -119,7 +119,7 @@
             <td style="position: relative;">
               <button
                 class="tabsBtnsstd"
-                variant="primary"
+                variant="success"
                 v-b-modal.OpenModalReagent
               >
                 ...
@@ -216,7 +216,7 @@
           </tr>
         </tbody>
       </table>
-      <b-button class="qoshish_Btn" variant="primary" @click="add"
+      <b-button class="qoshish_Btn" variant="success" @click="add"
         ><b-icon icon="plus" font-scale="2" color="#fff"></b-icon
       ></b-button>
     </div>

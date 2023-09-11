@@ -18,7 +18,7 @@
       </div>
       <div style="width: 32%; position: relative;">
         <label>Махсулот</label>
-        <button class="tabsBtnsMax" variant="primary" v-b-modal.OpenModalReag>
+        <button class="tabsBtnsMax" variant="success" v-b-modal.OpenModalReag>
           ...
         </button>
         <b-modal id="OpenModalReag" hide-footer title="Махсулот Қўшиш">

@@ -10,7 +10,7 @@
                 v-if="localUser.role != 'Loborant'"
                 style="margin-right: 20px;"
                 class="qoshishBtn"
-                variant="primary"
+                variant="success"
                 @click="createRoomLink"
               >
                 <span>
@@ -18,7 +18,7 @@
                   Қўшиш
                 </span>
               </b-button>
-              <b-button class="qoshishBtn" variant="primary" @click="getUser">
+              <b-button class="qoshishBtn" variant="success" @click="getUser">
                 <span>
                   <b-icon icon="arrow-counterclockwise" color="#fff"></b-icon>
                   Янгилаш
