@@ -33,7 +33,8 @@ export default {};
   border-bottom-left-radius: 8px;
 }
 .table thead {
-  background: #00009d !important;
+  /* background: #00009d !important; */
+  background: #379056 !important;
   color: #f4f9fc;
   font-size: 17px;
 }

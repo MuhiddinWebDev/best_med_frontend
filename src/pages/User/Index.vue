@@ -75,6 +75,7 @@
               stacked="md"
               show-empty
               small
+              variant="success"
             >
               <template #cell(№)="data">
                 {{ data.index + 1 }}
@@ -340,4 +341,8 @@ export default {
   align-items: center;
   border-radius: 50%;
 }
+
+.rowgroup {
+  background: #379056 !important;
+} 
 </style>

@@ -116,13 +116,15 @@ export default {
   background: rgba(170, 170, 170, 0.913);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00009d;
+  /* background: #00009d; */
+  background: #379056 !important;
 }
 tr {
   cursor: pointer !important;
 }
 .table thead {
-  background: #00009d !important;
+  /* background: #00009d !important; */
+  background: #379056 !important;
   color: #f4f9fc;
   font-size: 17px;
 }
