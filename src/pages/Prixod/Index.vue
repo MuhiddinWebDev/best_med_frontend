@@ -211,7 +211,7 @@ export default {
         let self = this;
         axios({
           method: "delete",
-          url: "/room/delete/" + id
+          url: "/prixod/delete/" + id
         }).then(() => {
           self.data();
         });
