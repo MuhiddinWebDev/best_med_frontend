@@ -267,7 +267,8 @@ export default {
         ]
       },
       provider: {
-        name: ""
+        name: "",
+        filial_id: JSON.parse(localStorage.getItem('filial_id'))
       },
       reagent: {
         name: ""
