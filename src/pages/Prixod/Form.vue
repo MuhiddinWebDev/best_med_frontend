@@ -42,11 +42,6 @@
                 v-if="!errorPastavshik.name.required"
                 >Поставщик тўлдирилиши керак</span
               >
-              <!-- <span
-                    style="color: red; font-size: 9px"
-                    v-if="!errorsHarajat.name.minLength"
-                    >Harajat kamida 4 ta belgi bo'lisi kerak</span
-                  > -->
             </span>
             <b-input type="text" v-model="provider.name" />
           </div>
@@ -503,10 +498,10 @@ export default {
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  /* box-shadow: 5px 8px 10px rgb(55,144,86); */
   display: flex;
   justify-content: space-between;
-  color: #3f51b5;
+  /* color: #3f51b5; */
   font-size: 20px;
   font-weight: 700;
   line-height: 40px;
@@ -570,7 +565,7 @@ export default {
 }
 .navbarBtnDanger {
   border: 1px solid #fff;
-  box-shadow: 5px 8px 10px rgba(176, 25, 25, 0.3);
+  /* box-shadow: 5px 8px 10px rgba(176, 25, 25, 0.3); */
   background: #e80a18;
   border-radius: 8px;
 }
@@ -588,7 +583,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   border: 1px solid #195fb0;
-  box-shadow: 5px 8px 16px rgba(25, 95, 176, 0.5);
+  /* box-shadow: 5px 8px 16px rgba(25, 95, 176, 0.5); */
 }
 .shirift {
   font-size: 16px;
@@ -608,7 +603,8 @@ export default {
   margin: 20px auto 0;
   /* padding: 5px; */
   border-radius: 7px;
-  background: #00009d;
+  /* background: #00009d; */
+  background: #379056;
   margin-bottom: 20px;
   padding: 7px 5px;
   /* background: #fff; */
@@ -626,7 +622,7 @@ export default {
   pointer-events: none;
 }
 .pastavshiktable th {
-  background: #2a2aa8 !important;
+  background: #379056 !important;
   color: #fff;
 }
 .tugmalar {
@@ -637,9 +633,9 @@ export default {
   justify-content: right;
 }
 .calendar1 {
-  box-shadow: 5px 8px 10px rgba(176, 25, 25, 0.5);
+  /* box-shadow: 5px 8px 10px rgba(176, 25, 25, 0.5); */
 }
 .calendar {
-  box-shadow: 5px 8px 10px rgba(25, 176, 48, 0.5);
+  /* box-shadow: 5px 8px 10px rgba(25, 176, 48, 0.5); */
 }
 </style>

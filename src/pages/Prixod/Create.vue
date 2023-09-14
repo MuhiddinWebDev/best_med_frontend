@@ -5,9 +5,7 @@
 </template>
 
 <script>
-// import axios from "axios";
 import PrixodForm from "./Form.vue";
-// import { required, minLength } from "vuelidate/lib/validators";
 export default {
   name: "PrixodCreate",
   components: {
