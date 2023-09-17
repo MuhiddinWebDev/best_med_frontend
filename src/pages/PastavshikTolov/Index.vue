@@ -93,7 +93,7 @@
                         ></b-icon>
                       </b-button>
                     </div>
-                    <!-- <div>
+                    <div>
                       <b-button
                         class="trash"
                         style=""
@@ -106,7 +106,7 @@
                           aria-hidden="true"
                         ></b-icon>
                       </b-button>
-                    </div> -->
+                    </div>
                   </section>
                 </b-row>
               </template>
@@ -133,6 +133,7 @@
 
 <script>
 import axios from "axios";
+import moment from "moment";
 export default {
   name: "UserIndex",
   components: {},
@@ -163,6 +164,13 @@ export default {
             return formatter.format(value);
           },
           sortable: true
+        },
+        {   
+            key: "date_time", 
+            label: "Сана",
+            formatter: (value, key, item) => {
+            return moment.unix(value).format("DD.MM.YYYY");
+          },  
         },
         { key: "actions", label: "" }
       ],
@@ -201,26 +209,26 @@ export default {
         }
       });
     },
-
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+    trash(id) {
+      const trash = window.confirm("Ma'lumotlar o'chirilsinmi?");
+      if (trash) {
+        let self = this;
+        axios({
+          method: "delete",
+          url: "/pastavchik_pay/delete/" + id
+        }).then(() => {
+          self.data();
+        });
+      }
     }
-    // trash(id) {
-    //   const trash = window.confirm("Ma'lumotlar o'chirilsinmi?");
-    //   if (trash) {
-    //     let self = this;
-    //     axios({
-    //       method: "delete",
-    //       url: "/room/delete/" + id
-    //     }).then(() => {
-    //       self.data();
-    //     });
-    //   }
-    // }
   }
 };
 </script>
+
 <style>
 .tables {
   overflow-y: auto;

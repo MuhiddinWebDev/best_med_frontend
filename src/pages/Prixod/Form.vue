@@ -259,7 +259,8 @@ export default {
             summa: 0,
             count: 0
           }
-        ]
+        ],
+        filial_id: JSON.parse(localStorage.getItem('filial_id'))
       },
       provider: {
         name: "",

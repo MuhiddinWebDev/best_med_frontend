@@ -43,11 +43,6 @@
                   v-if="!errorPastavshik.name.required"
                   >Поставщик тўлдирилиши керак</span
                 >
-                <!-- <span
-                    style="color: red; font-size: 9px"
-                    v-if="!errorsHarajat.name.minLength"
-                    >Harajat kamida 4 ta belgi bo'lisi kerak</span
-                  > -->
               </span>
               <b-input type="text" v-model="provider.name" />
             </div>
