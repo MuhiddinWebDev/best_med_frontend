@@ -13,8 +13,6 @@
                 icon="box-arrow-right"
                 style="width: 50px;"
               ></b-icon>
-              <!-- <i class="material-icons">logout</i> -->
-              <!-- <p class="hidden-lg hidden-md">Profile</p> -->
             </md-list-item>
           </md-list>
         </div>
@@ -39,11 +37,13 @@ export default {
     toggleSidebar() {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
     },
-
     logout() {
-      localStorage.removeItem("token");
-      localStorage.removeItem("filial_id");
-      this.$router.push("/login");
+      const x = window.confirm("Dasturdan chiqasizmi");
+      if(x) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("filial_id");
+        this.$router.push("/login");
+      }
     }
   }
 };
