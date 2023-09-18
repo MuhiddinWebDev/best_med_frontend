@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content ml-3">
     <md-card>
       <!-- <md-card-header data-background-color="green">
             <h4 class="title">Shifokor bo'limi</h4>

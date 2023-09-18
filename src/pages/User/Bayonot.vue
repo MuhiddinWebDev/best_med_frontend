@@ -3,24 +3,23 @@
     <div id="my-node">
       <div>
         <div class="header">
-          <div style="font-size: 17pt;" >Ўзбекистон Республикаси Соғлиқни сақлаш вазирлиги  </div>
-          <img class="tekshiruv-logo" src="../../assets/img/logo-klinka-bg.png" alt="klinka">
+          <div style="font-size: 17pt;" >{{ items.header_left }}</div>
+          <img class="tekshiruv-logo" :src="items.logo" alt="klinka">
           <div>
             <div class="text-position" style="font-size: 17pt;">
               <div class="text-position_item">
-                Андижон шаҳар. Миллий тикланиш Берк кўчаси  27
+                {{ items.header_right }}
               </div>
-              <div class="text-position_item">
+              <!-- <div class="text-position_item">
                 <b style="font-size: 14pt;" >+998 99 325 17 80</b>
                 <b style="font-size: 14pt;" >+998 93 780 50 97</b>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </div>
       <h3 class="ShifokorTek" v-if="data.Shifokor">№{{ data.Shifokor.registration_id }} Шифокор текшируви</h3>
       <h3 v-else class="ShifokorTek">№{{ data.Shifokor.registration_id }} Бемор шикояти</h3>
-      <!-- {{ data }} -->
       <div class="BayonotChild">
         <div class="Child1">
           <div class="jadval">
@@ -105,6 +104,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 import moment from "moment";
@@ -113,7 +113,8 @@ export default {
   data() {
     return {
       data: {},
-      Dorilar: []
+      Dorilar: [],
+      items: {}
     };
   },
   filters: {
@@ -134,9 +135,23 @@ export default {
   methods: {
     remove(text) {
       return text.replace(/(<([^>]+)>)/gi, " ");
-    }
+    },
+    data1() {
+      let s = this;
+      axios({
+        method: "get",
+        url: "/settings",
+      }).then((res) => {
+        if (res != undefined) {
+          this.items = res.data.data;
+          console.log(this.data)
+          console.log(res.data.data)
+        }
+      });
+    },
   },
   mounted() {
+    this.data1()
     let self = this;
     localStorage.removeItem("Bayonot");
     setTimeout(() => {

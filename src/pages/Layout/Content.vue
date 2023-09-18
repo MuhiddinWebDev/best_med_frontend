@@ -1,5 +1,5 @@
 <template>
-  <transition mode="out-in" class="content">
+  <transition mode="out-in" class="content ml-3">
     <router-view></router-view>
   </transition>
 </template>

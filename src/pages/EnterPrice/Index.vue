@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content ml-3">
     <md-card>
       <md-card-content>
         <b-container fluid>

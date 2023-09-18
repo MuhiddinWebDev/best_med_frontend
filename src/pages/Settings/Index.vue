@@ -1,5 +1,5 @@
 <template>
-  <div class="content mx-3">
+  <div class="content ml-3">
     <md-card class="content1">
       <md-card-content>
         <b-container fluid>
@@ -17,89 +17,6 @@
               </b-button>
             </b-col>
           </b-row>
-
-          <!-- <div class="tables">
-            <b-table
-              class="tableStyle"
-              id="room-table"
-              ref="refUserTable"
-              hover
-              striped
-              primary-key="id"
-              :items="items"
-              :fields="fields"
-              :filter="filter"
-              :per-page="perPage"
-              :current-page="currentPage"
-              :filter-included-fields="filterOn"
-              :sort-by.sync="sortBy"
-              :sort-desc.sync="sortDesc"
-              :sort-direction="sortDirection"
-              @row-clicked="RowClicked"
-              sort-icon-left
-              stacked="md"
-              show-empty
-              small
-              @filtered="onFiltered"
-            >
-              <template #cell(#)="data">
-                {{ data.index + 1 }}
-              </template>
-              <template #cell(name)="row">
-                {{ row.value }}
-              </template>
-              <template #cell(logo)="row">
-                <b-img
-                  :src="row.value"
-                  rounded
-                  center
-                  class="logo-img1"
-                ></b-img>
-              </template>
-              <template #cell(actions)="row" class="lg-1">
-                <b-row class="ml-1">
-                  <section
-                    style="display: flex; justify-content: flex-end; width: 100%; margin-right: 30px"
-                  >
-                    <div style="display: flex; margin-right: 15px">
-                      <b-button
-                        variant="outline-primary"
-                        @click="updates(row.item.id)"
-                        class="pencil"
-                      >
-                        <b-icon
-                          style="width: 15px;"
-                          variant="outline-primary"
-                          icon="pencil-fill"
-                          aria-hidden="true"
-                        ></b-icon>
-                      </b-button>
-                    </div>
-                    <div
-                      v-if="
-                        localUser.role == 'Admin' ||
-                          localUser.role == 'Dasturlash'
-                      "
-                    >
-                      <b-button
-                        class="trash"
-                        style=""
-                        variant="outline-danger"
-                        @click="trash(row.item.id)"
-                      >
-                        <b-icon
-                          style="width: 15px;"
-                          icon="trash-fill"
-                          aria-hidden="true"
-                        ></b-icon>
-                      </b-button>
-                    </div>
-                  </section>
-                </b-row>
-              </template>
-            </b-table>
-          </div> -->
-
           <div class="body" style="display: flex; column-gap: 1rem;">
             <div style="width: 40%;">
               <h5>Nomi: {{ items.name }}</h5>
