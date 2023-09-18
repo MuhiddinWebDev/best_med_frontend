@@ -161,13 +161,14 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .containers {
   padding-top: 5%;
   width: 100%;
   height: 100vh;
   text-align: -webkit-center;
-  background-image: url("../../public/future.jpg");
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('../../public/future2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -210,12 +211,12 @@ export default {
   border-radius: 15px;
   padding: 20px 0;
   width: 470px;
-  background: rgb(0 105 188 / 87%);
+  /* background: rgb(0 105 188 / 87%); */
+  background:rgb(55, 144, 86);
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-
 .inputs {
   border-radius: 4px;
   font-style: normal;
@@ -232,17 +233,16 @@ export default {
   padding: 50px 20px;
   border-radius: 5px;
 }
-/* .b_card .vs--single .vs__selected {
-  width: 330px;
-  height: 50px;
-} */
 .containers .loginOyna .vs__dropdown-menu {
   height: 40px !important;
 }
 .btn {
   width: 100% !important;
   height: 40px !important;
-  background: #001fce !important;
+  border: 0;
+  outline: 0;
+  /* background: #001fce !important; */
+  background:rgba(46, 89, 61, 0.806);
   margin-top: 20px;
 }
 .kirish {
@@ -251,7 +251,6 @@ export default {
   font-family: sans-serif;
   color: #fff;
   margin-bottom: 30px;
-  /* display: inline-block; */
 }
 .password {
   position: relative;
@@ -275,17 +274,13 @@ export default {
   height: 20px;
   background: url("../../public/kozz.png") 0 0 no-repeat;
 }
-
 .parol {
-  /* margin-top: 10px; */
   position: absolute;
   left: 0px;
   color: #fff;
   top: -5px;
   font-size: 16px;
-  /* font-weight: lighter; */
 }
-
 .error1 {
   position: absolute;
   top: 70%;

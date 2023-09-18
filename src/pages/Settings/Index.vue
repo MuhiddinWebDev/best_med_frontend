@@ -1,6 +1,6 @@
 <template>
-  <div class="content">
-    <md-card>
+  <div class="content mx-3">
+    <md-card class="content1">
       <md-card-content>
         <b-container fluid>
           <b-row class="qidiruv">
@@ -16,38 +16,9 @@
                 </span>
               </b-button>
             </b-col>
-
-            <b-col lg="7">
-              <b-form-group
-                label-for="filter-input"
-                label-cols-sm="1"
-                label-align-sm="right"
-                label-size="sm"
-                class="mb-0"
-              >
-                <b-input-group size="sm">
-                  <b-form-input
-                    id="filter-input"
-                    v-model="filter"
-                    type="search"
-                    @input=""
-                    placeholder="Қидирув"
-                  ></b-form-input>
-
-                  <b-input-group-append>
-                    <b-button
-                      :disabled="!filter"
-                      variant="danger"
-                      @click="filter = ''"
-                      >Тозалаш</b-button
-                    >
-                  </b-input-group-append>
-                </b-input-group>
-              </b-form-group>
-            </b-col>
           </b-row>
 
-          <div class="tables">
+          <!-- <div class="tables">
             <b-table
               class="tableStyle"
               id="room-table"
@@ -127,20 +98,25 @@
                 </b-row>
               </template>
             </b-table>
-          </div>
+          </div> -->
 
-          <b-row>
-            <b-col sm="6" offset-sm="3" md="6" offset-md="3" class="my-1">
-              <b-pagination
-                v-model="currentPage"
-                :total-rows="totalRows"
-                :per-page="perPage"
-                align="fill"
-                size="sm"
-                class="my-0"
-              ></b-pagination>
-            </b-col>
-          </b-row>
+          <div class="body" style="display: flex; column-gap: 1rem;">
+            <div style="width: 40%;">
+              <h5>Nomi: {{ items.name }}</h5>
+              <img
+                style="display: inline-block; width: 200px; height: 200px;"
+                :src="items.logo"
+                alt="Logotip"
+              />
+              <h5>Dastur boshlanish vaqti: {{ items.date1 | moment }}</h5>
+              <h5>Dastur amal qilish vaqti: {{ items.date2 | moment }}</h5>
+            </div>
+            <div style="width: 58%;">
+              <h5>Chek yozuvi: {{ items.quote }}</h5>
+              <h5>1-Sarlavha: {{ items.header_left }}</h5>
+              <h5>1-Sarlavha: {{ items.header_right }}</h5>
+            </div>
+          </div>
         </b-container>
       </md-card-content>
     </md-card>
@@ -155,64 +131,8 @@ export default {
   components: {},
   data() {
     return {
-      items: [],
+      items: {},
       localUser: JSON.parse(localStorage.getItem("user")),
-      fields: [
-        {
-          key: "index",
-          label: "#",
-          sortable: false,
-        },
-        {
-          key: "name",
-          label: "Номи",
-          sortable: true,
-        },
-        {
-          key: "logo",
-          label: "Лого",
-        },
-        {
-          key: "date1",
-          label: "Бошланғич сана",
-          sortable: true,
-          formatter: (value, key, item) => {
-            return moment.unix(value).format("DD.MM.YYYY");
-          },
-        },
-        {
-          key: "date2",
-          label: "Тугаш санаси",
-          sortable: true,
-          formatter: (value, key, item) => {
-            return moment.unix(value).format("DD.MM.YYYY");
-          },
-        },
-        {
-          key: "quote",
-          label: "Чек ёзуви",
-        },
-        {
-          key: "header_left",
-          label: "Сарлавҳа 1",
-        },
-        {
-          key: "header_right",
-          label: "Сарлавҳа 2",
-        },
-        {
-          key: "actions",
-          label: "",
-        },
-      ],
-      totalRows: 1,
-      currentPage: 1,
-      perPage: 100,
-      sortBy: "",
-      sortDesc: false,
-      sortDirection: "asc",
-      filter: null,
-      filterOn: ["name"],
     };
   },
   mounted() {
@@ -233,7 +153,6 @@ export default {
       }).then((res) => {
         if (res != undefined) {
           s.items = res.data.data;
-          s.totalRows = s.items.length;
         }
       });
     },
@@ -259,6 +178,15 @@ export default {
       this.$router.push({ path: "/settings/update/" + id });
     },
   },
+  filters: {
+    moment: function(date) {
+      if (date != null) {
+        return moment.unix(date).format("DD.MM.YYYY HH:mm");
+      } else {
+        return "";
+      }
+    },
+  },
 };
 </script>
 
@@ -266,6 +194,7 @@ export default {
 .qidiruv {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 2rem;
 }
 .tables {
   overflow-y: auto;
@@ -275,10 +204,25 @@ export default {
 .content {
   margin-top: -60px;
 }
+
+.body {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.content1 {
+  transition: 0.3 all ease-in;
+}
+
+.content1:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .qoshishBtn {
   display: flex;
   border-radius: 8px;
 }
+
 .pencil {
   width: 35px;
   height: 35px;
@@ -289,6 +233,7 @@ export default {
   border-radius: 50%;
   align-items: center;
 }
+
 .trash {
   /* background: #fff; */
   width: 35px;
