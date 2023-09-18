@@ -216,7 +216,6 @@
           ></vue-numeric>
         </b-col>
       </b-row>
-      <b-row> </b-row>
     </div>
     <template>
       <div style="position: relative;">
@@ -501,7 +500,6 @@
                 <div
                   style="display: flex; margin-bottom: 10px; justify-content: space-between;"
                 >
-                  <!-- <label>Бемор шикояти</label> -->
                   <div>
                     <button class="navbarBtnTashxis" v-b-modal.modal-10>
                       <b-icon icon="collection"></b-icon>

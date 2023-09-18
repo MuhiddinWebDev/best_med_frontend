@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="katta">
       <span>Поставщик </span>
       <button
@@ -52,7 +51,6 @@
             />
       </div> -->
     </div>
-  </div>
 </template>
 
 <script>
@@ -85,7 +83,7 @@ export default {
 </script>
 <style>
 .katta {
-  background: rgba(100, 100, 111, 0.2) ;
+  background: rgb(55,144,86) ;
   margin-top: -25px;
   height: 40px;
   display: flex;
