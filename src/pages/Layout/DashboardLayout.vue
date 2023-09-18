@@ -3,20 +3,16 @@
     <notifications></notifications>
 
     <side-bar>
-      <!-- <mobile-menu slot="content"></mobile-menu> -->
       <sidebar-link to="/royhat">
-        <!-- <md-icon>dashboard</md-icon> -->
         <b-icon font-scale="2" icon="columns-gap" class="mr-3"></b-icon>
         <p>Навбатлар рўйхати</p>
       </sidebar-link>
       <sidebar-link to="/user">
-        <!-- <md-icon>person_add_alt_1</md-icon> -->
         <b-icon font-scale="2" icon="person-plus" class="mr-3"></b-icon>
         <p>Регистрация</p>
       </sidebar-link>
 
       <sidebar-link to="/user/statsionar">
-        <!-- <md-icon>person_add_alt_1</md-icon> -->
         <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
         <p>Стационар</p>
       </sidebar-link>
@@ -300,7 +296,6 @@
         ></b-icon>
         <p>Бассейн нархи </p>
       </sidebar-link> -->
-
       <!-- <sidebar-link
         to="/kirish"
         v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi' || localUser.role == 'Registrator') && showColumn"

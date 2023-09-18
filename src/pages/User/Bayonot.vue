@@ -3,10 +3,10 @@
     <div id="my-node">
       <div>
         <div class="header">
-          <div style="font-size: 17pt;" >{{ items.header_left }}</div>
+          <div>{{ items.header_left }}</div>
           <img class="tekshiruv-logo" :src="items.logo" alt="klinka">
           <div>
-            <div class="text-position" style="font-size: 17pt;">
+            <div class="text-position">
               <div class="text-position_item">
                 {{ items.header_right }}
               </div>
@@ -164,7 +164,8 @@ export default {
 
 <style>
 .tekshiruv-logo{
-  height: 130px !important;
+  height: 220px !important;
+  width: 220px !important;
   object-fit: contain !important;
 }
 .text-position{
