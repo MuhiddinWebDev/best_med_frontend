@@ -186,10 +186,10 @@ export default {
       this.$router.push({ path: "/user-update/" + item.id });
     },
     userLink(id) {
-      return this.$router.push({ path: "user-update/" + id });
+      return this.$router.push({ path: "/user-update/" + id });
     },
     createRoomLink() {
-      return this.$router.push({ path: "user-create" });
+      return this.$router.push({ path: "/user-create" });
     },
     getUser() {
       let self = this;

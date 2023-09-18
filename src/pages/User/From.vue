@@ -3478,11 +3478,7 @@ export default {
       if (this.$route.name != "ArxivOne") {
         const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
         if (x) {
-          if (this.user.type_service == "Statsionar") {
-            this.$router.push("/user/statsionar");
-          } else {
-            this.$router.push("/user");
-          }
+          this.$router.go(-1);
         }
       } else {
         window.close();

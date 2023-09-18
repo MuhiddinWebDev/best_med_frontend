@@ -188,7 +188,7 @@ export default {
       if (this.$route.name != "Provider Document") {
         const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
         if (x) {
-          this.$router.push("/provider/pay");
+          this.$router.go(-1);
         }
       } else {
         window.close();

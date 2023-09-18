@@ -309,7 +309,7 @@ export default {
       if (this.$route.name != "Prixod Document") {
         const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
         if (x) {
-          this.$router.push("/prixod");
+          this.$router.go(-1);
         }
       } else {
         window.close();
