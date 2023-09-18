@@ -219,7 +219,7 @@ export default {
     background: #fff;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+    box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
     display: flex;
     justify-content: space-between;
     color: #3f51b5;
@@ -234,7 +234,7 @@ export default {
     font-size: 30px;
     font-weight: 600;
     padding: 15px 25px;
-    background: #00009d;
+    background: #379056;
     box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.3);
     border-radius: 8px;
 }
@@ -242,7 +242,7 @@ export default {
   color: #fff;
   border: 1px solid #fff;
   padding: 12px 0px;
-  background: #00009d;
+  background: #379056;
   border-radius: 8px;
   width: 100%;
   display: flex;

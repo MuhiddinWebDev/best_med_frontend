@@ -93,7 +93,7 @@ export default {
   font-weight: 600 !important;
 }
 .wrapper .sidebar .sidebar-wrapper {
-  /* background: #00009d; */
+  /* background: #379056; */
   background: #379056
 }
 /* .md-list-item .active {
@@ -103,7 +103,7 @@ export default {
   font-size: 16px !important;
 }
 .wrapper .sidebar .logo {
-  /* background: #00009d; */
+  /* background: #379056; */
   background: #379056
 }
 ::-webkit-scrollbar {
@@ -116,14 +116,14 @@ export default {
   background: rgba(170, 170, 170, 0.913);
 }
 ::-webkit-scrollbar-thumb:hover {
-  /* background: #00009d; */
+  /* background: #379056; */
   background: #379056 !important;
 }
 tr {
   cursor: pointer !important;
 }
 .table thead {
-  /* background: #00009d !important; */
+  /* background: #379056 !important; */
   background: #379056 !important;
   color: #f4f9fc;
   font-size: 17px;

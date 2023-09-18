@@ -490,7 +490,6 @@
                 </div>
               </div>
             </b-tab>
-
             <b-tab
               v-if="localUser.role != 'Loborant'"
               title="Бемор шикояти"
@@ -599,7 +598,6 @@
                 </div>
               </div>
             </b-tab>
-
             <b-tab
               v-if="localUser.role != 'Loborant'"
               title="Шифокор"
@@ -776,7 +774,6 @@
                 </b-col>
               </b-row>
             </b-tab>
-
             <b-tab
               title="Текширув"
               title-link-class="text-primary"
@@ -1145,7 +1142,6 @@
                 </table>
               </b-row>
             </b-tab>
-            
             <b-tab
               v-if="
                 localUser.role != 'Kasser' &&
@@ -1856,7 +1852,6 @@
                 </b-card>
               </div>
             </b-tab>
-
             <b-tab
               title="Ташхис натижалари"
               v-if="
@@ -1912,7 +1907,6 @@
                 </tbody>
               </table>
             </b-tab>
-            
             <b-tab
               v-if="
                 localUser.role == 'Kasser' ||
@@ -4162,11 +4156,6 @@ export default {
 </script>
 
 <style>
-/* .qidiruvselecta .vs__dropdown-menu {
-  background: rgb(237, 237, 237);
-  position: absolute;
-  top: -68px;
-} */
 .radio-red{
   background: rgb(243, 26, 26);
 }
@@ -4247,7 +4236,7 @@ export default {
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
   display: flex;
   justify-content: space-between;
 }
@@ -4260,11 +4249,11 @@ export default {
   border-left: 4px solid #fff;
 }
 .table thead {
-  background: #007bff;
+  background: #379056;
 }
 .table-striped tbody tr:hover {
   background: #c5eaff;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #379056;
 }
 .inputlarUser {
   /* display: flex; */
@@ -4274,8 +4263,10 @@ export default {
   margin: 10px auto 15px auto;
   border-radius: 10px;
   justify-content: center;
-  background: #00009d;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  /* background: #379056; */
+  background: #fff;
+  color: #000;
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
 }
 .select {
   margin-top: 0px;
@@ -4290,7 +4281,7 @@ export default {
   color: #fff;
   border: 1px solid #fff;
   padding: 3px 15px;
-  background: #00009d;
+  background: #379056;
   box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.3);
   border-radius: 8px;
 }
@@ -4298,7 +4289,7 @@ export default {
   color: #fff;
   border: 1px solid #fff;
   padding: 2px 15px;
-  background: #00009d;
+  background: #379056;
   box-shadow: 5px 3px 15px rgba(25, 95, 176, 0.3);
   border-radius: 8px;
 } */
@@ -4306,7 +4297,7 @@ export default {
   color: #fff;
   border: none;
   padding: 5px 5px;
-  background: #00009d;
+  background: #379056;
   border-radius: 8px;
 }
 .navbarBtn {
@@ -4315,7 +4306,7 @@ export default {
   font-size: 19px;
   font-weight: 600;
   padding: 7px 25px;
-  background: #00009d;
+  background: #379056;
   box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.3);
   border-radius: 8px;
 }
@@ -4324,7 +4315,7 @@ export default {
   font-size: 19px;
   font-weight: 600;
   box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.3);
-  background: #00009d;
+  background: #379056;
   border-radius: 8px;
   padding: 7px 25px;
 }
@@ -4337,7 +4328,8 @@ export default {
   padding: 7px;
 }
 .spanlar {
-  color: #fff;
+  /* color: #fff; */
+  color:#000;
   font-size: 18px;
   font-weight: 600;
 }
@@ -4451,7 +4443,7 @@ export default {
   margin: 5px auto;
   height: calc(100vh - 200px);
   background: #f1f1f1;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
 }
 .TashxisLabel {
   display: flex;
@@ -4518,7 +4510,7 @@ export default {
   border-radius: 8px;
 }
 .labell {
-  /* background: #007bff; */
+  /* background: #379056; */
   padding: 6px 3px;
   font-size: 19px;
   font-weight: 700;
@@ -4529,7 +4521,7 @@ export default {
   color: #3f51b5;
 }
 .labell1 {
-  /* background: #007bff; */
+  /* background: #379056; */
   padding: 3px 3px;
   font-size: 19px;
   font-weight: 700;
@@ -4537,7 +4529,7 @@ export default {
   color: #3f51b5;
 }
 .tabsBtns {
-  background: #00009d;
+  background: #379056;
   color: #fff;
   font-weight: 700;
   font-size: 17px;
@@ -4547,7 +4539,7 @@ export default {
   border-radius: 8px;
 }
 .tabsBtnsSaqlash {
-  background: #00009d;
+  background: #379056;
   width: 48%;
   border-radius: 8px;
   border: 1px solid #fff;
@@ -4588,7 +4580,7 @@ export default {
   margin: 5px;
   font-weight: 600;
   padding: 8px 10px;
-  background: #00009d;
+  background: #379056;
   box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.3);
   border-radius: 8px;
 

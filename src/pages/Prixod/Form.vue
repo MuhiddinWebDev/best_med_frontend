@@ -499,14 +499,14 @@ export default {
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  /* box-shadow: 5px 8px 10px rgb(55,144,86); */
+  /* box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ; */
   display: flex;
   justify-content: space-between;
   /* color: #3f51b5; */
   font-size: 20px;
   font-weight: 700;
   line-height: 40px;
-  /* background: #007bff; */
+  /* background: #379056; */
   /* margin-top: -25px; */
   /* margin-left: 10px;
   margin-right: 10px;
@@ -519,7 +519,7 @@ export default {
   border-radius: 8px;
   color: #3f51b5;
   text-indent: 15px; */
-  /* box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5); */
+  /* box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ; */
 }
 .btnlar {
   justify-content: right;
@@ -584,7 +584,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   border: 1px solid #195fb0;
-  /* box-shadow: 5px 8px 16px rgba(25, 95, 176, 0.5); */
+  /* box-shadow: 5px 8px 16px rgba(100, 100, 111, 0.2) ; */
 }
 .shirift {
   font-size: 16px;
@@ -604,7 +604,7 @@ export default {
   margin: 20px auto 0;
   /* padding: 5px; */
   border-radius: 7px;
-  /* background: #00009d; */
+  /* background: #379056; */
   background: #379056;
   margin-bottom: 20px;
   padding: 7px 5px;

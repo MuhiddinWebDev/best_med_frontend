@@ -301,14 +301,14 @@ export default {
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
   display: flex;
   justify-content: space-between;
   color: #3f51b5;
   font-size: 20px;
   font-weight: 700;
   line-height: 40px;
-  /* background: #007bff;
+  /* background: #379056;
   margin-top: -25px;
   height: 40px;
   display: flex;
@@ -319,7 +319,7 @@ export default {
   border-radius: 8px;
   color: #fff;
   text-indent: 15px;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5); */
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ; */
 }
 .ikkilik {
   display: flex;

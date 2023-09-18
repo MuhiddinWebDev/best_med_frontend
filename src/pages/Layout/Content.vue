@@ -33,7 +33,7 @@ export default {};
   border-bottom-left-radius: 8px;
 }
 .table thead {
-  /* background: #00009d !important; */
+  /* background: #379056 !important; */
   background: #379056 !important;
   color: #f4f9fc;
   font-size: 17px;
@@ -46,7 +46,7 @@ export default {};
 }
 .table-striped tbody tr:hover {
   background: #c5eaff;
-  border-left: 4px solid #007bff;
+  border-left: 4px solid #379056;
 }
 .md-card {
   border-radius: 8px;

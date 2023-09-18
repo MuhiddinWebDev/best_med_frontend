@@ -351,7 +351,7 @@ export default {
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
   display: flex;
   justify-content: space-between;
   color: #3f51b5;

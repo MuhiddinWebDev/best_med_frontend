@@ -72,7 +72,7 @@ window.axios.interceptors.response.use(
   response => {
     if (response.data.error) {
       if (response.data.error_code == 401) {
-        // router.push("/login");
+        router.push("/login");
       }
       store.state.errors = response.data.message;
     } else {
@@ -84,13 +84,17 @@ window.axios.interceptors.response.use(
       store.state.errors = "База билан алоқа ёқ";
     } else if (error.response.status == 401) {
       store.state.errors = error.response.data.message;
-      // router.push("/login");
+      router.push("/login");
     } else if (error.response.status == 400) {
       store.state.errors = error.response.data.message;
     } else if (error.response.status == 404) {
       router.push("/404");
       store.state.errors = error.response.data.message;
-    } else {
+    }else if (error.response.status == 401) {
+      store.state.errors = error.response.data.message;
+      router.push("/expired-app");
+    } 
+     else {
       store.state.errors = error.response.data.message;
     }
     return Promise.reject(error);

@@ -61,7 +61,7 @@ export default {
 </script>
 <style>
 .katta {
-  background: #007bff;
+  background: #379056;
   margin-top: -25px;
   height: 40px;
   display: flex;
@@ -72,7 +72,7 @@ export default {
   border-radius: 8px;
   color: #fff;
   text-indent: 15px;
-  box-shadow: 5px 8px 10px rgba(25, 95, 176, 0.5);
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
 }
 .shirift {
   font-size: 16px;

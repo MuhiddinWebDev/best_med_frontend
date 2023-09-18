@@ -81,7 +81,7 @@
     border-radius: 4px;
   
     color: #fff;
-    background-color: #007bff;
+    background-color: #379056;
     font-size: 20px;
     cursor: pointer;
     transition: 0.2s ease-out;
