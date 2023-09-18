@@ -1,4 +1,5 @@
 <template>
+   <div>
     <div class="katta">
       <span>Поставщик </span>
       <button
@@ -51,6 +52,7 @@
             />
       </div> -->
     </div>
+   </div>
 </template>
 
 <script>
