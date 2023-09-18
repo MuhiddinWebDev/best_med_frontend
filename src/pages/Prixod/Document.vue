@@ -7,7 +7,7 @@
 import FormVue from "./Update.vue";
 export default {
   components: {
-    FormVue
-  }
+    FormVue,
+  },
 };
 </script>
