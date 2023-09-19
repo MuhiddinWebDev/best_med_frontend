@@ -144,8 +144,6 @@ export default {
       }).then((res) => {
         if (res != undefined) {
           this.items = res.data.data;
-          console.log(this.data)
-          console.log(res.data.data)
         }
       });
     },

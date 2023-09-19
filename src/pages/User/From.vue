@@ -501,9 +501,9 @@
                   style="display: flex; margin-bottom: 10px; justify-content: space-between;"
                 >
                   <div>
-                    <button class="navbarBtnTashxis" v-b-modal.modal-10>
+                    <!-- <button class="navbarBtnTashxis" v-b-modal.modal-10>
                       <b-icon icon="collection"></b-icon>
-                    </button>
+                    </button> -->
                     <b-modal
                       id="modal-10"
                       size="lg"
@@ -2295,16 +2295,16 @@ export default {
 
       fieldsShikoyat: ["№", { key: "name", label: "Номи", sortable: true }],
       itemsShikoyat: [
-        { id: 1, name: "1111" },
-        { id: 2, name: "2222222" },
-        { id: 3, name: "wwwwwwww" },
-        { id: 4, name: "dedededede" },
-        { id: 5, name: "yyyyyy" },
-        { id: 6, name: "uuuuuuu" },
-        { id: 7, name: "xxxxxxx" },
-        { id: 8, name: "aaaaaaaaa" },
-        { id: 9, name: "ggggggg" },
-        { id: 10, name: "kkkkkkk" }
+        // { id: 1, name: "1111" },
+        // { id: 2, name: "2222222" },
+        // { id: 3, name: "wwwwwwww" },
+        // { id: 4, name: "dedededede" },
+        // { id: 5, name: "yyyyyy" },
+        // { id: 6, name: "uuuuuuu" },
+        // { id: 7, name: "xxxxxxx" },
+        // { id: 8, name: "aaaaaaaaa" },
+        // { id: 9, name: "ggggggg" },
+        // { id: 10, name: "kkkkkkk" }
       ],
       totalRowsShikoyat: 1,
       currentPageShikoyat: 1,
@@ -2469,7 +2469,6 @@ export default {
       }
     }
   },
-
   filters: {
     moment: function(date) {
       if (date != null) {

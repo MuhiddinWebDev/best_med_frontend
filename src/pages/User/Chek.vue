@@ -114,11 +114,12 @@
       </div>
     </ul>
     <h5 style="text-align: center; margin-top: 30px;">
-      {{ "Сизга соғлик тилаймиз" }}
+      {{items.quote }}
     </h5>
   </div>
 </template>
 <script>
+import axios from "axios";
 import moment from "moment";
 export default {
   name: "Print",
@@ -127,7 +128,8 @@ export default {
       BemorName: null,
       Tolov: null,
       Navbat: null,
-      Statsionar: null
+      Statsionar: null,
+      items: {}
     };
   },
   created() {
@@ -149,7 +151,6 @@ export default {
       }
     }
   },
-
   methods: {
     // textPrint() {
     //   let text_print = document.querySelector('#content');
@@ -160,8 +161,20 @@ export default {
     // 	window.print();
     // 	document.body.innerHTML = originalContents;
     // }
+    data1() {
+      let s = this;
+      axios({
+        method: "get",
+        url: "/settings",
+      }).then((res) => {
+        if (res != undefined) {
+          this.items = res.data.data;
+        }
+      });
+    },
   },
   mounted() {
+    this.data1()
     localStorage.removeItem("Navbat");
     localStorage.removeItem("ChekTolov");
     localStorage.removeItem("BemorName");
