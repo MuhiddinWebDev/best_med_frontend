@@ -24,7 +24,7 @@
           :disabled="localUser.role != 'Shifokor'"
           id="checkbox-1"
           name="checkbox-1"
-          value="complate"
+          value="complete"
           unchecked-value="waiting"
           v-model="user.status"
           @change="allowCheck"
@@ -2625,7 +2625,7 @@ export default {
         if (checkedTrue == true) {
           this.user.registration_inspection[
             index2
-          ].registration_inspection_child[index1].status = "complate";
+          ].registration_inspection_child[index1].status = "complete";
           this.user.summa += childPrice;
           this.user.backlog += childPrice;
           this.user.registration_inspection[index2].price += childPrice;
@@ -2644,7 +2644,7 @@ export default {
       //     if (checkedTrue == true) {
       //     this.user.registration_inspection[
       //       index2
-      //     ].registration_inspection_child[index1].status = "complate";
+      //     ].registration_inspection_child[index1].status = "complete";
       //     this.user.summa += childPrice;
       //     this.user.backlog += childPrice;
       //     this.user.registration_inspection[index2].price += childPrice;
@@ -3398,7 +3398,7 @@ export default {
           self.getRegion();
           self.user_name = res.data.data.user.user_name;
           setTimeout(() => {
-            self.Complate();
+            self.complete();
           }, 1000);
         });
       } else if (this.$route.name == "ArxivOne") {
@@ -3411,7 +3411,7 @@ export default {
           self.getRegion();
           self.user_name = res.data.data.user.user_name;
           setTimeout(() => {
-            self.Complate();
+            self.complete();
           }, 1000);
         });
       }
@@ -3494,7 +3494,7 @@ export default {
       this.user.registration_doctor.forEach(x => {
         if (x.doctor_id == this.localUser.doctor_id) {
           x.text += child.name;
-          x.status = "complate";
+          x.status = "complete";
           x.register_mkb.push({
             doctor_id: x.doctor_id,
             mkb_id: child.id,
@@ -3732,7 +3732,7 @@ export default {
         console.log(e)
       }
     },
-    Complate() {
+    complete() {
       if (this.$route.name == "User Profile Update") {
         if (this.localUser.doctor_id) {
           // let ok = true
@@ -3742,8 +3742,8 @@ export default {
                 .valueOf()
                 .toString()
                 .slice(0, 10);
-              key.status = "complate";
-              // if(key.status != 'complate') ok = false
+              key.status = "complete";
+              // if(key.status != 'complete') ok = false
             }
           });
           // if(ok) {
@@ -3756,7 +3756,7 @@ export default {
                 .valueOf()
                 .toString()
                 .slice(0, 10);
-              key.status = "complate";
+              key.status = "complete";
             }
           });
         }
@@ -4110,15 +4110,15 @@ export default {
       if (Child.text == "") {
         Child.status = "waiting";
       } else {
-        this.user.registration_inspection[indexP].status = "complate";
-        Child.status = "complate";
+        this.user.registration_inspection[indexP].status = "complete";
+        Child.status = "complete";
       }
     },
     ShifokorText(index) {
       if (this.user.registration_doctor[index].text == "") {
         this.user.registration_doctor[index].status = "waiting";
       } else {
-        this.user.registration_doctor[index].status = "complate";
+        this.user.registration_doctor[index].status = "complete";
       }
     },
     RowClass(item, type) {

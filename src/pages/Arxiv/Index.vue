@@ -206,6 +206,7 @@ export default {
       });
     },
     data() {
+      this.getArxivs()
       let s = this;
       if (this.id) {
         axios({
