@@ -15,17 +15,6 @@
           </div>
           <b-row class="qidiruv">
             <b-col class="mb-2" style="display: flex;">
-              <!-- <b-button
-                style="margin-right: 20px;"
-                class="qoshishBtn"
-                variant="success"
-                @click="createRoomLink"
-              >
-                <span>
-                  <b-icon icon="plus-circle-fill" color="#fff"></b-icon>
-                  Қўшиш
-                </span>
-              </b-button> -->
               <b-button class="qoshishBtn" variant="success" @click="data">
                 <span>
                   <b-icon icon="arrow-counterclockwise" color="#fff"></b-icon>
@@ -66,38 +55,9 @@
           <!-- User Interface controls -->
           <b-row class="qidiruv">
             <b-col class="mb-2"> </b-col>
-
-            <!-- <b-col lg="7 mb-2">
-              <b-form-group
-                label-for="filter-input"
-                label-cols-sm="1"
-                label-align-sm="right"
-                label-size="sm"
-                class="mb-0"
-              >
-                <b-input-group size="sm">
-                  <b-form-input
-                    id="filter-input"
-                    v-model="filter"
-                    type="search"
-                    placeholder="Қидирув"
-                  ></b-form-input>
-
-                  <b-input-group-append>
-                    <b-button
-                      :disabled="!filter"
-                      variant="danger"
-                      @click="filter = ''"
-                      >Тозалаш</b-button
-                    >
-                  </b-input-group-append>
-                </b-input-group>
-              </b-form-group>
-            </b-col> -->
           </b-row>
 
           <div class="tables">
-          
             <b-table
               ref="refUserTable"
               hover
@@ -142,26 +102,11 @@
                         ></b-icon>
                       </b-button>
                     </div>
-                    <!-- <div>
-                      <b-button
-                        class="trash"
-                        style=""
-                        variant="outline-danger"
-                        @click="trash(row.item.id)"
-                      >
-                        <b-icon
-                          style="width: 15px;"
-                          icon="trash-fill"
-                          aria-hidden="true"
-                        ></b-icon>
-                      </b-button>
-                    </div> -->
                   </section>
                 </b-row>
               </template>
             </b-table>
           </div>
-
           <b-row>
             <b-col sm="6" offset-sm="3" md="6" offset-md="3" class="my-1">
               <b-pagination
@@ -220,6 +165,7 @@ export default {
   },
   mounted() {
     this.data();
+    this.getArxivs()
   },
   filters: {
     moment: function(date) {
@@ -303,23 +249,22 @@ export default {
       window.close();
       // this.$router.push('/user')
     },
-
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
+    },
+    async getArxivs() {
+      try {
+        let res = await axios.get("/registration_arxiv/all")
+        let items = res.data.data.map(item => {
+          item.created_at = moment(new Date(item.created_at * 1000)).format("DD.MM.YYYY HH:mm");
+          return item;
+        });
+        this.items = items;
+      } catch (error) {
+        console.log(error)
+      }
     }
-    // trash(id) {
-    //   const trash = window.confirm("Ma'lumotlar o'chirilsinmi?");
-    //   if (trash) {
-    //     let self = this;
-    //     axios({
-    //       method: "delete",
-    //       url: "/room/delete/" + id
-    //     }).then(() => {
-    //       self.data();
-    //     });
-    //   }
-    // }
   }
 };
 </script>
