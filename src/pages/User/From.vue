@@ -3384,7 +3384,6 @@ export default {
           // }
         });
       }
-   
       // this.ChekChopEtish == false;
     },
     getUser() {

@@ -1,9 +1,6 @@
 <template>
   <div class="content ml-3">
     <md-card>
-      <!-- <md-card-header data-background-color="green">
-            <h4 class="title">Shifokor bo'limi</h4>
-          </md-card-header> -->
       <md-card-content>
         <b-container fluid>
           <!-- User Interface controls -->
@@ -229,6 +226,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .qidiruv {
   display: flex;
