@@ -1,5 +1,5 @@
 <template>
-  <div class="parent">
+  <div class="parent ml-2">
     <div class="kattar">
       <span>Махсулот ёналтириш</span>
       <b-button class="navbarBtnDanger" variant="danger" @click="Prev()">

@@ -1,5 +1,5 @@
 <template>
-  <div class="parent">
+  <div class="parent ml-2">
     <div class="tugmalarNavbar1">
       <button
         class="navbarBtn"

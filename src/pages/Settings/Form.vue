@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ml-2">
     <div class="katta">
       <button
         style="padding: 4px 10px; margin-right: 10px"

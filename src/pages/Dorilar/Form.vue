@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ml-2">
     <div>
       <div class="katta">
         <span>Дорилар</span>

@@ -2,15 +2,17 @@
   <div class="sidebar" :data-color="sidebarItemColor" :style="sidebarStyle">
     <div class="logo">
       <a href="#" class="simple-text logo-mini">
-        <div class="bg-white rounded-circle">
-          <img :src="items.logo" alt="" />
+        <div class="rounded-circle">
+          <!-- <img :src="items.logo" alt="" /> -->
         </div>
       </a>
-
+      
       <a class="simple-text logo-normal logo-sarlovha">
         {{ items.name }}
       </a>
     </div>
+
+    
     <div class="sidebar-wrapper">
       <slot name="content"></slot>
       <md-list class="nav">
@@ -28,6 +30,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import SidebarLink from "./SidebarLink.vue";
 import axios from "axios";
@@ -102,6 +105,7 @@ export default {
   }
 };
 </script>
+
 <style>
 @media screen and (min-width: 991px) {
   .nav-mobile-menu {

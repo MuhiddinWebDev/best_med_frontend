@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ml-2">
     <div class="parent">
       <div class="kattaPrixod">
         <span>Приход</span>

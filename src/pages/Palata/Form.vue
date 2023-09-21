@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ml-2">
     <div class="katta">
       <span>Палата</span>
       <button
