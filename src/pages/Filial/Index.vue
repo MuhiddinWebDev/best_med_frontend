@@ -6,7 +6,8 @@
           <!-- User Interface controls -->
           <b-row class="qidiruv">
             <b-col class="mb-2">
-              <!-- <b-button
+              <b-button
+                v-if="user_name == 'Dasturchi'"
                 class="qoshishBtn"
                 variant="success"
                 @click="createRoomLink"
@@ -15,7 +16,7 @@
                   <b-icon icon="plus-circle-fill" color="#fff"></b-icon>
                   Қўшиш
                 </span>
-              </b-button> -->
+              </b-button>
               <h4>Филиал</h4>
             </b-col>
 
@@ -152,11 +153,13 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
-      filterOn: ["name"]
+      filterOn: ["name"],
+      user_name: localStorage.getItem('user')
     };
   },
   mounted() {
     this.data();
+    this.user_name = JSON.parse(this.user_name)?.user_name;
   },
   methods: {
     RowClicked(item) {
@@ -180,7 +183,6 @@ export default {
         }
       });
     },
-
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;

@@ -1,13 +1,12 @@
 <template>
   <div>
     <div class="katta">
-      <span>Бемор</span>
       <button
         style="padding: 4px 10px; margin-right: 10px"
         class="btn"
         @click="Prev()"
       >
-        <b-icon style="color: white" icon="house-door-fill"> </b-icon>
+        <b-icon style="color: white" icon="house-door-fill"></b-icon>
       </button>
     </div>
     <div class="card shadow mx-3 rounded settings-card">
@@ -33,6 +32,7 @@
                 type="date"
                 placeholder="Вақтдан..."
                 style="width: 100%"
+                disabled="true"
               ></date-picker>
             </div>
             <div class="my-2">
@@ -80,6 +80,7 @@
                 type="date"
                 placeholder="Вақтгача..."
                 style="width: 100%"
+                disabled="true"
               ></date-picker>
             </div>
             <div class="my-2">
@@ -148,9 +149,9 @@ export default {
   methods: {
     create() {
       let self = this;
-      if (this.$route.params.id) {
+      if (true) {
         axios
-          .patch("/settings/id/" + this.$route.params.id, this.datas)
+          .patch("/settings/id", this.datas)
           .then((data) => {
             if (data) {
               self.$router.push("/settings");

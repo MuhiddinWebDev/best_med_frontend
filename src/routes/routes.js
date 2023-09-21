@@ -171,7 +171,7 @@ const routes = [
         component: () => import("@/pages/Hisobot/From.vue")
       },
       {
-        path: "/settings/update/:id",
+        path: "/settings/update",
         name: "/settings/update",
         component: () => import("@/pages/Settings/Form.vue")
       },

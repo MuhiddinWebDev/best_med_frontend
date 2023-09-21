@@ -8,11 +8,11 @@
               <b-button
                 class="qoshishBtn"
                 variant="success"
-                @click="createRoomLink"
+                @click="RowClicked"
               >
                 <span>
-                  <b-icon icon="plus-circle-fill" color="#fff"></b-icon>
-                  Қўшиш
+                  <b-icon icon="pencil-fill" color="#fff"></b-icon>
+                  Тахрирлаш
                 </span>
               </b-button>
             </b-col>
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     RowClicked(item) {
-      this.$router.push({ path: "/settings/update/" + item.id });
+      this.$router.push({ path: "/settings/update"});
     },
     createRoomLink() {
       return this.$router.push({ path: "settings/create" });

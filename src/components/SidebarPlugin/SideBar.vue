@@ -2,13 +2,13 @@
   <div class="sidebar" :data-color="sidebarItemColor" :style="sidebarStyle">
     <div class="logo">
       <a href="#" class="simple-text logo-mini">
-        <!-- <div>
-          <img :src="imgLogo" alt="" />
-        </div> -->
+        <div class="bg-white rounded-circle">
+          <img :src="items.logo" alt="" />
+        </div>
       </a>
 
       <a class="simple-text logo-normal logo-sarlovha">
-        {{ title }}
+        {{ items.name }}
       </a>
     </div>
     <div class="sidebar-wrapper">
@@ -30,15 +30,20 @@
 </template>
 <script>
 import SidebarLink from "./SidebarLink.vue";
-
+import axios from "axios";
 export default {
+  data() {
+    return {
+      items: {}
+    }
+  },
   components: {
     SidebarLink
   },
   props: {
     title: {
       type: String,
-      default: "Best Med"
+      // default: "Best Med"
       // default: "РИКМИАТМФФ"
     },
     sidebarBackgroundImage: {
@@ -79,6 +84,21 @@ export default {
         background: "blue"
       };
     }
+  },
+  methods: {
+    async data1() {
+      axios({
+        method: "get",
+        url: "/settings",
+      }).then((res) => {
+        if (res != undefined) {
+          this.items = res.data.data;
+        }
+      });
+    },
+  },
+  mounted() {
+    this.data1()
   }
 };
 </script>
