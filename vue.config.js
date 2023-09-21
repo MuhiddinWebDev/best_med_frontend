@@ -17,12 +17,12 @@ module.exports = {
         productName: "Best Med",
         win: {
           target: ["nsis"],
-          icon: "build/icon.ico"
+          icon: "build/icos.ico"
         },
         nsis: {
           oneClick: false,
-          installerIcon: "build/icon.ico",
-          uninstallerIcon: "build/icon.ico",
+          installerIcon: "build/icos.ico",
+          uninstallerIcon: "build/icos.ico",
           uninstallDisplayName: "Best Med Unistaller",
           license: "license.md",
           allowToChangeInstallationDirectory: true

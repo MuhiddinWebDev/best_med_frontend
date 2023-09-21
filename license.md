@@ -1,1 +1,1 @@
-BDM Klinika dasturi!
+Best Med Klinika dasturi!
