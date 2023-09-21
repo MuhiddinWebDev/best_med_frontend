@@ -13,8 +13,8 @@ module.exports = {
     electronBuilder: {
       builderOptions: {
         // options placed here will be merged with default configuration and passed to electron-builder
-        appId: "Sog'lom avlod",
-        productName: "Sog'lom avlod",
+        appId: "Best Med",
+        productName: "Best Med",
         win: {
           target: ["nsis"],
           icon: "build/icon.ico"
@@ -23,7 +23,7 @@ module.exports = {
           oneClick: false,
           installerIcon: "build/icon.ico",
           uninstallerIcon: "build/icon.ico",
-          uninstallDisplayName: "Sog'lom avlod Unistaller",
+          uninstallDisplayName: "Best Med Unistaller",
           license: "license.md",
           allowToChangeInstallationDirectory: true
         }
