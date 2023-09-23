@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-2">
+  <div>
     <div class="katta">
       <span>Касса чиқим</span>
       <button

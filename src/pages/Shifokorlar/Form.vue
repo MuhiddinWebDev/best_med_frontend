@@ -10,7 +10,6 @@
         <b-icon style="color: white" icon="house-door-fill"> </b-icon>
       </button>
     </div>
-    <div>
       <div class="oyna1">
         <div class="ustunW">
           <div class="ustunW_item">
@@ -80,9 +79,7 @@
           </div>
          
         </div>
-
       </div>
-    </div>
   </div>
 </template>
 
@@ -172,6 +169,7 @@ export default {
 }
 .oyna1 {
   margin: 10px 0;
+  width: 900px;
 }
 .shirift {
   font-size: 16px;
@@ -180,5 +178,6 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px 12px;
+  width: 900px;
 }
 </style>
