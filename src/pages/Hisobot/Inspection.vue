@@ -83,7 +83,7 @@
             }}</span>
           </td>
           <td style="width: 60px !important">
-            <span v-if="item.total_kirim != 0">{{ item.count }}</span>
+            <span v-if="item.count != 0">{{ item.count }}</span>
             <span v-else>0</span>
           </td>
           <td style="width: 150px">
@@ -168,7 +168,6 @@ export default {
       });
       window.open(route.href, "_blank");
     },
-
     Send() {
       let self = this;
       var datas = {
