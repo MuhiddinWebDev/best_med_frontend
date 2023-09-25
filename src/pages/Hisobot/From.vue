@@ -1,7 +1,7 @@
 <template>
   <div class="Parent">
     <div class="Hisobotlar">
-      <!-- <div
+      <div
         class="HisobotChild"
         v-if="
             localUser.role == 'Admin' ||
@@ -29,7 +29,7 @@
             <p>Шифокор Сверка</p>
           </sidebar-link>
         </div>
-      </div> -->
+      </div>
       <div
         class="HisobotChild"
         v-if="
