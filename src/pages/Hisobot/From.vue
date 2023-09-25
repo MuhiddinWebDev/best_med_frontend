@@ -77,18 +77,18 @@
           <p>Касса Сверка</p>
         </sidebar-link>
       </div>
-      <!-- <div class="HisobotChild">
+      <div class="HisobotChild">
         <label>Шифокор кўриги</label>
         <sidebar-link
           to="/kassa-hisobot"
         >
-          <p>Kassa Hisobot</p>
+          <p>Касса Ҳисобот</p>
         </sidebar-link>
 
         <sidebar-link target="_blank" to="/patient-count">
           <p>Кўриклар сони</p>
         </sidebar-link>
-      </div> -->
+      </div>
       <div
         class="HisobotChild"
         v-if="

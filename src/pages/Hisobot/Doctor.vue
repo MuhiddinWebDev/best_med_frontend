@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid class="tables1">
+  <b-container fluid class="tables1 ml-2">
     <b-row class="text-center d-flex justify-content-center mb-3">
       <b-col lg="3" xs="3" md="3" xl="3" class="my-3 datepicker-toggle">
         <span class="datepicker-toggle-button">

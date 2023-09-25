@@ -2110,7 +2110,6 @@
           </b-tabs>
         </b-card>
       </div>
-
       <div
         class="notications xatoliklar alert-danger"
         style="z-index: 5"
@@ -3623,7 +3622,6 @@ export default {
         return true;
       }
     },
-   
     RowClickedTekshiruvlar(itemsTekshiruvlar) {
       let x = 0;
       if (this.user.patient_id != null) {
@@ -4041,14 +4039,12 @@ export default {
       // });
       // }
     },
-
     deleteTekshiruv(id) {
       let x = Number(this.user.registration_inspection[id].price);
       if (this.bemor.imtiyoz_type == "Imtiyozsiz") {
         this.user.summa = Number(this.user.summa) - x;
         this.user.backlog = Number(this.user.backlog) - x;
       }
-
       this.user.registration_inspection.splice(id, 1);
       this.checkArray.splice(id, 1);
     },

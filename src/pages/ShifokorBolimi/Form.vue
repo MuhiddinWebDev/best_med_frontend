@@ -1,5 +1,5 @@
 <template>
-  <div class="ml-2">
+  <div>
     <div class="katta">
       <span>Шифокор бўлимлари</span>
       <button
@@ -60,11 +60,6 @@
               Консултация нарҳи
             </span>
           </span>
-          <!-- <b-input
-            id="shifokorBolimi-price"
-            v-model="modelvue.price"
-            type="text"
-          /> -->
           <vue-numeric
             style="width: 100%; height: 35px; border: 1px solid #bdb2b2; border-radius: 5px;"
             v-model="modelvue.price"
@@ -125,7 +120,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .katta {
   background: #379056;
   margin-top: -25px;
@@ -140,14 +135,15 @@ export default {
   text-indent: 15px;
   box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
 }
+
 .oyna1 {
   margin: 10px 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px 12px;
+  width: 100%;
 }
 .shirift {
   font-size: 16px;
 }
-
 </style>

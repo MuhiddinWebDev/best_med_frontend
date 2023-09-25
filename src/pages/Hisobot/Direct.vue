@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid id="tables">
+  <b-container fluid id="tables" class="ml-2">
     <div class="header-title">
       <h4>Напровител ҳисобот</h4>
     </div>
