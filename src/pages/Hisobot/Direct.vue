@@ -1,7 +1,7 @@
 <template>
   <b-container fluid id="tables" class="ml-2">
     <div class="header-title">
-      <h4>Напровител ҳисобот</h4>
+      <h4>Вакил ҳисобот</h4>
     </div>
     <b-row class="text-center d-flex">
       <div class="search-header">
@@ -39,7 +39,7 @@
             v-model="datas.direct_id"
             :reduce="(options) => options.id"
             label="name"
-            placeholder="Напровител танланг..."
+            placeholder="Вакил танланг..."
           />
         </div>
         <div class="search-header_item">
@@ -64,8 +64,10 @@
         <tr class="text-center" style="height: 40px !important;">
           <th style="width: 20px">№</th>
           <th>Номи</th>
-          <th>Напровител Ф.И.Ш</th>
-          <th>Тушум</th>
+          <th>Вакил Ф.И.Ш</th>
+          <th>Кирим</th>
+          <th>Чиқим</th>
+          <th>Натижа</th>
         </tr>
       </thead>
       <tbody>
@@ -83,9 +85,19 @@
             <span :class="{ red: item.end_total < 0 }">{{ item.direct_name }}</span>
           </td>
           <td>
-            <span :class="{ red: item.end_total < 0 }">{{
-              item.total_kirim | numFormat
-            }}</span>
+            <span :class="{ red: item.end_total < 0 }">
+              {{item.total_kirim | numFormat}}
+            </span>
+          </td>
+          <td >
+            <span :class="{ red: item.end_total < 0 }">
+              {{ item.total_chiqim | numFormat }}
+            </span>
+          </td>
+          <td >
+            <span :class="{ red: item.end_total < 0 }">
+              {{ (item.total_kirim - item.total_chiqim) | numFormat }}
+            </span>
           </td>
         </tr>
         <tr class="text-center">
@@ -97,9 +109,19 @@
             жами
           </td>
           <td style="width: 150px">
-            <span :class="{ reds: jami_sum < 0 }">{{
-              tushum | numFormat
-            }}</span>
+            <span :class="{ reds: jami_sum < 0 }">
+              {{ tushum | numFormat}}
+            </span>
+          </td>
+          <td style="width: 150px">
+            <span :class="{ reds: jami_sum < 0 }">
+              {{ chiqim | numFormat}}
+            </span>
+          </td>
+          <td style="width: 150px">
+            <span :class="{ reds: jami_sum < 0 }">
+              {{ jami_sum | numFormat}}
+            </span>
           </td>
         </tr>
       </tbody>
@@ -108,7 +130,6 @@
 </template>
 
 <script>
-import moment from "moment";
 export default {
   data() {
     return {
@@ -123,7 +144,8 @@ export default {
       branchValid: false,
       filials:[],
       jami_sum: 0,
-      tushum: null,
+      tushum: 0,
+      chiqim: 0,
       doctor: "",
       doctorList: [],
       doctor_sverka: "",
@@ -172,13 +194,17 @@ export default {
         url: "/hisobot/direct_hisobot",
         data: datas,
       }).then(function(response) {
+        console.log(response)
         if(response != undefined){
           self.results = response.data;
           self.tushum = 0;
+          self.chiqim = 0;
           self.jami_sum = 0;
           self.results.forEach((key, value) => {
             self.tushum += parseFloat(key.total_kirim);
+            self.chiqim += parseFloat(key.total_chiqim);
             self.jami_sum += key.total_kirim;
+            self.jami_sum -= key.total_chiqim;
             // key.created_at = moment(new Date(key.created_at * 1000)).format(
             //   "YYYY.MM.DD-HH:mm:ss"
             // );
@@ -209,7 +235,6 @@ export default {
         self.filials = res.data.data;
       });
     },
-
     updateBranch(filial){
       this.branchValid = false;
       if(filial){
@@ -233,8 +258,8 @@ export default {
   width: 100%;
   padding: 8px 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 8px 12px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 6px 10px;
 }
 
 .search-header_item {

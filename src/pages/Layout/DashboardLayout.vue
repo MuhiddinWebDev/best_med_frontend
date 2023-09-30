@@ -99,7 +99,7 @@
           "
         >
           <b-icon font-scale="2" icon="journal-text" class="mr-3"></b-icon>
-          <p>Напровител тўлов</p>
+          <p>Вакил тўлов</p>
         </sidebar-link>
 
         <sidebar-link

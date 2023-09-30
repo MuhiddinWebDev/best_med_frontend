@@ -118,16 +118,16 @@
             localUser.role == 'Registrator'
         "
       >
-        <label>Напровител ҳисобот</label>
+        <label>Вакил ҳисобот</label>
         <div>
           <sidebar-link
             v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
             to="/direct_hisobot"
           >
-            <p>Напровител ҳисобот</p>
+            <p>Вакил ҳисобот</p>
           </sidebar-link>
           <sidebar-link target="_blank" to="/direct_sverka">
-            <p>Напровител Сверка</p>
+            <p>Вакил Сверка</p>
           </sidebar-link>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <b-container fluid id="table">
     <div class="main-header">
-      <h4>Напровител Сверка</h4>
+      <h4>Вакил Сверка</h4>
       <b-button
           class="navbarBtnDanger ml-3"
           variant="danger"

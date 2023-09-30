@@ -38,7 +38,7 @@ export default {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
     },
     logout() {
-      const x = window.confirm("Dasturdan chiqasizmi");
+      const x = window.confirm("Дастурдан чиқасизми");
       if(x) {
         localStorage.removeItem("token");
         localStorage.removeItem("filial_id");

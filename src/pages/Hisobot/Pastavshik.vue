@@ -238,7 +238,7 @@ export default {
   width: 100%;
   padding: 8px 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px,1fr));
   gap: 8px 12px;
 }
 
