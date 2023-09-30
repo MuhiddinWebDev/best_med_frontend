@@ -216,6 +216,11 @@ const routes = [
         component: () => import("@/pages/Oplata/Update.vue")
       },
       {
+        path: "pay-direct",
+        name: "pay-direct",
+        component: () => import("@/pages/PayDirect/Index.vue")
+      },
+      {
         path: "oplataDoc/:id",
         name: "oplataDoc",
         component: () => import("@/pages/oplataDoc/From.vue")
@@ -464,6 +469,16 @@ const routes = [
     path: "/provider/pay/update/:id",
     name: "Provider Pay Update",
     component: () => import("@/pages/PastavshikTolov/Update.vue")
+  },
+  {
+    path: "/pay-direct/create",
+    name: "pay-direct-create",
+    component: () => import("@/pages/PayDirect/Create.vue")
+  },
+  {
+    path: "/pay-direct/update/:id",
+    name: "pay-direct-update",
+    component: () => import("@/pages/PayDirect/Update.vue")
   },
   {
     path: "/provider/pay/document/:id",

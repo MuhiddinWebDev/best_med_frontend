@@ -447,6 +447,7 @@ export default {
     cancelPastavshik() {
       this.provider = {
         name: "",
+        filial_id: null
       };
     },
     cancelReagent() {

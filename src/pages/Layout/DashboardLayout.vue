@@ -89,6 +89,31 @@
           <b-icon font-scale="2" icon="person-check-fill" class="mr-3"></b-icon>
           <p>Поставщик тўлов</p>
         </sidebar-link>
+
+        <sidebar-link
+          to="/pay-direct"
+          v-if="
+              localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="journal-text" class="mr-3"></b-icon>
+          <p>Напровител тўлов</p>
+        </sidebar-link>
+
+        <sidebar-link
+          to="/reagent/department"
+          v-if="
+            localUser.role == 'Admin' ||
+              localUser.role == 'Dasturchi' ||
+              localUser.role == 'Kasser'
+          "
+        >
+          <b-icon font-scale="2" icon="server" class="mr-3"></b-icon>
+          <p>Реагент бўлим</p>
+        </sidebar-link>
+
       </b-collapse>
 
       <b-button
@@ -180,18 +205,6 @@
         >
           <b-icon font-scale="2" icon="grid3x2-gap-fill" class="mr-3"></b-icon>
           <p>Дорилар</p>
-        </sidebar-link>
-
-        <sidebar-link
-          to="/reagent/department"
-          v-if="
-            localUser.role == 'Admin' ||
-              localUser.role == 'Dasturchi' ||
-              localUser.role == 'Kasser'
-          "
-        >
-          <b-icon font-scale="2" icon="server" class="mr-3"></b-icon>
-          <p>Реагент бўлим</p>
         </sidebar-link>
 
         <sidebar-link

@@ -1,7 +1,7 @@
 <template>
   <div class="parent ml-2">
     <div class="kattat">
-      <span>Паставшик тўлов</span>
+      <span>Вакил тўлов</span>
       <b-button class="navbarBtnDanger" variant="danger" @click="Prev()">
         <b-icon icon="x-circle-fill"></b-icon>
       </b-button>
@@ -16,43 +16,42 @@
           <date-picker
             style="width: 100%;"
             format="DD.MM.YYYY"
-            v-model="providerPay.date_time"
+            v-model="providerPay.datetime"
             value-type="X"
             type="date"
             :lang="lang"
           ></date-picker>
         </div>
         <div style="width: 33%; position: relative;">
-          <label>Поставщик</label>
-          <button
+          <label>Вакил</label>
+          <!-- <button
             class="tabsBtnssPas"
             variant="success"
             v-b-modal.OpenModalPas1
           >
             ...
           </button>
-          <b-modal id="OpenModalPas1" hide-footer title="Поставщик Қўшиш">
+          <b-modal id="OpenModalPas1" hide-footer title="Вакил Қўшиш">
             <div class="md-layout-item md-small-size-100 md-size-100">
               <span class="shirift">
-                Поставщик
+                Вакил
               </span>
               <span style="color: red;">*</span>
               <span v-if="errorPastavshik !== null">
                 <span
                   style="color: red; font-size: 9px"
                   v-if="!errorPastavshik.name.required"
-                  >Поставщик тўлдирилиши керак</span
+                  >Вакил тўлдирилиши керак</span
                 >
               </span>
               <b-input type="text" v-model="provider.name" />
+              <label>Филиал</label>
               <v-select
-                  :options="filials"
-                  style="width: 100%;"
-                  v-model="provider.filial_id"
-                  label="name"
-                  class="mt-3"
-                  placeholder="Филиал танланг..."
-               />
+                label="name"
+                v-model="provider.filial_id"
+                :options="filials"
+                :reduce="options => options.id"
+              />
             </div>
             <div class="btnlar">
               <b-button
@@ -74,19 +73,15 @@
                 Сақлаш
               </b-button>
             </div>
-          </b-modal>
+          </b-modal> -->
           <v-select
             label="name"
-            v-model="providerPay.pastavchik_id"
+            v-model="providerPay.direct_id"
             @input="PastavshikId"
-            :options="Pastavshik"
-            :reduce="option => option.id"
+            :options="Directs"
+            :reduce="options => options.id"
           />
         </div>
-        <!-- <div style="width: 33%;">
-        <label>Умумий сумма</label>
-        <div class="Summa">{{ providerPay.jami_summa | numFormat }}</div>
-      </div> -->
         <div style="width: 33%;">
           <label>Қарздорлик</label>
           <div class="Summa">{{ providerPay.backlog | numFormat }}</div>
@@ -111,19 +106,29 @@
             style="width: 100%; height: 35px; border: 1px solid #cbc8c8; border-radius: 5px;"
             separator="space"
             :precision="2"
-            v-model="providerPay.price"
+            v-model="providerPay.sum"
           ></vue-numeric>
         </div>
         <div style="width: 33%">
           <label>Филиал</label>
           <v-select
-                  :options="filials"
-                  style="width: 100%;"
-                  v-model="providerPay.filial_id"
-                  label="name"
-                  class=""
-                  placeholder="Филиал танланг..."
-               />
+            :options="filials"
+            style="width: 100%;"
+            v-model="providerPay.filial_id"
+            label="name"
+            :reduce="options => options.id"
+            placeholder="Филиал танланг..."
+          />
+        </div>
+      </div>
+        <div class="row pl-3 mt-3">
+          <div class="col-3">
+            <label>Изоҳ</label>
+          <b-form-textarea
+              v-model="providerPay.comment"
+              style="background: #fff; border: 1px solid #ced4da;"
+              type="text">
+          </b-form-textarea>
         </div>
       </div>
     </div>
@@ -158,12 +163,13 @@ export default {
   data() {
     return {
       providerPay: {
-        type: "Naqt",
-        pastavchik_id: null,
-        price: 0,
+        pay_type: "Naqt",
+        direct_id: null,
+        sum: 0,
         backlog: 0,
+        comment: "",
         filial_id: null,
-        date_time: new Date()
+        datetime: new Date()
           .valueOf()
           .toString()
           .slice(0, 10)
@@ -181,11 +187,12 @@ export default {
         monthBeforeYear: false
       },
       Pastavshik: [],
+      Directs: [],
+      filials: [],
       TolovTuri: [
         { id: 0, name: "Naqt" },
         { id: 1, name: "Plastik" }
-      ],
-      filials: []
+      ]
     };
   },
   validations: {
@@ -196,10 +203,13 @@ export default {
       }
     },
     providerPay: {
-      pastavchik_id: {
+      direct_id: {
         required
       },
-      price: {
+      sum: {
+        required
+      },
+      filial_id: {
         required
       }
     }
@@ -216,43 +226,47 @@ export default {
       }
     },
     createProviderPay() {
-      let self = this;
-      // if (self.providerPay.type == "Naqt") {
-      //   self.providerPay.type = 0;
-      // } else {
-      //   self.providerPay.type = 1;
-      // }
+      if((this.providerPay.direct_id == null || this.providerPay.filial_id == null)) {
+        alert("Филиал ва Вакилни танланг")
+      }else {
+        let self = this;
+      if (self.providerPay.pay_type == "Naqt") {
+        self.providerPay.pay_type = 0;
+      } else {
+        self.providerPay.pay_type = 1;
+      }
       this.$v.$touch();
       if (this.$v.providerPay.$error == false) {
-        if (self.$route.name == "Provider Pay Create") {
+        if (self.$route.name == "pay-direct-create") {
           axios({
             method: "post",
-            url: "/pastavchik_pay/create",
+            url: "/pay-direct/create",
             data: self.providerPay
           }).then(data => {
             if (data != undefined) {
-              this.$router.push("/provider/pay");
+              this.$router.push("/pay-direct");
             } else {
-              // if (self.providerPay.type == 0) {
-              //   self.providerPay.type = "Naqt";
-              // } else {
-              //   self.providerPay.type = "Plastik";
-              // }
+              if (self.providerPay.pay_type == 0) {
+                self.providerPay.pay_type = "Naqt";
+              } else {
+                self.providerPay.pay_type = "Plastik";
+              }
             }
           });
-        } else if (self.$route.name == "Provider Pay Update") {
+        } else if (self.$route.name == "pay-direct-update") {
           axios({
             method: "patch",
-            url: `/pastavchik_pay/update/` + self.providerPay.id,
+            url: `/pay-direct/update/` + self.providerPay.id,
             data: self.providerPay
           }).then(data => {
             if (data != undefined) {
-              self.$router.push("/provider/pay");
+              self.$router.push("/pay-direct");
             }
           });
         }
       } else {
         self.errors = self.$v.providerPay;
+      }
       }
     },
     createProvider() {
@@ -261,17 +275,14 @@ export default {
       if (self.$v.provider.$error == false) {
         axios({
           method: "post",
-          url: "/pastavchik/create",
+          url: "/direct/create",
           data: self.provider
         }).then(data => {
           if (data != undefined) {
-            // self.$router.push("/provider");
-            self.providerPay.pastavchik_id = data.data.data.id;
+            self.providerPay.direct_id = data.data.data.id;
             self.getPastavshik();
             self.$bvModal.hide("OpenModalPas1");
             self.provider.name = "";
-            self.provider.filial_id = null;
-            self.getPastavshik();
           }
         });
       } else {
@@ -282,30 +293,19 @@ export default {
       let self = this;
       axios({
         method: "get",
-        url: "/pastavchik/all"
+        url: "/direct/all"
       }).then(res => {
         if (res != undefined) {
-          self.Pastavshik = res.data.data;
-        }
-      });
-    },
-    getFilial() {
-      let self = this;
-      axios({
-        method: "get",
-        url: "/filial/all"
-      }).then(res => {
-        if (res != undefined) {
-          self.filials = res.data.data;
+          self.Directs = res.data.data;
         }
       });
     },
     getProviderPay() {
       let self = this;
-      if (self.$route.name == "Provider Pay Update" || self.$route.name == 'Provider Document') {
+      if (self.$route.name == "pay-direct-update" || self.$route.name == 'pay-direct-document') {
         axios({
           method: "get",
-          url: `/pastavchik_pay/One/` + self.$route.params.id
+          url: `/pay-direct/one/` + self.$route.params.id
         }).then(res => {
           if (res != undefined) {
             if (res.data.data.type == 0) {
@@ -314,6 +314,7 @@ export default {
               res.data.data.type = "Plastik";
             }
             self.providerPay = res.data.data;
+            self.providerPay.datetime = String(res.data.data.datetime)
           }
         });
       }
@@ -322,36 +323,43 @@ export default {
       let self = this;
       axios({
         method: "post",
-        url: "/pastavchik_pay/getPastavchik",
+        url: "/pay-direct/getDirect",
         data: {
-          pastavchik_id: id
+          direct_id: id
         }
       }).then(res => {
         if (res != undefined) {
-          self.providerPay.backlog = res.data.backlog;
+          self.providerPay.backlog = res.data.data;
         }
       });
     },
     cancelPastavshik() {
       this.provider = {
-        name: "",
-        filial_id: null
+        name: ""
       };
     },
     cancel() {
       this.providerPay = {
-        type: "Naqt",
-        pastavchik_id: null,
-        price: 0,
+        pay_type: "Naqt",
+        direct_id: null,
+        sum: 0,
         backlog: 0,
-        jami_summa: 0
       };
-    }
+    },
+    getFilial() {
+      let self = this;
+      axios({
+        method: "get",
+        url: "/filial/all"
+      }).then(res => {
+        self.filials = res.data.data;
+      });
+    },
   },
   mounted() {
     this.getPastavshik();
-    this.getFilial();
     this.getProviderPay();
+    this.getFilial();
   }
 };
 </script>
