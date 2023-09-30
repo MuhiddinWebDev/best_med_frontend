@@ -192,7 +192,6 @@ export default {
     RowClicked(item) {
       this.$router.push({ path: "/oplata-update/" + item.id });
     },
-
     updateOplataLink(id) {
       return this.$router.push({ path: "oplata-update/" + id });
     },

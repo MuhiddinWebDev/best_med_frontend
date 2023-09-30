@@ -35,7 +35,7 @@
           </div>
           <div>
             <span>
-              <span class="shirift">Номи</span>
+              <span class="shirift">Изох</span>
               <span style="color: red;">*</span>
               <span v-if="errors !== null">
                 <span
@@ -78,14 +78,6 @@
               type="datetime"
               :lang="lang"
             ></date-picker>
-            <!-- <date-picker
-              style="width: 100%;"
-              v-model="oplata.date_time"
-              format="DD.MM.YYYY HH:mm"
-              value-type="X"
-              type="datetime"
-              :lang="lang"
-            ></date-picker> -->
           </div>
         </div>
 
@@ -139,7 +131,15 @@ export default {
   props: ["oplata", "errors"],
   data() {
     return {
-      // oplata: [],
+      oplata: {
+        type: null,
+        price: 0,
+        date_time: new Date()
+          .valueOf()
+          .toString()
+          .slice(0, 10),
+        name: ""
+      },
       expense: [],
       User: [],
       tolov_turi: [
@@ -169,7 +169,6 @@ export default {
         url: "/user/all"
       }).then(res => {
         self.User = res.data.data;
-        // self.expense.date_time = value;
       });
     }
   },

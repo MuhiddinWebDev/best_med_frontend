@@ -76,7 +76,7 @@
             <th>№</th>
             <th>Номи</th>
             <th>Вақт</th>
-            <th>сумма</th>
+            <th>Изоҳ</th>
             <th>Кирим</th>
             <th colspan="2">Чиқим</th>
           </tr>
@@ -109,6 +109,9 @@
                 № {{ item.doc_id }} - {{ item.place }} - {{ item.doc_type }}
               </span>
               {{ item.date_time }}
+            </td>
+            <td>
+              {{ item.comment }}
             </td>
             <td>
               {{ item.price }}
@@ -252,12 +255,12 @@ export default {
       });
     },
     Router(item) {
-      if (item.place == "Pastavchik") {
+      if (item.place == "Паставшик") {
         let route = this.$router.resolve({
           path: "/provider/pay/document/" + item.doc_id,
         });
         window.open(route.href, "_blank");
-      } else if (item.place == "Prixod") {
+      } else if (item.place == "Приход") {
         let route = this.$router.resolve({
           path: "/prixod/document/" + item.doc_id,
         });
@@ -270,8 +273,8 @@ export default {
     getDoctor(filial) {
       let self = this;
       axios({
-        method: "post",
-        url: "/pastavchik/filial_pas",
+        method: "get",
+        url: "/pastavchik/all",
         data:{
           filial_id: filial
         }

@@ -237,12 +237,12 @@ export default {
       });
     },
     Router(item) {
-      if (item.place == "Pastavchik") {
+      if (item.place == "Паставшик") {
         let route = this.$router.resolve({
           path: "/provider/pay/document/" + item.doc_id
         });
         window.open(route.href, "_blank");
-      } else if (item.place == "Prixod") {
+      } else if (item.place == "Приход") {
         let route = this.$router.resolve({
           path: "/prixod/document/" + item.doc_id
         });

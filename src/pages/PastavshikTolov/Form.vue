@@ -1,7 +1,7 @@
 <template>
   <div class="parent ml-2">
     <div class="kattat">
-      <span>Паставшик тўлов</span>
+      <span>Паставшиктўлов</span>
       <b-button class="navbarBtnDanger" variant="danger" @click="Prev()">
         <b-icon icon="x-circle-fill"></b-icon>
       </b-button>
@@ -126,6 +126,16 @@
                />
         </div>
       </div>
+      <div class="row pl-3 mt-3">
+          <div class="col-3">
+            <label>Изоҳ</label>
+          <b-form-textarea
+              v-model="providerPay.comment"
+              style="background: #fff; border: 1px solid #ced4da;"
+              type="text">
+          </b-form-textarea>
+        </div>
+        </div>
     </div>
 
     <div class="tugmalarf mt-2 mr-2">
@@ -163,6 +173,7 @@ export default {
         price: 0,
         backlog: 0,
         filial_id: null,
+        comment: "",
         date_time: new Date()
           .valueOf()
           .toString()

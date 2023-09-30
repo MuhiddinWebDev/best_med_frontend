@@ -194,8 +194,8 @@ export default {
     getDoctor(filial) {
       let self = this;
       axios({
-        method: "post",
-        url: "/pastavchik/filial_pas",
+        method: "get",
+        url: "/pastavchik/all",
         data:{
           filial_id: filial
         }
