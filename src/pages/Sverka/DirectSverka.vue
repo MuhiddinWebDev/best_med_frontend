@@ -85,7 +85,7 @@
             {{ item.date_time }}
           </td>
           <td>
-            {{ item.total_kirim | numFormat }}
+            {{ (item.total_kirim - item.total_chiqim) | numFormat }}
           </td>
         </tr>
         <tr>
@@ -187,8 +187,8 @@ export default {
               "YYYY.MM.DD HH:mm:ss"
             );
             self.beg_sum += value.total_kirim;
+            self.beg_sum -= value.total_chiqim;
           });
-          
         }
       });
     },
