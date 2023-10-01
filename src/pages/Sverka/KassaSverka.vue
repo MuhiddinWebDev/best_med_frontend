@@ -141,7 +141,6 @@
                       (item.place == 'registration' || item.place == 'uplata')
                   "
                 >
-                  <!-- {{ item }} -->
                   {{ item.registration.patient.fullname }}
                 </span>
                 <span v-else>

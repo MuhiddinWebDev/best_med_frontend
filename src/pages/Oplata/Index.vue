@@ -155,7 +155,7 @@ export default {
       items: [],
       fields: [
         "№",
-        { key: "name", label: "Номи", sortable: true },
+        { key: "name", label: "Изох", sortable: true },
 
         { key: "date_time", label: "Вақти", sortable: true },
         {

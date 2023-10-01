@@ -35,24 +35,6 @@
             v-model="modelvue.name"
             type="text"
           />
-          <!-- <div class="ustunW"> -->
-          <!-- <span>
-            <span class="shirift">
-              Фуқаролиги бўлмаган нарҳ
-            </span>
-          </span> -->
-          <!-- <b-input
-            id="shifokorBolimi-price"
-            v-model="modelvue.price"
-            type="text"
-          /> -->
-          <!-- <vue-numeric
-            style="width: 100%; height: 35px; border: 1px solid #bdb2b2; border-radius: 5px;"
-            v-model="modelvue.citizen_price"
-            separator="space"
-            :precision="2"
-          ></vue-numeric> -->
-          <!-- </div> -->
         </div>
         <div class="ustunW">
           <span>
@@ -139,7 +121,7 @@ export default {
 .oyna1 {
   margin: 10px 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 300px); */
   gap: 8px 12px;
   width: 100%;
 }
