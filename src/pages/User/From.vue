@@ -2370,7 +2370,8 @@ export default {
         registration_inspection: [],
         registration_palata: [],
         registration_pay: [],
-        registration_files: []
+        registration_files: [],
+        filial_id: parseInt(localStorage.getItem('filial_id'))
       },
       comment: "",
       user_name: "",

@@ -5,10 +5,9 @@
         <b-container fluid>
           <!-- User Interface controls -->
           <b-row class="qidiruv">
-            <b-col class="mb-2" style="display: flex;">
+            <b-col class="mb-1" style="display: flex; align-items:center; column-gap: 1rem;">
               <b-button
                 v-if="localUser.role != 'Loborant'"
-                style="margin-right: 20px;"
                 class="qoshishBtn"
                 variant="success"
                 @click="createRoomLink"
@@ -26,7 +25,7 @@
               </b-button>
             </b-col>
 
-            <b-col lg="7" class="mb-1">
+            <b-col lg="6" class="mb-1">
               <b-form-group
                 label-for="filter-input"
                 label-cols-sm="1"
@@ -164,6 +163,7 @@ export default {
             return value == "Statsionar" ? "Стационар" : "Амбулатор";
           }
         },
+        { key: "filial.name", label: "Филиал" },
         { key: "actions", label: "" }
       ],
       totalRows: 1,
@@ -172,7 +172,10 @@ export default {
       sortBy: "",
       sortDesc: false,
       sortDirection: "asc",
-      filter: ""
+      filter: "",
+      filials:[],
+      localUser: JSON.parse(localStorage.getItem("user")),
+      filial_id: parseInt(localStorage.getItem('filial_id'))
     };
   },
   created() {
@@ -181,6 +184,7 @@ export default {
   },
   mounted() {
     this.getUser();
+    this.getFilial();
   },
   methods: {
     RowClicked(item) {
@@ -196,7 +200,10 @@ export default {
       let self = this;
       axios({
         method: "get",
-        url: "/registration/all"
+        url: "/registration/all",
+        params: {
+            filial_id: this.filial_id
+        }
       }).then(res => {
         if (res != undefined) {
           self.getAll(res);
@@ -300,6 +307,15 @@ export default {
           self.Data();
         });
       }
+    },
+    getFilial() {
+      let self = this;
+      axios({
+        method: "get",
+        url: "/filial/all"
+      }).then(res => {
+        self.filials = res.data.data;
+      });
     }
   }
 };
@@ -308,6 +324,7 @@ export default {
 .qidiruv {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .tables {
   overflow-y: auto;

@@ -31,7 +31,7 @@
             <div style="width: 58%;">
               <h5>Chek yozuvi: {{ items.quote }}</h5>
               <h5>1-Sarlavha: {{ items.header_left }}</h5>
-              <h5>1-Sarlavha: {{ items.header_right }}</h5>
+              <h5>2-Sarlavha: {{ items.header_right }}</h5>
             </div>
           </div>
         </b-container>
