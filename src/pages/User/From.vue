@@ -965,7 +965,7 @@
                   <date-picker
                     style="width: 100%;"
                     v-model="palata.date_to"
-                    format="DD.MM.YYYY"
+                    format="DD.MM.YYYY HH:mm"
                     value-type="X"
                     type="datetime"
                     :lang="lang"
@@ -991,7 +991,7 @@
                     style="width: 100%"
                     @input="KetishVaqti"
                     v-model="palata.date_do"
-                    format="DD.MM.YYYY"
+                    format="DD.MM.YYYY HH:mm"
                     value-type="X"
                     type="datetime"
                     :lang="lang"

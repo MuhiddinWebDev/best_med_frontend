@@ -20,44 +20,44 @@
       <div class="BayonotChild">
         <div class="Child1" v-if="inspection.inspection != null">
           <div class="jadval">
-            <span style="font-size: 17pt;">Ф.И.Ш: </span>
-            <div style="font-size: 17pt; max-width: 400px;">{{ inspection.name ? inspection.name :'' }}</div>
+            <span style="font-size: 17px;">Ф.И.Ш: </span>
+            <div style="font-size: 17px; max-width: 400px;">{{ inspection.name ? inspection.name :'' }}</div>
           </div>
           <div class="jadval">
-            <span style="font-size: 17pt;">Телефон: </span>
-            <div style="font-size: 17pt;">{{ inspection.phone }}</div>
+            <span style="font-size: 17px;">Телефон: </span>
+            <div style="font-size: 17px;">{{ inspection.phone }}</div>
           </div>
           <div class="jadval">
-            <span style="font-size: 17pt;">Келган вақти: </span>
-            <div style="font-size: 17pt;">{{ inspection.create_at | moment }}</div>
+            <span style="font-size: 17px;">Келган вақти: </span>
+            <div style="font-size: 17px;">{{ inspection.create_at | moment }}</div>
           </div>
           <!-- <div class="jadval">
-            <span style="font-size: 17pt;">Tashxis:</span>
-            <div style="font-size: 17pt;">{{ inspection.text }}</div>
+            <span style="font-size: 17px;">Tashxis:</span>
+            <div style="font-size: 17px;">{{ inspection.text }}</div>
           </div> -->
           <!-- <div class="jadval">
-            <span style="font-size: 17pt;">Бемор шикояти:</span>
-            <div style="font-size: 17pt;" class="text-size-p" v-html="inspection.complaint"></div>
+            <span style="font-size: 17px;">Бемор шикояти:</span>
+            <div style="font-size: 17px;" class="text-size-p" v-html="inspection.complaint"></div>
           </div> -->
         </div>
 
         <div class="Child2" v-if="inspection.inspection != null">
           <div class="jadval">
-            <span style="font-size: 17pt;">Туғилган сана: </span>
-            <div style="font-size: 17pt;">{{ inspection.birthday | moment }}</div>
+            <span style="font-size: 17px;">Туғилган сана: </span>
+            <div style="font-size: 17px;">{{ inspection.birthday | moment }}</div>
           </div>
           <div class="jadval">
-            <span style="font-size: 17pt;">Паспорт серия: </span>
-            <div style="font-size: 17pt;">{{ inspection.passport }}</div>
+            <span style="font-size: 17px;">Паспорт серия: </span>
+            <div style="font-size: 17px;">{{ inspection.passport }}</div>
           </div>
           <!-- <div class="jadval">
-            <span style="font-size: 17pt;">Текширув номи: </span>
-            style="font-size: 17pt;" <div>{{ inspection.inspection }}</div>
+            <span style="font-size: 17px;">Текширув номи: </span>
+            style="font-size: 17px;" <div>{{ inspection.inspection }}</div>
           </div> -->
           
           <div class="jadval">
-            <span style="font-size: 17pt;">Объектив кўрув: </span>
-            <div style="font-size: 17pt;">{{ inspection.type_service }}</div>
+            <span style="font-size: 17px;">Объектив кўрув: </span>
+            <div style="font-size: 17px;">{{ inspection.type_service }}</div>
           </div>
         </div>
       </div>
