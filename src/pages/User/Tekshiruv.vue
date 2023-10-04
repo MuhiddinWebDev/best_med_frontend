@@ -3,19 +3,15 @@
     <div id="my-modal" v-for="(tool,index) in inspection.inspection" :key="index"  style="page-break-before: always; margin-top: 0px;">
       <div class="mt-12">
         <div class="header">
-          <div style="font-size: 17pt;">Ўзбекистон Республикаси Соғлиқни сақлаш вазирлиги</div>
-          <div>
-            <img class="tekshiruv-logo" src="../../assets/img/logo-klinka-bg.png" alt="klinka">
+          <div style="font-size: 17px;">
+            {{ items.left_header }}
           </div>
-          <div style="font-size: 17pt;">
+          <div>
+            <img class="tekshiruv-logo" :src="items.logo" alt="klinka">
+          </div>
+          <div style="font-size: 17px;">
             <div class="text-position">
-              <div class="text-position_item">
-                Андижон шаҳар. Миллий тикланиш Берк кўчаси  27
-              </div>
-              <div class="text-position_item">
-                <b style="font-size: 14pt;">+998 99 325 17 80</b>
-                <b style="font-size: 14pt;">+998 93 780 50 97</b>
-              </div>
+              {{ items.left_header }}
             </div>
           </div>
         </div>
@@ -126,7 +122,8 @@ export default {
       data: "",
       dataUrl: null,
       print: "false",
-      rotateType: 0
+      rotateType: 0,
+      items: {}
     };
   },
   filters: {
@@ -146,9 +143,21 @@ export default {
       if(this.inspection.inspection != null) {
         return text.replace(/(<([^>]+)>)/gi, " ");
       }
-    }
+    },
+    data1() {
+      let s = this;
+      axios({
+        method: "get",
+        url: "/settings",
+      }).then((res) => {
+        if (res != undefined) {
+          this.items = res.data.data;
+        }
+      });
+    },
   },
   mounted() {
+    this.data1();
     window.print();
     setTimeout(() => {
       localStorage.removeItem("Tekshiruvlar");

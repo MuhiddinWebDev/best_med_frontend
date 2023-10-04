@@ -6,7 +6,6 @@
         <b-icon icon="x-circle-fill"></b-icon>
       </b-button>
     </div>
-
     <div class="box-header">
       <div class="box-header_item">
         <input
@@ -56,25 +55,101 @@
       <table class="table table-bordered table-sm table-striped">
         <tr class="bg-dark text-white">
           <th>№</th>
-          <th>Номи</th>
+          <th>Палата</th>
           <th>Келиш вақти</th>
           <th>Кетиш вақти</th>
           <th>Кун</th>
           <th>Бемор</th>
-          <th>Хона</th>
+          <th>Палата нархи</th>
           <th>Палата сумма</th>
           <th>Умумий сумма</th>
         </tr>
-        <!-- v-for="(item, index) in results"
-          :key="index" -->
         <tr
+          :style="VaqtiOtibKetganTolamagan"
+          v-for="(item, index) in Data2"
+          :key="item.id"
+          v-on:dblclick="Clicked(item)"
+        >
+          <td v-if="item.id">
+            {{ item.id }}
+          </td>
+          <td v-if="item.name">
+            {{ item.name }}
+          </td>
+          <td v-if="item.register_palata[0].date_to">
+            {{ item.register_palata[0].date_to | moment }}
+          </td>
+          <td v-if="item.register_palata[0].date_do">
+            {{ item.register_palata[0].date_do | moment }}
+          </td>
+          <td v-if="item.register_palata[0].day">
+            {{ item.register_palata[0].day }}
+          </td>
+          <td v-if="item.register_palata[0].patient.fullname">
+            {{ item.register_palata[0].patient.fullname }}
+          </td>
+          <td v-if="item.register_palata[0].price">
+            {{ item.register_palata[0].price | numFormat }}
+          </td>
+          <td v-if="parseInt(item.register_palata[0].price) * parseInt(item.register_palata[0].day)">
+            {{ (parseInt(item.register_palata[0].price) * parseInt(item.register_palata[0].day)) | numFormat }}
+          </td>
+          <td v-if="item.register_palata[0].registration.summa">
+            {{ item.register_palata[0].registration.summa | numFormat }}
+          </td>
+        </tr>
+        <tr
+          v-for="(item, index) in Data"
+          :key="item.id"
+          v-on:dblclick="Clicked(item)"
+        >
+          <td v-if="item.id">
+            {{ item.id }}
+          </td>
+          <td v-if="item.name">
+            {{ item.name }}
+          </td>
+          <td v-if="item.register_palata[0].date_to">
+            {{ item.register_palata[0].date_to | moment }}
+          </td>
+          <td v-if="item.register_palata[0].date_do">
+            {{ item.register_palata[0].date_do | moment }}
+          </td>
+          <td v-if="item.register_palata[0].day">
+            {{ item.register_palata[0].day }}
+          </td>
+          <td v-if="item.register_palata[0].patient.fullname">
+            {{ item.register_palata[0].patient.fullname }}
+          </td>
+          <td v-if="item.register_palata[0].price">
+            {{ item.register_palata[0].price | numFormat }}
+          </td>
+          <td v-if="parseInt(item.register_palata[0].price) * parseInt(item.register_palata[0].day)">
+            {{ (parseInt(item.register_palata[0].price) * parseInt(item.register_palata[0].day)) | numFormat }}
+          </td>
+          <td v-if="item.register_palata[0].registration.summa">
+            {{ item.register_palata[0].registration.summa | numFormat }}
+          </td>
+        </tr>
+        <tr
+          v-for="(item, index) in BoshPalata"
+          :key="item.id"
+        >
+          <td v-if="item.id">
+            {{ item.id }}
+          </td>
+          <td v-if="item.name">
+            {{ item.name }}
+          </td>
+        </tr>
+        <!-- <tr
           v-on:dblclick="Clicked(item)"
           :style="Bosh"
           v-for="(item, index) in BoshPalata"
           :key="index"
         >
           <td>
-            {{ index + 1 }}
+            {{ item.id }}
           </td>
           <td>
             <div v-if="item.register_palata">
@@ -119,7 +194,7 @@
           :key="index"
         >
           <td>
-            {{ index + 1 }}
+            {{ item.id }}
           </td>
           <td>
             <div v-if="item.register_palata">
@@ -169,7 +244,7 @@
           :key="index"
         >
           <td>
-            {{ index + 1 }}
+            {{ item.id }}
           </td>
           <td>
             <div v-if="item.register_palata">
@@ -214,7 +289,7 @@
           :key="index"
         >
           <td>
-            {{ index + 1 }}
+            {{ item.id }}
           </td>
           <td>
             <div v-if="item.register_palata">
@@ -259,7 +334,7 @@
           :key="index"
         >
           <td>
-            {{ index + 1 }}
+            {{ item.id }}
           </td>
           <td>
             {{ date_time | moment }}
@@ -277,18 +352,19 @@
             {{ jam_sum | numFormat }}
           </td>
         </tr>
+        -->
         <tr>
-          <td colspan="5">
+          <td colspan="6">
             Якуний қолдиқ
           </td>
           <td></td>
           <td></td>
           <td>
-            <span :class="{ reds: jam_sum < 0 }">{{
-              beg_sum | numFormat
-            }}</span>
+            <span :class="{ reds: jam_sum < 0 }">
+            {{full_summa | numFormat}}
+          </span>
           </td>
-        </tr>
+        </tr> 
       </table>
     </div>
   </b-container>
@@ -324,63 +400,37 @@ export default {
       YotibTolamagans: [],
       BoshPalata: [],
       date_time: 0,
-      // select: ""
+      Data: [],
+      full_summa: 0
     };
   },
   computed: {
     Bosh() {
       return {
-        // backgroundImage: `url(${this.sidebarBackgroundImage})`,
         background: "rgb(80 182 255)",
       };
     },
     OldindanTolagan() {
       return {
-        // backgroundImage: `url(${this.sidebarBackgroundImage})`,
         background: "rgb(102 255 80)",
       };
     },
     YotibTolamagan() {
       return {
-        // backgroundImage: `url(${this.sidebarBackgroundImage})`,
         background: "rgb(255 114 61)",
       };
     },
     VaqtiOtibKetganTolamagan() {
       return {
-        // backgroundImage: `url(${this.sidebarBackgroundImage})`,
         background: "rgb(255 80 80)",
       };
     },
     TolaganVaqtiOtibketgan() {
       return {
-        // backgroundImage: `url(${this.sidebarBackgroundImage})`,
         background: "rgb(255 225 80)",
       };
     },
   },
-  created() {
-    // let self = this;
-    // if (localStorage.getItem("MedDirect") != null) {
-    //   self.datas.date1 = JSON.parse(localStorage.getItem("MedDirect")).date1;
-    //   self.datas.date2 = JSON.parse(localStorage.getItem("MedDirect")).date2;
-    //   self.datas.direct_id = JSON.parse(
-    //     localStorage.getItem("MedDirect")
-    //   ).direct_id;
-    //   self.Send();
-    // } else {
-    //   elf.datas.date1 = new Date().toISOString().slice(0, 10);
-    //   self.datas.date2 = new Date().toISOString().slice(0, 10);
-    // }
-  },
-  // beforeRouteLeave(to, from, next) {
-  //   if (localStorage.getItem("doctor") != null) {
-  //     localStorage.removeItem("doctor");
-  //     localStorage.removeItem("date1");
-  //     localStorage.removeItem("date2");
-  //   }
-  //   next();
-  // },
   methods: {
     Send() {
       let self = this;
@@ -389,11 +439,14 @@ export default {
       self.jami = 0;
       self.summa = 0;
       self.BoshPalata = [];
+      self.Data = [];
+      self.Data2 = [];
+      self.full_summa = 0;
       self.TolaganVaqtiOtibketgans = [];
       self.TolaganVaqtiOtibketmagans = [];
       self.VaqtiOtibKetganTolamagans = [];
       self.YotibTolamagans = [];
-      var datas = {
+      let datas = {
         datetime1: parseInt(
           new Date(self.datas.date1)
             .valueOf()
@@ -407,41 +460,28 @@ export default {
               .toString()
               .slice(0, 10)
           ) + 86399,
-        filial_id: self.filial_id,
+        filial_id: self.datas.filial_id,
       };
       axios({
         method: "post",
         url: "palata/hisobot",
         data: datas,
       }).then(function(res) {
-        if (res != undefined) {
+        if(res.data) {
           res.data.forEach((item) => {
-            if (item.text == "pul tolagan vaqti tugagan lekin yotipdi") {
-              self.TolaganVaqtiOtibketgans.push(item);
-            } else if (item.text == "pul tolagan, vaqti tugamagan yotipdi") {
-              self.TolaganVaqtiOtibketmagans.push(item);
-            } else if (item.text == "pul tolamagan va vaqti otib ketgan") {
-              self.VaqtiOtibKetganTolamagans.push(item);
-            } else if (item.text == "pul tolamagan va vaqti otib ketmagan") {
-              self.YotibTolamagans.push(item);
-            } else if (item.text == "palata bo'sh") {
+            if (item.text !== "Палата бўш" && item.text !== "qarz") {
+              self.Data.push(item);
+            } else if (item.text == "Палата бўш") {
               self.BoshPalata.push(item);
+            }else if(item.text !== "Палата бўш" && item.text == "qarz") {
+                self.Data2.push(item);
             }
-            if (item.register_palata.length > 0) {
-              item.register_palata.forEach((palata) => {
-                self.fullname = palata.patient.fullname;
-                if (palata.registration != null) {
-                  self.summa = Number(palata.registration.pay_summa);
-                  self.jam_sum = Number(palata.registration.pay_summa);
-                } else {
-                  self.summa += 0;
-                  self.jam_sum += 0;
-                }
-                self.end_sum += self.summa;
-                self.beg_sum += self.jam_sum;
-                self.date_time = palata.date_do;
-              });
-            }
+          });
+          let letArr = [...self.Data, ...self.Data2]
+          letArr.forEach(item => {
+            const { price, day } = item.register_palata[0];   
+            const totalPrice = parseInt(price) * parseInt(day);  
+            self.full_summa += totalPrice;
           });
         }
       });
@@ -507,12 +547,7 @@ export default {
       });
     },
     updateBranch(filial) {
-      this.branchValid = false;
-      if (!filial) {
-        this.datas.filial_id = JSON.parse(localStorage.getItem("filial_id"));
-        this.branchValid = true;
-        alert("Филиални танлаш мажбурий");
-      }
+      this.datas.filial_id = filial;
     },
   },
   filters: {
