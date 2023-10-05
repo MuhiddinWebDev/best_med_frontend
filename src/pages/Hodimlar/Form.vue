@@ -256,10 +256,10 @@ export default {
      setTimeout(()=>{
        this.getXonalar(this.modelvue.filial_id);
      },500)
-  },
- 
+  }
 };
 </script>
+
 <style>
 .katta {
   background: #379056;

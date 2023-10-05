@@ -9,7 +9,7 @@
             <oplata-form :oplata="oplata" :errors="errors"></oplata-form>
             <md-card-content>
               <div
-                class="tugmalar"
+                class="tugmalar mt-2"
                 :class="{ Arxiv: $route.name == 'oplataDoc' }"
               >
                 <div>

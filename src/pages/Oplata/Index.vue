@@ -242,6 +242,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .qidiruv {
   display: flex;

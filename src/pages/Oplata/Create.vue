@@ -8,7 +8,7 @@
           <b-container fluid>
             <oplata-form :oplata="oplata" :errors="errors"></oplata-form>
             <md-card-content>
-              <div class="tugmalar">
+              <div class="tugmalar mt-2">
                 <div>
                   <b-button
                     @click="createOplata()"

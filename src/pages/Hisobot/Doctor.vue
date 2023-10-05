@@ -9,13 +9,6 @@
             v-model="datas.date1"
             placeholder="boshlanish vaqti"
           />
-          <!-- <date-picker
-            v-model="datas.date1"
-            format="DD.MM.YYYY"
-            value-type="X"
-            type="date"
-            :lang="lang"
-          ></date-picker> -->
         </span>
       </b-col>
       <b-col lg="3" xs="3" md="3" xl="3" class="my-3">
@@ -146,12 +139,10 @@
 </template>
 
 <script>
-// import DatePicker from "vue2-datepicker"
 import "vue2-datepicker/index.css";
 import moment from "moment";
 export default {
   components: {
-    // DatePicker
   },
   data() {
     return {
@@ -205,7 +196,6 @@ export default {
       this.datas.doctor_id = item["doctor.id"];
       localStorage.setItem("datas", JSON.stringify(this.datas));
       localStorage.setItem("doctor", JSON.stringify(item["doctor.id"]));
-      // this.$router.push({ path: "doctor_sverka" });
       let route = this.$router.resolve({
         path: "doctor_sverka"
       });
@@ -280,6 +270,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .hisobotselect .vs__selected-options span:first-child {
   width: 90% !important;

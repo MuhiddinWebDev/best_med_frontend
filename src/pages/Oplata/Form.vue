@@ -31,6 +31,7 @@
               label="user_name"
               :reduce="user => user.id"
               v-model="oplata.user_id"
+              @input="getOneUser"
             />
           </div>
           <div>
@@ -113,6 +114,19 @@
               :precision="2"
             ></vue-numeric>
           </div>
+          <div class="mt-1" v-if="user_salary">
+            <span class="shirift" v-if="user_salary">
+              Ходим ойлиги
+            </span>
+            <vue-numeric
+              v-if="user_salary"
+              style="width: 100%; height: 35px; border: 1px solid #bfbfbf; border-radius: 4px;"
+              separator="space"
+              v-model="user_salary"
+              :precision="2"
+              disabled
+            ></vue-numeric>
+          </div>
         </div>
       </div>
     </div>
@@ -122,7 +136,6 @@
 <script>
 import "vue2-datepicker/index.css";
 import DatePicker from "vue2-datepicker";
-// import moment from 'moment'
 export default {
   name: "OplataForm",
   components: {
@@ -151,7 +164,9 @@ export default {
           firstDayOfWeek: 1
         },
         monthBeforeYear: false
-      }
+      },
+      user_salary: null,
+      user_percent: false
     };
   },
   methods: {
@@ -170,6 +185,22 @@ export default {
       }).then(res => {
         self.User = res.data.data;
       });
+    },
+    getOneUser(id) {
+      let self = this;
+      axios({
+        method: "get",
+        url: "/user/one/" +  id
+      }).then(res => {
+        if(res.data) {
+          if(res.data.data.role == "Kassser" || res.data.data.role == "Registrator") {
+            self.user_salary = res.data.data.salary
+          }else if(res.data.data.role == "Shifokor" || res.data.data.role == "Loborant") {
+            this.user_percent = true
+            console.log(this.user_percent)
+          }
+        }
+      });
     }
   },
   mounted() {
@@ -177,6 +208,7 @@ export default {
   }
 };
 </script>
+
 <style>
 .Arxiv {
   pointer-events: none;
