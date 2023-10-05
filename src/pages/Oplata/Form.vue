@@ -114,6 +114,33 @@
               :precision="2"
             ></vue-numeric>
           </div>
+
+          <div class="mt-1" v-if="user_percent">
+            <span class="shirift">Вақтлар</span>
+            <div class="row">
+              <div class="col">
+                <input
+                  class="form-control ShifokrSverka"
+                  type="date"
+                  v-model="datas.date1"
+                  placeholder="boshlanish vaqti"
+                />
+              </div>
+              <div class="col">
+                <input
+                  class="form-control ShifokrSverka"
+                  type="date"
+                  v-model="datas.date2"
+                  placeholder="tugash vaqti"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-1" v-if="!isAlert">
+            <h6 style="text-transform: lowercase;">Ходимни % да иш хақи 0</h6>
+          </div>
+          
           <div class="mt-1" v-if="user_salary">
             <span class="shirift" v-if="user_salary">
               Ходим ойлиги
@@ -123,6 +150,20 @@
               style="width: 100%; height: 35px; border: 1px solid #bfbfbf; border-radius: 4px;"
               separator="space"
               v-model="user_salary"
+              :precision="2"
+              disabled
+            ></vue-numeric>
+          </div>
+          
+          <div class="mt-1" v-if="user_percent">
+            <span class="shirift" v-if="user_percent">
+              Фоиздаги ҳаққи
+            </span>
+            <vue-numeric
+              v-if="user_percent"
+              style="width: 100%; height: 35px; border: 1px solid #bfbfbf; border-radius: 4px;"
+              separator="space"
+              v-model="user_percent"
               :precision="2"
               disabled
             ></vue-numeric>
@@ -139,7 +180,7 @@ import DatePicker from "vue2-datepicker";
 export default {
   name: "OplataForm",
   components: {
-    DatePicker
+    DatePicker  
   },
   props: ["oplata", "errors"],
   data() {
@@ -151,7 +192,11 @@ export default {
           .valueOf()
           .toString()
           .slice(0, 10),
-        name: ""
+        name: "",
+        work_type: null,
+        user_id: null,
+        doctor_id: null,
+        user: null
       },
       expense: [],
       User: [],
@@ -165,8 +210,14 @@ export default {
         },
         monthBeforeYear: false
       },
+      datas: {
+        date1: new Date().toISOString().slice(0, 8) + "01",
+        date2: new Date().toISOString().slice(0, 10),
+      },
       user_salary: null,
-      user_percent: false
+      user_percent: null,
+      user: null,
+      isAlert: true
     };
   },
   methods: {
@@ -191,17 +242,119 @@ export default {
       axios({
         method: "get",
         url: "/user/one/" +  id
-      }).then(res => {
+      }).then(res => { 
+        this.oplata.work_type = null
         if(res.data) {
           if(res.data.data.role == "Kassser" || res.data.data.role == "Registrator") {
+            this.user = null
+            this.user_percent = null
+            this.user_salary = null
             self.user_salary = res.data.data.salary
+            this.oplata.work_type = "Kasser || Registrator"
+            this.isAlert = true
           }else if(res.data.data.role == "Shifokor" || res.data.data.role == "Loborant") {
-            this.user_percent = true
-            console.log(this.user_percent)
+            if(res.data.data.salary !== 0) {
+              this.user = null
+              this.user_percent = null
+              this.user_salary = null
+              self.user_salary = res.data.data.salary
+              this.isAlert = true
+            }else if(res.data.data.percent && res.data.data.role == "Shifokor") {
+              try {
+                this.user = null
+                this.user_percent = null
+                this.user_salary = null
+                this.user = {}
+                this.user = res.data.data
+                this.getPercentSalay()
+                this.oplata.work_type = "Shifokor Oylik"
+                this.isAlert = true
+              } catch (error) {
+                console.log(error)
+              }
+            }else if(res.data.data.percent && res.data.data.role == "Loborant") {
+              this.user = null
+              this.user_percent = null
+              this.user_salary = null
+              this.user = {}
+              this.user = res.data.data
+              this.geLaborantSalay()
+              this.oplata.work_type = "Loborant Oylik"
+              this.isAlert = true
+            }
           }
         }
       });
-    }
+    },
+    async getPercentSalay(id) {
+      this.user_percent = null
+      this.user_salary = null
+      try {
+        let datas = {
+        datetime1: parseInt(
+          new Date(this.datas.date1)
+            .valueOf()
+            .toString()
+            .slice(0, 10)
+        ),
+        datetime2:
+          parseInt(
+            new Date(this.datas.date2)
+              .valueOf()
+              .toString()
+              .slice(0, 10)
+          ) + 86399,
+        doctor_id: this.user.doctor_id
+      };
+      let res = await axios.post("/hisobot/doctor_hisobot", datas)
+        if(res.data) {
+          console.log(res.data)
+          res.data.forEach(item => {
+            this.user_percent += parseFloat(item.total_kirim); 
+            this.user_percent -= parseFloat(item.total_chiqim); 
+          })
+          this.oplata.work_type = "Shifokor Percent"
+        }
+      this.isAlert = this.user_percent
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async geLaborantSalay(id) {
+      this.user_salary = null
+      this.user_percent = null
+      try {
+        let datas = {
+        datetime1: parseInt(
+          new Date(this.datas.date1)
+            .valueOf()
+            .toString()
+            .slice(0, 10)
+        ),
+        datetime2:
+          parseInt(
+            new Date(this.datas.date2)
+              .valueOf()
+              .toString()
+              .slice(0, 10)
+          ) + 86399,
+          user_id: this.user.id,
+          filial_id: this.user.filial_id
+        };
+      let res = await axios.post("/hisobot/inspection_hisobot_salary", datas)
+        if(res.data) {
+          console.log(res.data)
+          res.data.forEach(item => {
+            this.user_percent += item.total_kirim;
+            this.user_percent -= item.total_chiqim;
+          })
+          this.oplata.work_type = "Loborant Percent"
+          this.isAlert = this.user_percent
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    },
   },
   mounted() {
     this.getUser();

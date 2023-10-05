@@ -116,7 +116,7 @@
 
           <div class="ustunT_item">
             <div style="width: 60%;">
-              <span class="shirift1">Шифокор фоизи</span>
+              <span class="shirift1">Текширувчи фоизи</span>
               <b-input
                 id="tekshiruvlar-percent_bonus"
                 style="background: #fff; border: 1px solid #ced4da;"

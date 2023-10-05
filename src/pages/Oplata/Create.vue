@@ -110,10 +110,11 @@ export default {
   }
 };
 </script>
-<style>
+
+<style scoped>
 .tugmalar {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   margin-right: 10px;
   margin-bottom: 10px;
 }

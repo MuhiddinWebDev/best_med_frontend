@@ -126,7 +126,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .Arxiv {
   pointer-events: none;
 }

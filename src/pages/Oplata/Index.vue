@@ -160,7 +160,7 @@ export default {
         { key: "date_time", label: "Вақти", sortable: true },
         {
           key: "price",
-          label: "Нарҳ",
+          label: "Сумма",
           sortable: true,
           formatter: (value, key, item) => {
             let formatter = new Intl.NumberFormat("ru-RU", {

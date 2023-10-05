@@ -341,7 +341,7 @@ export default {
     },
 
     Router(item) {
-      if (item.doc_type === "Kirim" && this.datas.date1 <= this.datas.date2) {
+      if (item.doc_type === "kirim" && this.datas.date1 <= this.datas.date2) {
         // this.$router.push({path: '/arxivone/' + item.doctor_id})
         axios({
           method: "get",
