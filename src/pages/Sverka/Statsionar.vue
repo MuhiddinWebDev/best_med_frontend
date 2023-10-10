@@ -65,7 +65,6 @@
           <th>Умумий сумма</th>
         </tr>
         <tr
-          :style="VaqtiOtibKetganTolamagan"
           v-for="(item, index) in Data2"
           :key="item.id"
           v-on:dblclick="Clicked(item)"
@@ -99,6 +98,7 @@
           </td>
         </tr>
         <tr
+          :style="VaqtiOtibKetganTolamagan"
           v-for="(item, index) in Data"
           :key="item.id"
           v-on:dblclick="Clicked(item)"
