@@ -6,7 +6,7 @@
           <!-- User Interface controls -->
           <b-row class="qidiruv">
             <b-col class="mb-2">
-              <b-button
+              <!-- <b-button
                 v-if="user_name == 'Dasturchi'"
                 class="qoshishBtn"
                 variant="success"
@@ -16,7 +16,7 @@
                   <b-icon icon="plus-circle-fill" color="#fff"></b-icon>
                   Қўшиш
                 </span>
-              </b-button>
+              </b-button> -->
               <h4>Филиал</h4>
             </b-col>
 

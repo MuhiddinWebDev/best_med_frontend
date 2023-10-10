@@ -1,9 +1,7 @@
 <template>
   <div class="containers">
-    <div class="sarlovha">
-      <h2>
-        Best Med 
-      </h2>
+    <div class="logotip">
+      <img src="../assets/logo.png" alt="" />
     </div>
     <div class="loginOyna">
       <b-form v-if="show" @submit.prevent style="position: relative;">
@@ -11,7 +9,7 @@
         <div style="text-align: initial; color: #fff;">Филиални танланг</div>
         <v-select
           :options="all_filial"
-          :reduce="options => options.id"
+          :reduce="(options) => options.id"
           @input="changeBranch"
           label="name"
           v-model="form.filial_id"
@@ -19,7 +17,7 @@
         <div style="text-align: initial; color: #fff;">Ходимни танланг</div>
         <v-select
           :options="all_users"
-          :reduce="options => options.user_name"
+          :reduce="(options) => options.user_name"
           label="user_name"
           v-model="form.login"
         />
@@ -83,12 +81,12 @@ export default {
       form: {
         login: "",
         filial_id: null,
-        password: ""
+        password: "",
       },
       show: true,
       all_users: [],
       all_filial: [],
-      passwordType: "password"
+      passwordType: "password",
     };
   },
   mounted() {
@@ -111,10 +109,10 @@ export default {
         method: "post",
         url: "user/filial_user",
         data: {
-          filial_id: branch
+          filial_id: branch,
         },
-      }).then(res => {
-        if(res){
+      }).then((res) => {
+        if (res) {
           self.all_users = res.data.data;
         }
       });
@@ -124,53 +122,61 @@ export default {
       let self = this;
       axios({
         method: "get",
-        url: "/filial/all"
-      }).then(res => {
+        url: "/filial/all",
+      }).then((res) => {
         if (res != undefined) {
           self.all_filial = res.data.data;
         }
       });
     },
-    
+
     Login() {
       let self = this;
       axios({
         method: "post",
         url: "/user/login",
-        data: self.form
-      }).then(response => {
-        if(response != undefined) {
-          if (response.data.data.token) {
-            localStorage.setItem("user", JSON.stringify(response.data.data));
-            localStorage.setItem("token", response.data.data.token);
-            localStorage.setItem("filial_id", response.data.data.filial_id);
-            if(response.data.expired == true){
-              this.$router.push({path: '/expired-app'})
-            } else {
-              self.$router.push({ path: "/user" });
-            }   
+        data: self.form,
+      })
+        .then((response) => {
+          if (response != undefined) {
+            if (response.data.data.token) {
+              localStorage.setItem("user", JSON.stringify(response.data.data));
+              localStorage.setItem("token", response.data.data.token);
+              localStorage.setItem("filial_id", response.data.data.filial_id);
+              if (response.data.expired == true) {
+                this.$router.push({ path: "/expired-app" });
+              } else {
+                self.$router.push({ path: "/user" });
+              }
+            }
           }
-        }  
-      }).catch(e => {
-        console.log(e)
-      }) 
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
-    changeBranch(id){
-      this.getUser(id)
-    }
-  }
+    changeBranch(id) {
+      this.getUser(id);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .containers {
-  padding-top: 5%;
+  /* padding-top: 5%; */
   width: 100%;
   height: 100vh;
   text-align: -webkit-center;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.1)), url('../../public/future2.jpg');
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url("../../public/future2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
 }
 @keyframes animateAlert {
   0% {
@@ -212,10 +218,15 @@ export default {
   padding: 20px 0;
   width: 470px;
   /* background: rgb(0 105 188 / 87%); */
-  background:rgb(55, 144, 86);
+  background: rgb(55, 144, 86);
   display: flex;
   justify-content: space-around;
   align-items: center;
+  position: absolute;
+  top: 32%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .inputs {
   border-radius: 4px;
@@ -242,7 +253,7 @@ export default {
   border: 0;
   outline: 0;
   /* background: #001fce !important; */
-  background:rgba(46, 89, 61, 0.806);
+  background: rgba(46, 89, 61, 0.806);
   margin-top: 20px;
 }
 .kirish {
@@ -250,7 +261,7 @@ export default {
   font-weight: bolder;
   font-family: sans-serif;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .password {
   position: relative;
@@ -290,5 +301,10 @@ export default {
 .error1 p {
   font-size: 12px;
   color: red;
+}
+
+.logotip {
+  width: 300px;
+  height: 300px;
 }
 </style>
