@@ -4,8 +4,8 @@
   "private": true,
   "description": "Dastur Biznes Dasturlash Markazi tomonidan ishlab chiqildi",
   "author": {
-    "name": "Anvarjonov Muhammadnodir",
-    "email": "muhammadnodiranvarjonov0911@gmail.com"
+    "name": "Nurmuhammad Nizomov",
+    "email": "nurmuhammadnizomov@gmail.com"
   },
   "scripts": {
     "serve": "vue-cli-service serve --open",
