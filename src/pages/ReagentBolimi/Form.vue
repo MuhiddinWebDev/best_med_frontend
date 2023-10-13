@@ -67,12 +67,33 @@
           v-model="reagentDdepartment.reagent_id"
           :options="Reagent"
           :reduce="option => option.id"
+          @input="getOstatkas"
         />
       </div>
       <div style="width: 32%">
         <label>Сони</label>
         <b-input
           v-model="reagentDdepartment.count"
+          style="background: #fff; border: 1px solid #ced4da;"
+          type="number"
+        ></b-input>
+      </div>
+      <div style="width: 32%;">
+        <label>Филиал</label>
+        <v-select
+            :options="filials"
+            style="width: 100%;"
+            v-model="reagentDdepartment.filial_id"
+            :reduce="option => option.id"
+            label="name"
+            placeholder="Филиал танланг..."
+          />
+      </div>
+      <div style="width: 32%" v-if="qoldiq">
+        <label v-if="qoldiq">Қолдиқ</label>
+        <b-input
+          v-if="qoldiq"
+          v-model="qoldiq"
           style="background: #fff; border: 1px solid #ced4da;"
           type="number"
         ></b-input>
@@ -126,13 +147,17 @@ export default {
       reagentDdepartment: {
         department_id: null,
         reagent_id: null,
-        count: 0
+        filial_id: null,
+        count: 0,
+        datetime: Math.floor(new Date() / 1000)
       },
       reagent: {
         name: ""
       },
       errorReagent: null,
-      errors: null
+      errors: null,
+      filials: [],
+      qoldiq: null
     };
   },
   validations: {
@@ -251,15 +276,36 @@ export default {
         reagent_id: null,
         count: 0
       };
+    },
+    getFilial() {
+      let self = this;
+      axios({
+        method: "get",
+        url: "/filial/all"
+      }).then(res => {
+        self.filials = res.data.data;
+      });
+    },
+    getOstatkas(id) {
+      let self = this;
+      axios({
+        method: "get",
+        url: "reagent_department/ostatka/" + id
+      }).then(res => {
+        self.qoldiq = res.data.data;
+        console.log(res.data.data)
+      });
     }
   },
   mounted() {
     this.getReagentDdepartment();
     this.getReagent();
     this.getDepartment();
+    this.getFilial();
   }
 };
 </script>
+
 <style scoped>
 .parent {
   background: #d3e4e7;
@@ -323,8 +369,9 @@ export default {
 }
 .ikkilik {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 98%;
+  flex-wrap: wrap;
   margin: 0 auto 20px;
   margin: 20px auto 0;
   padding: 10px 15px;
@@ -333,7 +380,8 @@ export default {
   width: 98%;
   background: #fff;
   display: flex;
-  height: calc(100vh - 160px);
+  /* height: calc(100vh - 160px); */
+  /* height:  */
   justify-content: space-between;
 }
 .pastavshiktable {
