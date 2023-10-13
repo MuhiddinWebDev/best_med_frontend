@@ -186,7 +186,7 @@
       >
         <label>Реагент ҳисобот</label>
         <div>
-          <sidebar-link target="_blank" to="/provayder/sverka">
+          <sidebar-link  to="/reagent2">
             <p>Реагент Сверка</p>
           </sidebar-link>
         </div>
