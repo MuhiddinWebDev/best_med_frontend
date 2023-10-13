@@ -177,6 +177,20 @@
           </sidebar-link>
         </div>
       </div>
+      <div
+        class="HisobotChild"
+        v-if="
+            localUser.role == 'Admin' ||
+            localUser.role == 'Dasturchi'
+        "
+      >
+        <label>Реагент ҳисобот</label>
+        <div>
+          <sidebar-link target="_blank" to="/provayder/sverka">
+            <p>Реагент Сверка</p>
+          </sidebar-link>
+        </div>
+      </div>
       <!-- <div
         class="HisobotChild"
         v-if="
