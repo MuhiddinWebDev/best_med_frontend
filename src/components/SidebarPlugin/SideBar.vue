@@ -7,9 +7,10 @@
         </div>
       </a>
       
-      <a class="simple-text logo-normal logo-sarlovha">
+      <a class="simple-text logo-normal logo-sarlovha fw-bold">
         {{ items.name }}
       </a>
+
     </div>
 
     
