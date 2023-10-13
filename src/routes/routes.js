@@ -399,6 +399,11 @@ const routes = [
         component: () => import("@/pages/Kassa Order/Update.vue")
       },
       {
+        path: "/reagent2",
+        name: "/reagent2",
+        component: () => import("@/pages/Hisobot/Reagent2.vue")
+      },
+      {
         path: "palata",
         name: "Palata",
         component: () => import("@/pages/Palata/Index.vue")
