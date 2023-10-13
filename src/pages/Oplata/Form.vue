@@ -243,7 +243,12 @@ export default {
         method: "get",
         url: "/user/one/" +  id
       }).then(res => { 
+        
         this.oplata.work_type = null
+        this.user_salary = null
+        this.user_percent = null
+        this.user = null
+
         if(res.data) {
           if(res.data.data.role == "Kassser" || res.data.data.role == "Registrator") {
             this.user = null
