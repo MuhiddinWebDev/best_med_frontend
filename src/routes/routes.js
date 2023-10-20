@@ -595,6 +595,11 @@ const routes = [
     // }
   },
   {
+    path: "/dashboard",
+    name: "/dashboard",
+    component: () => import("@/pages/Dashboard/Index.vue")
+  },
+  {
     path: "/user-update/:id",
     name: "User Profile Update",
     component: () => import("@/pages/User/Update.vue")
