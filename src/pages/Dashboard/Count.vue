@@ -11,7 +11,7 @@
 
 <script>
 import VueApexCharts from "vue-apexcharts";
-
+import axios from "axios";
 export default {
   name: "test",
   components: {
@@ -21,8 +21,8 @@ export default {
     return {
       series: [
         {
-          name: "Inflation",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+          name: "Кўриклар сони",
+          data: [],
         },
       ],
       chartOptions: {
@@ -34,14 +34,14 @@ export default {
           bar: {
             borderRadius: 10,
             dataLabels: {
-              position: "top", // top, center, bottom
+              position: "top", 
             },
           },
         },
         dataLabels: {
           enabled: true,
           formatter: function(val) {
-            return val + "%";
+            return val;
           },
           offsetY: -20,
           style: {
@@ -52,18 +52,18 @@ export default {
 
         xaxis: {
           categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec",
+              "Январ",
+              "Феврал",
+              "Март",
+              "Апрел",
+              "Май",
+              "Июн",
+              "Июл",
+              "Август",
+              "Сентябр",
+              "Октябр",
+              "Ноябр",
+              "Декабр"
           ],
           position: "top",
           axisBorder: {
@@ -98,12 +98,12 @@ export default {
           labels: {
             show: false,
             formatter: function(val) {
-              return val + "%";
+              return val;
             },
           },
         },
         title: {
-          text: "Oylik ko'riklar soni",
+          text: "",
           floating: true,
           offsetY: 330,
           align: "center",
@@ -114,6 +114,22 @@ export default {
       },
     };
   },
+  mounted() {
+    this.get()
+  },
+  methods: {
+    async get () {
+      try {
+        let res = await axios.post("/hisobot/tekshirushcount")
+        console.log(res.data)
+        if(res.data) {
+          this.series[0].data = res.data
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    } 
+  }
 };
 </script>
 

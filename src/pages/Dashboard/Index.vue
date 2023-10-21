@@ -27,6 +27,7 @@
     </div>
     <div class="row pt-3">
       <div class="col">
+        <h4>Ойлик кўриклар сони</h4>
         <Count />
       </div>
     </div>

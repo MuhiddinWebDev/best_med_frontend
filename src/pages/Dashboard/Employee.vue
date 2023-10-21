@@ -49,7 +49,6 @@ export default {
       try {
         let res = await axios.post("/hisobot/countworker");
         if (res.data) {
-          console.log(res.data)
           this.series = [res.data.kassir, res.data.laborant, res.data.shifokor, res.data.registrator];
         }
       } catch (error) {
