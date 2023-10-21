@@ -21,7 +21,7 @@
     </div>
     <div class="row pt-3">
       <div class="col">
-        <h4>Eng ko'p tekshiruv o'tkazgan tekshiruvchilar</h4>
+        <h4>Текширув ўтказган текчирувчилар бўйича</h4>
         <Laborant />
       </div>
     </div>

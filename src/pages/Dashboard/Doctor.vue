@@ -57,7 +57,7 @@ export default {
         },
         yaxis: {
           title: {
-            text: "Ko'riklar soni",
+            text: "Кўриклар сони",
           },
         },
         fill: {

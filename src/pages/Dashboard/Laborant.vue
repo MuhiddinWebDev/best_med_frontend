@@ -11,27 +11,14 @@
   
   <script>
   import VueApexCharts from "vue-apexcharts";
-  
+  import axios from "axios";
   export default {
     components: {
       apexchart: VueApexCharts,
     },
     data() {
       return {
-        series: [
-          {
-            name: "Net Profit",
-            data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-          },
-          {
-            name: "Revenue",
-            data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-          },
-          {
-            name: "Free Cash Flow",
-            data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-          },
-        ],
+        series: [],
         chartOptions: {
           chart: {
             type: "bar",
@@ -54,20 +41,23 @@
           },
           xaxis: {
             categories: [
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
+              "Январ",
+              "Феврал",
+              "Март",
+              "Апрел",
+              "Май",
+              "Июн",
+              "Июл",
+              "Август",
+              "Сентябр",
+              "Октябр",
+              "Ноябр",
+              "Декабр"
             ],
           },
           yaxis: {
             title: {
-              text: "$ (thousands)",
+              text: "Кўриклар сони",
             },
           },
           fill: {
@@ -76,13 +66,28 @@
           tooltip: {
             y: {
               formatter: function(val) {
-                return "$ " + val + " thousands";
+                return val;
               },
             },
           },
         },
       };
     },
+    mounted() {
+      this.get()
+    },
+    methods: {
+      async get() {
+        try {
+          let res = await axios.post("/hisobot/tekshiruv-laborant")
+          if(res.data) {
+            this.series = res.data
+          }
+        } catch (error) {
+          console.log(error)
+        }
+    }
+    }
   };
   </script>
   
