@@ -26,7 +26,7 @@ export default {
           type: "pie",
         },
 
-        labels: ["Erkak", "Ayol"],
+        labels: ["Эркак", "Аёл"],
 
         responsive: [
           {

@@ -1,6 +1,6 @@
 <template>
   <div id="chart" v-if="series[0] || series[1]">
-    <h4>Ambulator va Statsionar be'morlar</h4>
+    <h4>Амбулатор ва Статсионар беъморлар</h4>
     <apexchart
       type="pie"
       width="380"
@@ -9,7 +9,7 @@
     ></apexchart>
   </div>
   <div v-else>
-    <h4>Registratsiya bo'sh</h4>
+    <h4>Регистрация бўш</h4>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
           type: "pie",
         },
 
-        labels: ["Ambulator", "Statsionar"],
+        labels: ["Амбулатор", "Статсионар"],
 
         responsive: [
           {

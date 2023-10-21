@@ -19,14 +19,14 @@ export default {
   },
   data() {
     return {
-      series: [0, 0],
+      series: [0, 0, 0, 0],
       chartOptions: {
         chart: {
           width: 380,
           type: "pie",
         },
 
-        labels: ["Kassir", "Laborant", ],
+        labels: ["Кассир", "Лаборант", "Шифокор", "Регистратор"],
 
         responsive: [
           {
@@ -50,7 +50,7 @@ export default {
         let res = await axios.post("/hisobot/countworker");
         if (res.data) {
           console.log(res.data)
-          // this.series = [res.data.maleCount, res.data.femaleCount];
+          this.series = [res.data.kassir, res.data.laborant, res.data.shifokor, res.data.registrator];
         }
       } catch (error) {
         console.log(error);

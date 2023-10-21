@@ -2,20 +2,20 @@
   <div class="container-fluid">
     <div class="row pt-3 justify-content-center">
       <div class="col">
-        <h4>Erkak va Ayol be'morlar</h4>
+        <h4>Эркак ва Аёл беъморлар</h4>
         <Gender />
       </div>
       <div class="col">
         <StatsionarAmbulator />
       </div>
       <div class="col">
-        <h4>Xodimlar soni</h4>
+        <h4>Ходимлар сони</h4>
         <Employee />
       </div>
     </div>
     <div class="row pt-3">
       <div class="col">
-        <h4>Eng ko'p tekshiruv o'tkazgan shifokorlar</h4>
+        <h4>Текширув ўтказган шифокорлар бўйича</h4>
         <Doctor />
       </div>
     </div>
