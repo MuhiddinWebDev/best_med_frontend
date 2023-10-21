@@ -121,12 +121,15 @@ export default {
     async get () {
       try {
         let res = await axios.post("/hisobot/tekshirushcount")
-        console.log(res.data)
         if(res.data) {
           this.series[0].data = res.data
         }
+        
+        setTimeout(() => {
+          this.get();
+        }, 5000);
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     } 
   }

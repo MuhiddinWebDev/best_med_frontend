@@ -265,6 +265,11 @@
         <p>Ҳисоботлар</p>
       </sidebar-link>
 
+      <sidebar-link to="/dashboard">
+        <b-icon font-scale="2" icon="bar-chart-line-fill" class="mr-3"></b-icon>
+        <p>Дашборд</p>
+      </sidebar-link>
+
       <!-- <sidebar-link
         to="/eshikdan-kirish"
         v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi' || localUser.role == 'Registrator') && showColumn"
