@@ -18,6 +18,7 @@ import VueApexCharts from "vue-apexcharts";
 import axios from "axios";
 export default {
   name: "GenderChart",
+  props: ["filial_id"],
   components: {
     apexchart: VueApexCharts,
   },
@@ -49,9 +50,9 @@ export default {
     };
   },
   methods: {
-    async get() {
+    async get(id) {
       try {
-        let res = await axios.post("/hisobot/countas");
+        let res = await axios.post("/hisobot/countas", {filial_id: id});
         if (res.data) {
           this.series = [res.data.ambulator, res.data.statsionar];
         }
@@ -63,5 +64,10 @@ export default {
   mounted() {
     this.get();
   },
+  watch: {
+    filial_id: function(newVal, oldVal) {
+      this.get(newVal)
+    },
+  }
 };
 </script>

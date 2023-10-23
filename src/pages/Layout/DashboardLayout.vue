@@ -7,7 +7,6 @@
         <b-icon font-scale="2" icon="bar-chart-line-fill" class="mr-3"></b-icon>
         <p>Дашборд</p>
       </sidebar-link>
-      
       <sidebar-link to="/royhat">
         <b-icon font-scale="2" icon="columns-gap" class="mr-3"></b-icon>
         <p>Навбатлар рўйхати</p>
@@ -16,7 +15,6 @@
         <b-icon font-scale="2" icon="person-plus" class="mr-3"></b-icon>
         <p>Регистрация</p>
       </sidebar-link>
-
       <sidebar-link to="/user/statsionar">
         <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
         <p>Стационар</p>

@@ -17,6 +17,7 @@ export default {
   components: {
     apexchart: VueApexCharts,
   },
+  props: ["filial_id"],
   data() {
     return {
       series: [0, 0, 0, 0],
@@ -45,9 +46,9 @@ export default {
     };
   },
   methods: {
-    async get() {
+    async get(id) {
       try {
-        let res = await axios.post("/hisobot/countworker");
+        let res = await axios.post("/hisobot/countworker", {filial_id: id});
         if (res.data) {
           this.series = [res.data.kassir, res.data.laborant, res.data.shifokor, res.data.registrator];
         }
@@ -58,6 +59,11 @@ export default {
   },
   mounted() {
     this.get();
+  },
+  watch: {
+    filial_id: function(newVal, oldVal) {
+      this.get(newVal)
+    },
   },
 };
 </script>
