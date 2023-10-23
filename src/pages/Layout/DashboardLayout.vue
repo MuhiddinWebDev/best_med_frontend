@@ -3,6 +3,11 @@
     <notifications></notifications>
 
     <side-bar>
+      <sidebar-link to="/dashboard">
+        <b-icon font-scale="2" icon="bar-chart-line-fill" class="mr-3"></b-icon>
+        <p>Дашборд</p>
+      </sidebar-link>
+      
       <sidebar-link to="/royhat">
         <b-icon font-scale="2" icon="columns-gap" class="mr-3"></b-icon>
         <p>Навбатлар рўйхати</p>
@@ -265,10 +270,7 @@
         <p>Ҳисоботлар</p>
       </sidebar-link>
 
-      <sidebar-link to="/dashboard">
-        <b-icon font-scale="2" icon="bar-chart-line-fill" class="mr-3"></b-icon>
-        <p>Дашборд</p>
-      </sidebar-link>
+      
 
       <!-- <sidebar-link
         to="/eshikdan-kirish"
