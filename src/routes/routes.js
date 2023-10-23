@@ -13,6 +13,11 @@ const routes = [
         component: () => import("@/pages/User/Index.vue")
       },
       {
+        path: "/dashboard",
+        name: "/dashboard",
+        component: () => import("@/pages/Dashboard/Index.vue")
+      },
+      {
         path: "/user/statsionar",
         name: "User Statsionar",
         component: () => import("@/pages/User/Statsionar.vue")
@@ -593,11 +598,6 @@ const routes = [
     // meta: {
     //   requireAdmin: true,
     // }
-  },
-  {
-    path: "/dashboard",
-    name: "/dashboard",
-    component: () => import("@/pages/Dashboard/Index.vue")
   },
   {
     path: "/user-update/:id",

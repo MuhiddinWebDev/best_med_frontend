@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid px-3">
     <div class="row pt-3 justify-content-center">
       <div class="col">
         <h4>Эркак ва Аёл беъморлар</h4>

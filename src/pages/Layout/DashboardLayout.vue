@@ -265,7 +265,7 @@
         <p>Ҳисоботлар</p>
       </sidebar-link>
 
-      <sidebar-link to="/dashboard" target="_blank">
+      <sidebar-link to="/dashboard">
         <b-icon font-scale="2" icon="bar-chart-line-fill" class="mr-3"></b-icon>
         <p>Дашборд</p>
       </sidebar-link>
