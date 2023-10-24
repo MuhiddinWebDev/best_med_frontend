@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid px-3">
+  <div class="container-fluid px-5">
     <div class="pl-3 filial" v-if="isAdmin && isAdmin.role == 'Admin'">
       <label>Филиал</label>
       <v-select
