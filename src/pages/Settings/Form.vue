@@ -32,7 +32,7 @@
                 type="date"
                 placeholder="Вақтдан..."
                 style="width: 100%"
-                disabled="true"
+                :disabled="true"
               ></date-picker>
             </div>
             <div class="my-2">
@@ -80,7 +80,7 @@
                 type="date"
                 placeholder="Вақтгача..."
                 style="width: 100%"
-                disabled="true"
+                :disabled="true"
               ></date-picker>
             </div>
             <div class="my-2">
@@ -101,6 +101,30 @@
               class="logo-img1"
             >
             </b-img>
+          </div>
+          <div v-if="localUser.user_name == 'Dasturchi'" class="row pl-3 mt-3">
+            <div class="col-9">
+              <div
+                class="form-check"
+                v-for="rule in datas.rules"
+                :key="rule.id"
+              >
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  :checked="rule.checked"
+                  :id="rule.id"
+                  @change="toggleChecked(rule)"
+                />
+
+                <label class="form-check-label">
+                  {{ rule.label + " " + rule.price.toLocaleString() }}
+                </label>
+              </div>
+            </div>
+            <div class="col mt-2">
+              <h4>Umumiy {{ totalPrice }}</h4>
+            </div>
           </div>
         </div>
       </div>
@@ -141,22 +165,24 @@ export default {
         quote: null,
         header_left: null,
         header_right: null,
+        rules: [],
       },
       isUpload: false,
       files: [],
+      localUser: null,
+      totalPrice: 0,
     };
   },
   methods: {
     create() {
       let self = this;
+      this.datas.rules = JSON.stringify(this.datas.rules)
       if (true) {
-        axios
-          .patch("/settings/id", this.datas)
-          .then((data) => {
-            if (data) {
-              self.$router.push("/settings");
-            }
-          });
+        axios.patch("/settings/id", this.datas).then((data) => {
+          if (data) {
+            self.$router.push("/settings");
+          }
+        });
       } else {
         axios.post("/settings", this.datas).then((data) => {
           if (data) {
@@ -174,6 +200,7 @@ export default {
         quote: null,
         header_left: null,
         header_right: null,
+        rules: [],
       };
     },
     getData() {
@@ -184,6 +211,40 @@ export default {
             self.datas = res.data.data;
             this.datas.date1 = String(res.data.data.date1);
             this.datas.date2 = String(res.data.data.date2);
+            if (!res.data.data.rules) {
+              this.datas.rules = [
+                {
+                  id: 1,
+                  label: "Registratsiya va kassa",
+                  value: "registration || kassa",
+                  price: 300000,
+                  checked: false,
+                },
+                {
+                  id: 2,
+                  label: "Tekshiruv",
+                  value: "laboratory",
+                  price: 200000,
+                  checked: false,
+                },
+                {
+                  id: 3,
+                  label: "Doktor bo'limi",
+                  value: "doctor",
+                  price: 100000,
+                  checked: false,
+                },
+                {
+                  id: 4,
+                  label: "Davolanish bo'limi",
+                  value: "statsionar",
+                  price: 100000,
+                  checked: false,
+                },
+              ];
+            }else {
+              this.datas.rules = JSON.parse(this.datas.rules)
+            }
           }
         });
       }
@@ -199,9 +260,17 @@ export default {
         this.datas.logo = this.BASE_URL + res.data.img;
       });
     },
+    toggleChecked(rule) {
+      rule.checked = !rule.checked;
+
+      this.totalPrice = this.datas.rules
+        .filter((r) => r.checked)
+        .reduce((sum, r) => sum + r.price, 0);
+    },
   },
   mounted() {
     this.getData();
+    this.localUser = JSON.parse(localStorage.getItem("user"));
   },
 };
 </script>
@@ -218,7 +287,7 @@ export default {
   border-radius: 8px;
   color: #fff;
   text-indent: 15px;
-  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2) ;
+  box-shadow: 5px 8px 10px rgba(100, 100, 111, 0.2);
   width: 96%;
   margin-left: auto;
   margin-right: auto;

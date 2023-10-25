@@ -1907,7 +1907,7 @@
             </b-tab>
             <b-tab
               v-if="
-                localUser.role == 'Kasser' ||
+                  localUser.role == 'Kasser' ||
                   localUser.role == 'Admin' ||
                   localUser.role == 'Dasturchi'
               "
