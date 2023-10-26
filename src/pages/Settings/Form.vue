@@ -123,7 +123,7 @@
               </div>
             </div>
             <div class="col mt-2">
-              <h4>Umumiy {{ totalPrice }}</h4>
+              <h4>Umumiy {{ totalPrice  }}</h4>
             </div>
           </div>
         </div>
@@ -170,7 +170,6 @@ export default {
       isUpload: false,
       files: [],
       localUser: null,
-      totalPrice: 0,
     };
   },
   methods: {
@@ -211,7 +210,7 @@ export default {
             self.datas = res.data.data;
             this.datas.date1 = String(res.data.data.date1);
             this.datas.date2 = String(res.data.data.date2);
-            if (!res.data.data.rules) {
+            if (!res.data.data.rules || res.data.data.rules == null) {
               this.datas.rules = [
                 {
                   id: 1,
@@ -222,14 +221,14 @@ export default {
                 },
                 {
                   id: 2,
-                  label: "Tekshiruv",
+                  label: "Laboratoriya",
                   value: "laboratory",
                   price: 200000,
                   checked: false,
                 },
                 {
                   id: 3,
-                  label: "Doktor bo'limi",
+                  label: "Doktor",
                   value: "doctor",
                   price: 100000,
                   checked: false,
@@ -243,7 +242,7 @@ export default {
                 },
               ];
             }else {
-              this.datas.rules = JSON.parse(this.datas.rules)
+              this.datas.rules = JSON.parse(res.data.data.rules)
             }
           }
         });
@@ -262,16 +261,22 @@ export default {
     },
     toggleChecked(rule) {
       rule.checked = !rule.checked;
-
-      this.totalPrice = this.datas.rules
-        .filter((r) => r.checked)
-        .reduce((sum, r) => sum + r.price, 0);
     },
   },
   mounted() {
     this.getData();
     this.localUser = JSON.parse(localStorage.getItem("user"));
   },
+  computed: {
+  totalPrice() {
+    if(this.datas.rules) {
+      return this.datas.rules
+        .filter(r => r.checked)
+        .reduce((sum, r) => sum + r.price, 0);
+    }
+    return 0;
+  }
+}
 };
 </script>
 

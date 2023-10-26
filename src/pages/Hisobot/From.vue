@@ -4,9 +4,9 @@
       <div
         class="HisobotChild"
         v-if="
-            localUser.role == 'Admin' ||
+            (localUser.role == 'Admin' ||
             localUser.role == 'Dasturchi' ||
-            localUser.role == 'Shifokor'
+            localUser.role == 'Shifokor') && ruleDoctor
         "
       >
         <label>Шифокор ҳисобот</label>
@@ -33,9 +33,9 @@
       <div
         class="HisobotChild"
         v-if="
-            localUser.role == 'Admin' ||
+            (localUser.role == 'Admin' ||
             localUser.role == 'Dasturchi' ||
-            localUser.role == 'Loborant'
+            localUser.role == 'Loborant') && ruleLaborant
         "
       >
         <label>Текширув ҳисобот</label>
@@ -92,9 +92,9 @@
       <div
         class="HisobotChild"
         v-if="
-            localUser.role == 'Admin' ||
+            (localUser.role == 'Admin' ||
             localUser.role == 'Dasturchi' ||
-            localUser.role == 'Kasser'
+            localUser.role == 'Kasser') && ruleStatsionar
         "
       >
         <label>Палата ҳисобот</label>
@@ -269,8 +269,28 @@
 export default {
   data() {
     return {
-      localUser: JSON.parse(localStorage.getItem("user"))
+      localUser: JSON.parse(localStorage.getItem("user")),
+      ruleDoctor: null,
+      ruleLaborant: null,
+      ruleStatsionar: null
     };
+  },
+  methods: {
+    async getSettings() {
+      try {
+        let res = await axios.get("/settings")
+        let arr = JSON.parse(res.data.data.rules)
+        this.ruleDoctor = arr[2].checked
+        this.ruleLaborant = arr[1].checked
+        this.ruleStatsionar = arr[3].checked
+        console.log(arr)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  },
+  mounted() {
+
   }
 };
 </script>

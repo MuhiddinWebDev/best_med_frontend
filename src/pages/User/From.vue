@@ -597,7 +597,7 @@
               </div>
             </b-tab>
             <b-tab
-              v-if="localUser.role != 'Loborant'"
+              v-if="localUser.role != 'Loborant' && ruleDoctor"
               title="Шифокор"
               title-link-class="text-primary"
               style="padding: 10px !important;"
@@ -776,7 +776,8 @@
               title="Текширув"
               title-link-class="text-primary"
               style="padding: 10px !important;"
-            >
+              v-if="ruleLaborant"
+              >
               <div style="margin-top: -5px; margin-bottom: 7px;">
                 <button
                   class="tabsBtns"
@@ -1142,9 +1143,10 @@
             </b-tab>
             <b-tab
               v-if="
-                localUser.role != 'Kasser' &&
+                  localUser.role != 'Kasser' &&
                   localUser.role != 'Registrator' &&
-                  localUser.role != 'Loborant'
+                  localUser.role != 'Loborant' &&
+                  ruleDoctor
               "
               title="Назначения"
               title-link-class="text-primary"
@@ -1455,9 +1457,10 @@
             <b-tab
               title="Рецепт"
               v-if="
-                localUser.role != 'Kasser' &&
+                  localUser.role != 'Kasser' &&
                   localUser.role != 'Registrator' &&
-                  localUser.role != 'Loborant'
+                  localUser.role != 'Loborant' &&
+                  ruleDoctor
               "
               title-link-class="text-primary"
               style="background: #F7F7F7; padding: 10px"
@@ -1657,6 +1660,7 @@
               title="Текширув натижалари"
               title-link-class="text-primary"
               style="padding: 10px"
+              v-if="ruleLaborant"
             >
             <div v-if="this.user.registration_inspection.length != 0">
                 <b-card no-body>
@@ -1854,8 +1858,9 @@
               title="Ташхис натижалари"
               v-if="
                 localUser.role != 'Kasser' &&
-                this.$route.name != 'ArxivOne' ||
-                localUser.role == 'Loborant'
+                this.$route.name != 'ArxivOne' &&
+                localUser.role == 'Loborant' &&
+                ruleLaborant
               "
               title-link-class="text-primary"
               style="padding: 10px"
@@ -2424,9 +2429,11 @@ export default {
       TekshiruvParent:[],
       payer_name:"",
       branchName : "",
-      premissionCheck:'off'
+      premissionCheck:'off',
+      ruleDoctor: null,
+      ruleLaborant: null,
+      ruleStatsionar: null
     };
-    
   },
   validations: {
     bemor: {
@@ -4125,6 +4132,18 @@ export default {
       } else {
         return "table-success";
       }
+    },
+    async getSettings() {
+      try {
+        let res = await axios.get("/settings")
+        let arr = JSON.parse(res.data.data.rules)
+        this.ruleDoctor = arr[2].checked
+        this.ruleLaborant = arr[1].checked
+        this.ruleStatsionar = arr[3].checked
+        console.log(arr)
+      } catch (error) {
+        console.error(error)
+      }
     }
   },
   async mounted() {
@@ -4139,7 +4158,7 @@ export default {
     this.getNaprovitel();
     this.getUser_id();
     this.gethodim();
-   
+    this.getSettings();
   }
 };
 </script>

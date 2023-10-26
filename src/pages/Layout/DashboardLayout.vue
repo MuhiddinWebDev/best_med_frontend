@@ -15,7 +15,7 @@
         <b-icon font-scale="2" icon="person-plus" class="mr-3"></b-icon>
         <p>Регистрация</p>
       </sidebar-link>
-      <sidebar-link to="/user/statsionar">
+      <sidebar-link to="/user/statsionar" v-if="ruleStatsionar">
         <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
         <p>Стационар</p>
       </sidebar-link>
@@ -156,7 +156,7 @@
 
         <sidebar-link
           to="/Shifokor-bolimi"
-          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+          v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi') && ruleDoctor"
         >
           <b-icon font-scale="2" icon="journal-medical" class="mr-3"></b-icon>
           <p>Шифокор бўлими</p>
@@ -164,7 +164,7 @@
 
         <sidebar-link
           to="/shifokor"
-          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+          v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi') && ruleDoctor"
         >
           <b-icon font-scale="2" icon="people-fill" class="mr-3"></b-icon>
           <p>Шифокорлар</p>
@@ -224,7 +224,7 @@
 
         <sidebar-link
           to="/palata"
-          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+          v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi') && ruleStatsionar"
         >
           <b-icon font-scale="2" icon="door-closed-fill" class="mr-3"></b-icon>
           <p>Палата</p>
@@ -232,7 +232,7 @@
 
         <sidebar-link
           to="/tekshiruv-bolimlari"
-          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+          v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi') && ruleLaborant"
         >
           <b-icon font-scale="2" icon="ui-checks-grid" class="mr-3"></b-icon>
           <p>Текширув бўлимлари</p>
@@ -240,7 +240,7 @@
 
         <sidebar-link
           to="/tekshiruvlar"
-          v-if="localUser.role == 'Admin' || localUser.role == 'Dasturchi'"
+          v-if="(localUser.role == 'Admin' || localUser.role == 'Dasturchi') && ruleLaborant"
         >
           <b-icon font-scale="2" icon="ui-checks" class="mr-3"></b-icon>
           <p>Текширувлар</p>
@@ -419,6 +419,9 @@ export default {
       showData: false,
       showDocs: false,
       showReport: false,
+      ruleStatsionar: null,
+      ruleDoctor: null,
+      ruleLaborant: null
     };
   },
   methods: {
@@ -440,6 +443,18 @@ export default {
         }
       });
     },
+    async getSettings() {
+      try {
+        let res = await axios.get("/settings")
+        let arr = JSON.parse(res.data.data.rules)
+        this.ruleDoctor = arr[2].checked
+        this.ruleLaborant = arr[1].checked
+        this.ruleStatsionar = arr[3].checked
+        console.log(arr)
+      } catch (error) {
+        console.error(error)
+      }
+    }
   },
   mounted() {
     this.checkAllow();
