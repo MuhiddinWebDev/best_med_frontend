@@ -457,6 +457,7 @@ export default {
     }
   },
   mounted() {
+    this.getSettings()
     this.checkAllow();
     setInterval(() => {
       if (this.$store.state.errors != "") {

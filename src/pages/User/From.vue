@@ -1857,9 +1857,9 @@
             <b-tab
               title="Ташхис натижалари"
               v-if="
-                localUser.role != 'Kasser' &&
-                this.$route.name != 'ArxivOne' &&
-                localUser.role == 'Loborant' &&
+                (localUser.role != 'Kasser' &&
+                this.$route.name != 'ArxivOne' ||
+                localUser.role == 'Loborant') &&
                 ruleLaborant
               "
               title-link-class="text-primary"
