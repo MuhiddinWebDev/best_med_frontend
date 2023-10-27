@@ -954,7 +954,7 @@
             </b-tab>
             <b-tab
               title="Палата"
-              v-if="localUser.role != 'Loborant'"
+              v-if="localUser.role != 'Loborant' && ruleLaborant"
               title-link-class="text-primary"
               :class="{ Arxive: $route.name == 'ArxivOne' }"
             >
