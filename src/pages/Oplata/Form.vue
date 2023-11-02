@@ -313,7 +313,6 @@ export default {
       };
       let res = await axios.post("/hisobot/doctor_hisobot", datas)
         if(res.data) {
-          console.log(res.data)
           res.data.forEach(item => {
             this.user_percent += parseFloat(item.total_kirim); 
             this.user_percent -= parseFloat(item.total_chiqim); 
@@ -348,7 +347,6 @@ export default {
         };
       let res = await axios.post("/hisobot/inspection_hisobot_salary", datas)
         if(res.data) {
-          console.log(res.data)
           res.data.forEach(item => {
             this.user_percent += item.total_kirim;
             this.user_percent -= item.total_chiqim;

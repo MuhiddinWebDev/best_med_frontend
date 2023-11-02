@@ -3,7 +3,6 @@
     <md-card>
       <md-card-content>
         <b-container fluid>
-          <!-- User Interface controls -->
           <b-row class="qidiruv">
             <b-col class="mb-2">
               <b-button
@@ -55,7 +54,7 @@
               sticky-header
               striped
               primary-key="id"
-              :items="items"
+              :items="formattedData"
               :fields="fields"
               :filter="filter"
               :per-page="perPage"
@@ -73,6 +72,9 @@
             >
               <template #cell(№)="data" style="text-align: center;">
                 {{ data.index + 1 }}
+              </template>
+              <template #cell(datetime)="row">
+                  {{ row.item.formattedTime }}
               </template>
               <template #cell(actions)="row" class="lg-1">
                 <b-row class="ml-1">
@@ -133,6 +135,7 @@
 
 <script>
 import axios from "axios";
+import moment from 'moment';
 export default {
   name: "UserIndex",
   components: {},
@@ -141,9 +144,11 @@ export default {
       items: [],
       fields: [
         "№",
-        { key: "reagent.name", label: "Номи", sortable: true },
-        { key: "count", label: "Сони", sortable: true },
-        { key: "actions", label: "" }
+        { key: "reagent.name", label: "Номи", sortable: true},
+        { key: "count", label: "Сони", sortable: true},
+        { key: "comment", label: "Изоҳ"},
+        { key: "datetime", label: "Вақт", sortable: true},
+        { key: "actions", label: ""}
       ],
       totalRows: 1,
       currentPage: 1,
@@ -156,7 +161,7 @@ export default {
     };
   },
   mounted() {
-    this.data();
+    this.loadData();
   },
   methods: {
     RowClicked(item) {
@@ -168,7 +173,7 @@ export default {
     createRoomLink() {
       return this.$router.push({ path: "/reagent/department/create" });
     },
-    data() {
+    loadData() {
       let s = this;
       axios({
         method: "get",
@@ -196,9 +201,21 @@ export default {
         });
       }
     }
-  }
+  },
+  computed: {
+    formattedData() {
+      return this.items.map(item => {
+        const formattedTime = moment(item.datetime * 1000).format('YYYY-MM-DD HH:mm:ss');
+        return {
+          ...item,
+          formattedTime,
+        };
+      });
+    },
+},
 };
 </script>
+
 <style>
 .tables {
   overflow-y: auto;

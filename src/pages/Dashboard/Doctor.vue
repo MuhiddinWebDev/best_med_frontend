@@ -76,7 +76,6 @@ export default {
   },
   methods: {
     async get(id) {
-      console.log(id)
       try {
         let res = await axios.post("/hisobot/tekshiruv-doktor", {filial_id: id})
         if(res.data) {

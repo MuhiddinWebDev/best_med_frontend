@@ -4140,7 +4140,6 @@ export default {
         this.ruleDoctor = arr[2].checked
         this.ruleLaborant = arr[1].checked
         this.ruleStatsionar = arr[3].checked
-        console.log(arr)
       } catch (error) {
         console.error(error)
       }

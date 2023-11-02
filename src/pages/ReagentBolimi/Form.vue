@@ -89,6 +89,14 @@
             placeholder="Филиал танланг..."
           />
       </div>
+      <div style="width: 32%;">
+        <label>Изоҳ</label>
+        <b-input
+          v-model="reagentDdepartment.comment"
+          style="background: #fff; border: 1px solid #ced4da;"
+          type="number"
+        ></b-input>
+      </div>
       <div style="width: 32%" v-if="qoldiq">
         <label v-if="qoldiq">Қолдиқ</label>
         <b-input
@@ -157,7 +165,8 @@ export default {
       errorReagent: null,
       errors: null,
       filials: [],
-      qoldiq: null
+      qoldiq: null,
+      comment: null
     };
   },
   validations: {
@@ -241,7 +250,6 @@ export default {
           data: self.reagent
         }).then(data => {
           if (data != undefined) {
-            // this.$router.push("/reagent");
             self.reagentDdepartment.reagent_id = data.data.data.id;
             self.getReagent();
             self.$bvModal.hide("OpenModalReag");
@@ -293,7 +301,6 @@ export default {
         url: "reagent_department/ostatka/" + id
       }).then(res => {
         self.qoldiq = res.data.data;
-        console.log(res.data.data)
       });
     }
   },
