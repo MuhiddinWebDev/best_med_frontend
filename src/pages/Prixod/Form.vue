@@ -171,7 +171,7 @@
               <td>
                 <vue-numeric
                   style="width: 100%; height: 38px; border: 1px solid #ced4da; border-radius: 4px;"
-                  @change="Yigindi(item)"
+                  @change="Yigindi(index, item)"
                   separator="space"
                   :precision="2"
                   v-model="item.price"
@@ -179,7 +179,7 @@
               </td>
               <td>
                 <b-input
-                  @change="Yigindi(item)"
+                  @change="Yigindi(index, item)"
                   style="background: #fff; border: 1px solid #ced4da;"
                   v-model="item.count"
                   type="number"
@@ -316,9 +316,28 @@ export default {
         window.close();
       }
     },
-    Yigindi(item) {
-      item.summa = Number(item.count) * Number(item.price);
-      this.prixod.umumiy_summa += Number(item.count) * Number(item.price);
+    Yigindi(index, item) {
+      // item.summa = Number(item.count) * Number(item.price);
+      // this.prixod.umumiy_summa += Number(item.count) * Number(item.price);
+      let copy = [...this.prixod.prixod_table];
+
+      copy[index].price = Number(copy[index].price);
+      copy[index].count = Number(copy[index].count);
+
+      copy[index].summa = copy[index].price * copy[index].count;
+
+      this.prixod.prixod_table[index] = copy[index];
+
+      let totalSum = 0;
+
+      this.prixod.prixod_table.forEach(item => {
+        item.price = Number(item.price);
+        item.count = Number(item.count);
+        item.summa = item.price * item.count;
+        totalSum += item.summa;
+      });
+
+      this.prixod.umumiy_summa = totalSum;
     },
     getPastavshik() {
       let self = this;
