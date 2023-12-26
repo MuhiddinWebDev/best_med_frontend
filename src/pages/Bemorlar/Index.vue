@@ -31,7 +31,7 @@
                     id="filter-input"
                     v-model="filter"
                     type="search"
-                    @input="Data()"
+                    @input="handleInputChange"
                     placeholder="Қидирув"
                   ></b-form-input>
 
@@ -161,6 +161,7 @@ export default {
       sortDesc: false,
       sortDirection: "asc",
       filter: null,
+      searchQuery: null,
       filterOn: ["name"]
     };
   },
@@ -204,7 +205,6 @@ export default {
         }
       });
     },
-
     onFiltered(filteredItems) {
       this.totalRows = filteredItems.length;
       this.currentPage = 1;
@@ -222,6 +222,12 @@ export default {
           }
         });
       }
+    },
+    handleInputChange() {
+      this.searchResults = this.filterResults(this.filter);
+    },
+    filterResults(query) {
+      return this.items.filter(result => result.fullname.toLowerCase().includes(query.toLowerCase()));
     }
   }
 };

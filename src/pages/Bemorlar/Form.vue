@@ -397,6 +397,7 @@ export default {
         percent: 0,
         birthday: null
       };
+      this.$router.go(-1)
     },
     getBemor() {
       let self = this;

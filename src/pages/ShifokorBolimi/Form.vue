@@ -51,7 +51,7 @@
         </div>
         <div class="ustunW">
           <span>
-              <span class="shirift1">Филиал</span>
+              <span class="shirift">Филиал</span>
               <span style="color: red;">*</span>
               <span v-if="errors !== null">
                 <span
