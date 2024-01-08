@@ -90,6 +90,7 @@ export default {
         name: "",
         filial_id: null,
       };
+      this.$router.go(-1);
     }
   }
 };

@@ -3,7 +3,6 @@
     <md-card>
       <md-card-content>
         <b-container fluid>
-          <!-- User Interface controls -->
           <b-row class="qidiruv">
             <b-col class="mb-2">
               <b-button
@@ -152,6 +151,7 @@ export default {
         { key: "region.name", label: "Вилояти", sortable: true },
         { key: "district.name", label: "Тумани", sortable: true },
         { key: "imtiyoz_type", label: "Имтиёзи", sortable: true },
+        { key: "phone", label: "Телефон"},
         { key: "actions", label: "" }
       ],
       totalRows: 1,

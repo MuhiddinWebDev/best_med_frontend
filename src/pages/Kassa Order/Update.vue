@@ -119,13 +119,14 @@ export default {
       });
     },
     cancel() {
-      kassa = {
+      this.kassa = {
         type: "Naqt",
         price: 0,
         kasser_id:null,
         filial_id:null,
         comment: "Oylik"
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

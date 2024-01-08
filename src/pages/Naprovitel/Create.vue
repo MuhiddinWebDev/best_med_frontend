@@ -99,6 +99,7 @@ export default {
         bonus: 0,
         filial_id: null,
       };
+      this.$router.go(-1);
     }
   }
 };

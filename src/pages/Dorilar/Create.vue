@@ -81,6 +81,7 @@ export default {
       this.dorilar = {
         name: ""
       };
+      this.$router.go(-1);
     }
   }
 };

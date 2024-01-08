@@ -216,6 +216,7 @@ export default {
   },
   methods: {
     Prev() {
+      this.$router.go(-1);
       if (this.$route.name != "Provider Document") {
         const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
         if (x) {
@@ -345,6 +346,7 @@ export default {
         sum: 0,
         backlog: 0,
       };
+      this.$router.go(-1);
     },
     getFilial() {
       let self = this;

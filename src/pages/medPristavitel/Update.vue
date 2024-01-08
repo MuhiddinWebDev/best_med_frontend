@@ -97,6 +97,7 @@ export default {
         name: "",
         bonus: 0
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

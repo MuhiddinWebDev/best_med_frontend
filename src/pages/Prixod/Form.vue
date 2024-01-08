@@ -486,6 +486,7 @@ export default {
           count: 0,
         },
       ];
+      this.$router.go(-1);
       // this.prixod = {
       //   umumiy_summa: 0,
       //   pastavchik_id: null,

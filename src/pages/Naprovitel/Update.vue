@@ -110,6 +110,7 @@ export default {
         // med_id: null,
         bonus: 0
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

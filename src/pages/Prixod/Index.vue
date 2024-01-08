@@ -142,8 +142,8 @@ export default {
       items: [],
       fields: [
         "№",
-        { key: "pastavchik.name", label: "Номи", sortable: true },
-        { key: "date_time", label: "Номи", sortable: true },
+        { key: "pastavchik.name", label: "Поставщик ", sortable: true },
+        { key: "date_time", label: "Вақт", sortable: true },
         {
           key: "umumiy_summa",
           label: "Сумма",

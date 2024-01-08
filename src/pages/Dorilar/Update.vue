@@ -90,7 +90,8 @@ export default {
       });
     },
     cancel() {
-      this.$router.push("/dorilar");
+      this.$router.go(-1);
+      // this.$router.push("/dorilar");
     }
   },
   mounted() {

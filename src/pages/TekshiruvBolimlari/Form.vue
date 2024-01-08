@@ -64,7 +64,8 @@ export default {
   },
   methods: {
     Prev() {
-      this.$router.push("/tekshiruv-bolimlari");
+      this.$router.go(-1);
+      // this.$router.push("/tekshiruv-bolimlari");
     },
     getFilial() {
       let self = this;

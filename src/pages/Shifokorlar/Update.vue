@@ -100,6 +100,7 @@ export default {
         name: "",
         category_id: null
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

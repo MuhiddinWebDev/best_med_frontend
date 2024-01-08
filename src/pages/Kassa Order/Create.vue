@@ -120,6 +120,7 @@ export default {
         kasser_id: null,
         comment: ""
       };
+      this.$router.go(-1);
     }
   }
 };

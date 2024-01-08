@@ -58,6 +58,7 @@ export default {
   props: ["modelvue", "errors"],
   methods: {
     Prev() {
+      this.$router.go(-1);
       this.$router.push("/medpritavitel");
     }
   }

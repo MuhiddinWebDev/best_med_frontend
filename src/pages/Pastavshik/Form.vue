@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     Prev() {
+      this.$router.go(-1);
       this.$router.push("/provider");
     },
     // getFilial() {

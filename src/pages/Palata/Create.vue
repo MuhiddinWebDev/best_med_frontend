@@ -96,6 +96,7 @@ export default {
         user_id: null,
         filial_id: null
       };
+      this.$router.go(-1);
     }
   }
 };

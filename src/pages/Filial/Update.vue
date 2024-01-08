@@ -92,6 +92,7 @@ export default {
       this.filial = {
         name: ""
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

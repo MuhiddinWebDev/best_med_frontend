@@ -96,6 +96,7 @@ export default {
       this.provider = {
         name: "",
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

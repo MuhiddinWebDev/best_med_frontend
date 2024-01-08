@@ -255,6 +255,7 @@ export default {
   },
   methods: {
     Prev() {
+      this.$router.go(-1);
       if (this.$route.name == "KassaDoc") {
         window.close();
       } else {

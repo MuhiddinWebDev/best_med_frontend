@@ -92,6 +92,7 @@ export default {
       this.xonalar = {
         name: ""
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

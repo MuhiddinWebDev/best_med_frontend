@@ -357,6 +357,7 @@ export default {
         backlog: 0,
         jami_summa: 0
       };
+      this.$router.go(-1);
     }
   },
   mounted() {

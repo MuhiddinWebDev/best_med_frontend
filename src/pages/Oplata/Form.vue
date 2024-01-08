@@ -42,7 +42,7 @@
                 <span
                   style="color: red; font-size: 9px"
                   v-if="!errors.name.required"
-                  >Номи тўлдирилиши керак</span
+                  >Изох тўлдирилиши керак</span
                 >
               </span>
             </span>

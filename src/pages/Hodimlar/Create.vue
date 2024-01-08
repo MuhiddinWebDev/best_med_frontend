@@ -124,6 +124,7 @@ export default {
         pay_type: null,
         salary: null
       };
+      this.$router.go(-1);
     }
   }
 };

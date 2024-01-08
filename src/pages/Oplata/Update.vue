@@ -119,6 +119,7 @@ export default {
         type: 0,
         data: 0
       };
+      this.$router.go(-1);
     }
   },
   mounted() {
