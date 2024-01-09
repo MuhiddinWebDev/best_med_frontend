@@ -171,7 +171,7 @@ export default {
             key: "datetime", 
             label: "Сана",
             formatter: (value, key, item) => {
-            return moment.unix(value).format("DD.MM.YYYY");
+            return moment.unix(value).format("DD.MM.YYYY HH:mm:ss");
           },  
         },
         { key: "actions", label: "" }

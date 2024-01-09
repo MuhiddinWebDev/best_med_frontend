@@ -317,8 +317,6 @@ export default {
       }
     },
     Yigindi(index, item) {
-      // item.summa = Number(item.count) * Number(item.price);
-      // this.prixod.umumiy_summa += Number(item.count) * Number(item.price);
       let copy = [...this.prixod.prixod_table];
 
       copy[index].price = Number(copy[index].price);
@@ -351,38 +349,108 @@ export default {
       });
     },
     createPrixod() {
-      let self = this;
-      if (self.prixod.type == "Naqt") {
-        self.prixod.type = 0;
-      } else {
-        self.prixod.type = 1;
+      // Check if the supplier is selected
+      if (this.prixod.pastavchik_id === null) {
+        return alert("Поставщик танлаш мажбурий");
       }
+
+      // Check if products are entered
+      if (this.prixod.prixod_table.length === 0) {
+        return alert("Маҳсулотлар киритиш мажбурий");
+      }
+
+      // Validate each product in the list
+      for (let i = 0; i < this.prixod.prixod_table.length; i++) {
+        const product = this.prixod.prixod_table[i];
+
+        if (product.reagent_id == null) {
+          return alert(`Маҳсулотни ${i + 1} қаторда танланг`);
+        } 
+
+        if (parseInt(product.price) <= 0) {
+          return alert(`Маҳсулотни ${i + 1} қаторда нархини киритинг`);
+        }
+        
+        if (parseInt(product.count) <= 0) {
+          return alert(`Маҳсулотни ${i + 1} қаторда сонини киритинг`);
+        }
+      }
+
+      // Set the type based on the condition
+      this.prixod.type = this.prixod.type === "Naqt" ? 0 : 1;
+
       this.$v.$touch();
-      if (this.$v.prixod.$error == false) {
-        if (self.$route.name == "Prixod Create") {
-          axios({
-            method: "post",
-            url: "/prixod/create",
-            data: self.prixod,
-          }).then((data) => {
-            if (data != undefined) {
-              this.$router.push("/prixod");
-            }
-          });
-        } else if (self.$route.name == "Prixod Update") {
-          axios({
-            method: "patch",
-            url: `/prixod/update/` + self.prixod.id,
-            data: self.prixod,
-          }).then((data) => {
-            if (data != undefined) {
-              self.$router.push("/prixod");
-            }
-          });
+
+      // Check for validation errors
+      if (!this.$v.prixod.$error) {
+        // Filter products based on conditions
+        this.prixod.prixod_table = this.prixod.prixod_table.filter(item => item.count <= 0 && item.reagent_id !== null && item.price <= 0);
+
+        // Perform the axios request based on the route
+        if (this.$route.name === "Prixod Create") {
+          axios.post("/prixod/create", this.prixod)
+            .then(data => {
+              if (data !== undefined) {
+                this.$router.push("/prixod");
+              }
+            });
+        } else if (this.$route.name === "Prixod Update") {
+          axios.patch(`/prixod/update/${this.prixod.id}`, this.prixod)
+            .then(data => {
+              if (data !== undefined) {
+                this.$router.push("/prixod");
+              }
+            });
         }
       } else {
-        self.errors = self.$v.prixod;
+        // Display validation errors
+        this.errors = this.$v.prixod;
       }
+
+      return 0
+      if(this.prixod.pastavchik_id == null) return alert("Поставщик танлаш мажбурий"); 
+      if(this.prixod.prixod_table.length == 0) return alert("Маҳсулотлар киритиш мажбурий")
+      
+      this.prixod.prixod_table.forEach((e, i)=>  {
+        if(parseInt(e.count) > 0) return alert(`Маҳсулотни ${i + 1} қаторда сонини киритинг`)
+        if(parseInt(e.reagent_id) == null) return alert(`Маҳсулотни ${i + 1} қаторда танланг`)
+      })
+
+      setTimeout(() => {
+          if (this.prixod.type == "Naqt") {
+            this.prixod.type = 0;
+          } else {
+            this.prixod.type = 1;
+          }
+          this.$v.$touch();
+          if (this.$v.prixod.$error == false) {
+          this.prixod.prixod_table = this.prixod.prixod_table.filter(item => item.count > 0 && item.reagent_id !== null);
+
+            if (this.$route.name == "Prixod Create") {
+              axios({
+                method: "post",
+                url: "/prixod/create",
+                data: this.prixod,
+              }).then((data) => {
+                if (data != undefined) {
+                  this.$router.push("/prixod");
+                }
+              });
+            } else if (this.$route.name == "Prixod Update") {
+              axios({
+                method: "patch",
+                url: `/prixod/update/` + this.prixod.id,
+                data: this.prixod,
+              }).then((data) => {
+                if (data != undefined) {
+                  this.$router.push("/prixod");
+                }
+              });
+            }
+          } else {
+            this.errors = this.$v.prixod;
+          }
+      },1200)
     },
     createProvider() {
       let self = this;
@@ -486,7 +554,10 @@ export default {
           count: 0,
         },
       ];
-      this.$router.go(-1);
+      const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
+      if(x) {
+          this.$router.go(-1);
+      }
       // this.prixod = {
       //   umumiy_summa: 0,
       //   pastavchik_id: null,

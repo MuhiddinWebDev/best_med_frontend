@@ -193,7 +193,7 @@ export default {
           res.data.data.forEach(element => {
             element.date_time = moment(
               new Date(element.date_time * 1000)
-            ).format("DD.MM.YYYY");
+            ).format("DD.MM.YYYY HH:mm:ss");
           });
           s.items = res.data.data;
           s.totalRows = s.items.length;

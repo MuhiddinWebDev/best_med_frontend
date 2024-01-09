@@ -187,6 +187,10 @@ export default {
   },
   methods: {
     Prev() {
+      const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
+      if(x) {
+        this.$router.go(-1);
+      }
       this.$router.push("/reagent/department");
     },
     getDepartment() {
@@ -284,6 +288,10 @@ export default {
         reagent_id: null,
         count: 0
       };
+      const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
+      if(x) {
+        this.$router.go(-1);
+      }
     },
     getFilial() {
       let self = this;

@@ -1,7 +1,7 @@
 <template>
   <div class="parent ml-2">
     <div class="kattat">
-      <span>Паставшиктўлов</span>
+      <span>Паставшик тўлов</span>
       <b-button class="navbarBtnDanger" variant="danger" @click="Prev()">
         <b-icon icon="x-circle-fill"></b-icon>
       </b-button>
@@ -357,7 +357,10 @@ export default {
         backlog: 0,
         jami_summa: 0
       };
-      this.$router.go(-1);
+      const x = window.confirm("Ростдан ҳам ойнани тарк этмоқчимисиз?");
+      if(x) {
+        this.$router.go(-1);
+      }
     }
   },
   mounted() {
